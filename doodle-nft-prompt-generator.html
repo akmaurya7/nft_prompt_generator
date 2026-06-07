@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doodle NFT Prompt Generator — All Living Beings</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <style>
@@ -1952,10 +1954,43 @@
         // ══════════════════════════════════════════════════
         // STATE
         // ══════════════════════════════════════════════════
+        const firebaseConfig = {
+            apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
+            authDomain: "demosetup-62c0c.firebaseapp.com",
+            databaseURL: "https://demosetup-62c0c-default-rtdb.firebaseio.com",
+            projectId: "demosetup-62c0c",
+            storageBucket: "demosetup-62c0c.firebasestorage.app",
+            messagingSenderId: "93404032712",
+            appId: "1:93404032712:web:bf96d78c86739d1d437ffd"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const cyrb53 = (str, seed = 0) => {
+            let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+            for(let i = 0, ch; i < str.length; i++) {
+                ch = str.charCodeAt(i);
+                h1 = Math.imul(h1 ^ ch, 2654435761);
+                h2 = Math.imul(h2 ^ ch, 1597334677);
+            }
+            h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+            return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString();
+        };
+
         let currentType = null;
         const selected = {};
         const usedPrompts = new Set();
         let generatedCount = 0;
+
+        db.ref('doodle/usedPrompts').on('child_added', snap => {
+            usedPrompts.add(snap.key);
+            updateStats();
+        });
+        db.ref('doodle/generatedCount').on('value', snap => {
+            generatedCount = snap.val() || 0;
+            updateStats();
+        });
 
         // ══════════════════════════════════════════════════
         // STATS
@@ -2097,8 +2132,9 @@
             const suffix = plat ? `\n\n${platformSuffixes[plat]}` : '';
 
             const prompt = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.${suffix}`;
+            const promptHash = cyrb53(prompt);
 
-            if (usedPrompts.has(prompt)) {
+            if (usedPrompts.has(promptHash)) {
                 const toast = document.getElementById('toast');
                 toast.textContent = '⚠️ This prompt was already generated!';
                 toast.style.background = '#FF5F57';
@@ -2111,11 +2147,10 @@
                     }, 300);
                 }, 2200);
             } else {
-                usedPrompts.add(prompt);
+                usedPrompts.add(promptHash); // add locally immediately to prevent double clicks
+                db.ref(`doodle/usedPrompts/${promptHash}`).set(true);
+                db.ref('doodle/generatedCount').set(firebase.database.ServerValue.increment(1));
             }
-
-            generatedCount++;
-            updateStats();
 
             out.textContent = prompt;
             out.classList.remove('empty');
@@ -2183,7 +2218,7 @@
                     const suffix = plat ? `\n\n${platformSuffixes[plat]}` : '';
                     const promptText = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.${suffix}`;
 
-                    if (!usedPrompts.has(promptText)) {
+                    if (!usedPrompts.has(cyrb53(promptText))) {
                         foundUnique = true;
                     }
                     attempts++;
