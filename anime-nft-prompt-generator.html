@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime NFT Prompt Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --pink: #FF6B9D;
+      --yellow: #FFD93D;
+      --mint: #6BCB77;
+      --blue: #4ECDC4;
+      --lavender: #C77DFF;
+      --peach: #FFB347;
+      --bg: #FFF9F0;
+      --card: #ffffff;
+      --outline: #1a1a2e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 157, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 217, 61, 0.08) 0%, transparent 60%);
+    }
+
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--outline);
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .emoji-bar {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 960px;
+      margin: 0 auto 28px;
+    }
+
+    .stat-box {
+      background: var(--card);
+      border: 3px solid var(--outline);
+      border-radius: 16px;
+      padding: 14px 16px;
+      text-align: center;
+      box-shadow: 4px 4px 0 var(--outline);
+    }
+
+    .stat-v {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .stat-k {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    @media(max-width:600px) {
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── Character Type Selector ── */
+    .type-section {
+      max-width: 960px;
+      margin: 0 auto 28px;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: var(--outline);
+      margin-bottom: 12px;
+      padding-left: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .type-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .type-btn {
+      background: white;
+      border: 3px solid var(--outline);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 3px 3px 0 var(--outline);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--outline);
+    }
+
+    .type-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--outline);
+    }
+
+    .type-btn.active {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--outline);
+      background: #ffd6e7;
+    }
+
+    .type-btn:nth-child(even).active {
+      background: #ffe5cc;
+    }
+
+    .type-btn:nth-child(3n).active {
+      background: #d6f5e3;
+    }
+
+    .type-btn:nth-child(4n).active {
+      background: #d6f0ff;
+    }
+
+    .type-btn:nth-child(5n).active {
+      background: #f5d6ff;
+    }
+
+    /* ── Trait Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 14px;
+      max-width: 960px;
+      margin: 0 auto 24px;
+    }
+
+    .trait-card {
+      background: var(--card);
+      border: 3px solid var(--outline);
+      border-radius: 20px;
+      padding: 16px 18px;
+      box-shadow: 5px 5px 0px var(--outline);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .trait-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px var(--outline);
+    }
+
+    .trait-label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.82rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trait-label span {
+      font-size: 1.1rem;
+    }
+
+    .options-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .opt-btn {
+      background: #f5f5f5;
+      border: 2.5px solid #ccc;
+      border-radius: 50px;
+      padding: 5px 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: #444;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--outline);
+      background: #fffbe7;
+      transform: scale(1.04);
+    }
+
+    .opt-btn.active {
+      border-color: var(--outline);
+      box-shadow: 3px 3px 0 var(--outline);
+      color: #111;
+    }
+
+    .trait-card:nth-child(1) .opt-btn.active {
+      background: #ffd6e7;
+    }
+
+    .trait-card:nth-child(2) .opt-btn.active {
+      background: #ffe5cc;
+    }
+
+    .trait-card:nth-child(3) .opt-btn.active {
+      background: #d6f5e3;
+    }
+
+    .trait-card:nth-child(4) .opt-btn.active {
+      background: #d6f0ff;
+    }
+
+    .trait-card:nth-child(5) .opt-btn.active {
+      background: #e8d6ff;
+    }
+
+    .trait-card:nth-child(6) .opt-btn.active {
+      background: #fff3cc;
+    }
+
+    .trait-card:nth-child(7) .opt-btn.active {
+      background: #ffd6f0;
+    }
+
+    .trait-card:nth-child(8) .opt-btn.active {
+      background: #d6ffe8;
+    }
+
+    .trait-card:nth-child(9) .opt-btn.active {
+      background: #ffe0b2;
+    }
+
+    .trait-card:nth-child(10) .opt-btn.active {
+      background: #fff3cc;
+    }
+
+    .trait-card:nth-child(11) .opt-btn.active {
+      background: #ffd6e7;
+    }
+
+    .trait-card:nth-child(12) .opt-btn.active {
+      background: #d6f5e3;
+    }
+
+    .trait-card:nth-child(13) .opt-btn.active {
+      background: #e8d6ff;
+    }
+
+    .trait-card:nth-child(14) .opt-btn.active {
+      background: #ffe5cc;
+    }
+
+    .trait-card:nth-child(15) .opt-btn.active {
+      background: #d6f5e3;
+    }
+
+    .trait-card:nth-child(16) .opt-btn.active {
+      background: #d6f0ff;
+    }
+
+    /* ── Actions ── */
+    .actions {
+      max-width: 960px;
+      margin: 0 auto 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-main {
+      flex: 1;
+      min-width: 140px;
+      padding: 14px 20px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      border: 3px solid var(--outline);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 4px 4px 0 var(--outline);
+    }
+
+    .btn-main:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--outline);
+    }
+
+    .btn-main:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--outline);
+    }
+
+    .btn-generate {
+      background: var(--yellow);
+      color: var(--outline);
+    }
+
+    .btn-random {
+      background: var(--pink);
+      color: white;
+    }
+
+    .btn-copy {
+      background: var(--mint);
+      color: white;
+    }
+
+    /* ── Output ── */
+    .output-box {
+      max-width: 960px;
+      margin: 0 auto;
+      background: white;
+      border: 3px solid var(--outline);
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--outline);
+      overflow: hidden;
+    }
+
+    .output-header {
+      background: var(--outline);
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .output-header .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot1 {
+      background: #FF5F57;
+    }
+
+    .dot2 {
+      background: #FFBD2E;
+    }
+
+    .dot3 {
+      background: #28C940;
+    }
+
+    .prompt-text {
+      padding: 20px 24px;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: #222;
+      font-weight: 600;
+      min-height: 100px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      cursor: pointer;
+      transition: background 0.15s;
+      position: relative;
+    }
+
+    .prompt-text:not(.empty):hover {
+      background: #fafafa;
+    }
+
+    .prompt-text:not(.empty):hover::after {
+      content: 'Click to copy';
+      position: absolute;
+      bottom: 8px;
+      right: 16px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--mint);
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .prompt-text.empty {
+      color: #bbb;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .negative-section {
+      border-top: 2px dashed #eee;
+      padding: 14px 24px;
+      background: #fafafa;
+    }
+
+    .neg-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .neg-text {
+      font-size: 0.85rem;
+      color: #777;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .tag-row {
+      padding: 12px 24px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 2px dashed #eee;
+    }
+
+    .platform-tag {
+      background: #fff8e1;
+      border: 2px solid #ffd54f;
+      border-radius: 50px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--outline);
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      padding: 12px 28px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    .copied-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .rarity-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .rarity-common {
+      background: #e0e0e0;
+      color: #555;
+      border: 2px solid #ccc;
+    }
+
+    .rarity-rare {
+      background: #d0e8ff;
+      color: #1565c0;
+      border: 2px solid #90caf9;
+    }
+
+    .rarity-epic {
+      background: #ffd6f0;
+      color: #c2185b;
+      border: 2px solid #f48fb1;
+    }
+
+    .rarity-legendary {
+      background: linear-gradient(90deg, #ffd700, #ff8c00);
+      color: white;
+      border: 2px solid #e65100;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="emoji-bar">⚡ 🌸 🤖 ⚔️ 🔮 🩸 🌿 ✨</div>
+  <h1>Anime NFT Prompt Generator</h1>
+  <p class="subtitle">Choose an art style → pick your traits → copy your AI art prompt ✨</p>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-box"><span class="stat-v" id="s-total">—</span><span class="stat-k">Total Combos</span></div>
+    <div class="stat-box"><span class="stat-v" id="s-gen">0</span><span class="stat-k">Generated</span></div>
+    <div class="stat-box"><span class="stat-v" id="s-left">—</span><span class="stat-k">Remaining</span></div>
+    <div class="stat-box"><span class="stat-v" id="s-uniq">0</span><span class="stat-k">Unique IDs</span></div>
+  </div>
+
+  <!-- Style Selector -->
+  <div class="type-section">
+    <div class="section-title">🎨 Choose Art Style</div>
+    <div class="type-grid" id="style-grid"></div>
+  </div>
+
+  <!-- Trait Cards -->
+  <div class="grid" id="trait-grid"></div>
+
+  <div class="actions">
+    <button class="btn-main btn-generate" onclick="generatePrompt()">✨ Generate Prompt</button>
+    <button class="btn-main btn-random" onclick="randomize()">🎲 Randomize All</button>
+    <button class="btn-main btn-copy" onclick="copyPrompt()">📋 Copy Prompt</button>
+  </div>
+
+  <div class="output-box">
+    <div class="output-header">
+      <div class="dots">
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+      </div>
+      <span>YOUR PROMPT</span>
+      <span id="rarity-label"></span>
+    </div>
+    <div class="prompt-text empty" id="prompt-output" onclick="copyPrompt()">← Choose a style and pick your traits above
+    </div>
+    <div class="negative-section">
+      <div class="neg-label">⛔ Negative Prompt</div>
+      <div class="neg-text" id="neg-output">realistic photo, 3D render, blurry, low detail, sketch rough, low quality,
+        deformed, extra limbs, bad anatomy, duplicate, mutated</div>
+    </div>
+    <div class="tag-row" id="tag-row"></div>
+  </div>
+
+  <div class="copied-toast" id="toast">✅ Copied to clipboard!</div>
+
+  <script>
+    const TRAITS = {
+      gender: {
+        label: '⚧ Gender',
+        opts: ['female', 'male', 'androgynous', 'non-binary', 'femboy', 'tomboy']
+      },
+      age_look: {
+        label: '🎂 Age Appearance',
+        opts: ['teen girl', 'young woman', 'young man', 'adult woman', 'adult man', 'mysterious ageless', 'childlike innocent', 'mature elegant']
+      },
+      archetype: {
+        label: '⚔️ Character Archetype',
+        opts: [
+          'cyber hacker', 'arcade gamer girl', 'hooded assassin', 'dark oracle', 'skeleton punk',
+          'wind warrior', 'neon fairy', 'glitch artist', 'gothic lolita', 'samurai spirit',
+          'ice queen', 'demon hunter', 'angel fallen', 'void mage', 'street fighter',
+          'idol singer', 'kunoichi ninja', 'fox shrine maiden', 'cosmic witch', 'rebel punk',
+          'phantom thief', 'dragon slayer', 'shadow dancer', 'star guardian', 'blood mage',
+          'cyber geisha', 'desert wanderer', 'crystal seer', 'plague doctor', 'thunder god',
+          'dream weaver', 'time traveler', 'moon priestess', 'flame empress', 'storm caller',
+          'ghost bride', 'bounty hunter', 'cursed prince', 'divine archer', 'rogue alchemist'
+        ]
+      },
+      hair_style: {
+        label: '💇 Hair Style',
+        opts: [
+          'long flowing straight', 'short choppy', 'twin buns', 'high ponytail', 'messy bedhead',
+          'braided crown', 'side swept bangs', 'undercut fade', 'wild spiky', 'wavy cascading',
+          'bob cut', 'half up half down', 'long braided pigtails', 'shaved side', 'voluminous curly',
+          'sleek pulled back', 'mohawk', 'wolf cut layered', 'ahoge cowlick', 'pixie cut',
+          'double buns with tendrils', 'asymmetric', 'long with front bangs', 'fluffy layered'
+        ]
+      },
+      hair_color: {
+        label: '🌈 Hair Color',
+        opts: [
+          'electric blue', 'neon pink', 'silver white', 'jet black', 'platinum blonde',
+          'rose gold', 'deep purple', 'mint green', 'fiery red-orange', 'ocean teal',
+          'lavender', 'golden blonde', 'dark chocolate brown', 'ice white', 'rainbow gradient',
+          'magenta pink', 'emerald green', 'indigo blue', 'warm copper', 'ashy grey',
+          'crimson red', 'midnight black with blue sheen', 'pastel lilac', 'coral orange',
+          'two-tone black and white', 'streaked with neon', 'holographic iridescent'
+        ]
+      },
+      eye_style: {
+        label: '👁 Eyes',
+        opts: [
+          'large sparkly anime eyes', 'glowing neon blue eyes', 'heterochromia two colors',
+          'cat slit pupils', 'empty white glowing eyes', 'star-shaped pupils', 'half-lidded sultry',
+          'wide innocent doe eyes', 'sharp fierce eyes', 'teary glistening eyes',
+          'glowing red demon eyes', 'blind clouded eyes', 'mechanical cyber eye',
+          'golden iris flower pattern', 'fractal galaxy eyes', 'dark hollow eyes',
+          'sharp turquoise eyes', 'soft purple eyes', 'blazing orange eyes', 'icy silver eyes'
+        ]
+      },
+      skin_tone: {
+        label: '🎨 Skin Tone',
+        opts: [
+          'pale porcelain', 'warm golden tan', 'deep chocolate brown', 'cool olive',
+          'ethereal blue-tinted', 'ghostly white', 'warm honey', 'dark espresso',
+          'rosy fair', 'sun-kissed bronze', 'lavender tinted', 'translucent pale'
+        ]
+      },
+      outfit_top: {
+        label: '👕 Top / Outfit',
+        opts: [
+          'cropped arcade graphic tee', 'ripped fishnet top', 'oversized hoodie', 'cyber armor breastplate',
+          'school uniform blazer', 'strapless tube top', 'kimono with modern twist', 'tactical vest',
+          'maid dress bodice', 'ballgown corset', 'leather biker jacket', 'ethereal flowy robes',
+          'crop top with chains', 'military coat', 'cape with shoulder armor', 'sheer fairy wings top',
+          'skeleton print hoodie', 'trench coat', 'strapped harness bodysuit', 'shrine maiden haori',
+          'cyber bodysuit', 'band tee knotted', 'lace gothic blouse', 'fur-trimmed coat',
+          'combat jacket with patches', 'spacesuit top', 'off-shoulder wrap', 'floral yukata'
+        ]
+      },
+      outfit_bottom: {
+        label: '👖 Bottom',
+        opts: [
+          'micro shorts with thigh highs', 'pleated plaid skirt', 'wide cargo pants', 'torn jeans',
+          'layered tutu skirt', 'hakama pants', 'bodysuit full', 'long slit skirt',
+          'short ruffled skirt', 'armored leg guards', 'jean shorts', 'flowing maxi skirt',
+          'leggings with knee pads', 'lace-trimmed skirt', 'combat pants', 'wrap skirt'
+        ]
+      },
+      accessories: {
+        label: '💎 Accessories',
+        opts: [
+          'none', 'chunky headphones', 'cat ear accessories', 'oversized round glasses',
+          'holographic visor', 'spiked collar', 'chain necklace layered', 'crescent moon hairpin',
+          'LED earrings', 'flower kanzashi pin', 'gas mask pulled down', 'crown of thorns',
+          'ribbon bow tie', 'butterfly clips', 'star-shaped sunglasses', 'mechanical arm',
+          'floating magic orbs', 'witch hat', 'angel halo', 'devil horns', 'fishnet gloves',
+          'armband tattoos', 'wrist communicator', 'crystal staff', 'samurai sword on back',
+          'rose bouquet', 'scroll', 'music player', 'pixel game controller', 'magic book'
+        ]
+      },
+      background: {
+        label: '🌆 Background',
+        opts: [
+          'neon-lit cyberpunk city alley at night', 'glowing arcade game room', 'dark city rooftop with neon signs', 'holographic circuit board pattern', 'blue neon hexagon grid', 'raining neon city nightscape', 'glowing server room', 'underground rave with lasers',
+          'cherry blossom garden at twilight', 'misty mountain shrine', 'enchanted glowing forest', 'moonlit lake reflection', 'field of luminous flowers', 'ancient temple ruins overgrown', 'starry night sky open field', 'autumn leaves golden light',
+          'swirling galaxy nebula portal', 'cosmic stardust void', 'shattered mirror fragments floating', 'watercolor ink splash abstract', 'geometric crystalline structure', 'golden sacred geometry', 'rainbow prism light beams', 'pastel cloud dreamscape',
+          'crumbling gothic cathedral interior', 'blood moon dark sky', 'black rose garden', 'haunted mansion ballroom', 'dark forest with will-o-wisps', 'underwater abyss glowing', 'volcanic lava field', 'graveyard at midnight',
+          'flat pastel pink solid', 'flat hot magenta solid', 'flat cyan blue solid', 'flat soft purple solid', 'white minimal studio', 'gradient purple to pink', 'gradient teal to black', 'halftone dot pattern'
+        ]
+      },
+      bg_effect: {
+        label: '✨ BG Special Effect',
+        opts: [
+          'none', 'floating sakura petals', 'neon particle rain', 'glowing rune symbols', 'lens flare streaks',
+          'bokeh light circles', 'rising embers', 'sparkle constellation', 'digital glitch lines',
+          'rising bubbles', 'floating feathers', 'shattered glass shards', 'smoke wisps',
+          'aurora borealis', 'electric lightning arcs', 'falling rose petals', 'pixel confetti'
+        ]
+      },
+      mood_lighting: {
+        label: '💡 Mood & Lighting',
+        opts: [
+          'dramatic rim lighting', 'soft rose golden glow', 'harsh neon glow from below', 'moonlight blue cool tones',
+          'warm sunset amber', 'cold clinical white light', 'eerie green bioluminescence', 'cinematic chiaroscuro',
+          'flat bright pop art lighting', 'volumetric god rays', 'neon sign color cast', 'dark vignette edges',
+          'soft diffused pastel light', 'electric purple backlit', 'firelight warm flicker', 'dawn pink light'
+        ]
+      },
+      art_finish: {
+        label: '🖌 Art Finish',
+        opts: [
+          'detailed anime illustration', 'semi-realistic anime', 'painterly brushstroke', 'cel-shaded clean lines',
+          'pixel art 16-bit', 'thick outline sticker art', 'watercolor soft edges', 'ink wash manga style',
+          'glossy digital painting', 'rough sketch aesthetic', 'flat vector bold', 'neon poster print',
+          'oil painting texture', 'chalk pastel finish', 'lineless soft shading', 'grunge ink splatter'
+        ]
+      },
+      expression: {
+        label: '😶 Expression',
+        opts: [
+          'confident smirk', 'mysterious blank stare', 'fierce battle glare', 'shy blushing downward look',
+          'joyful bright smile', 'sad teary eyes', 'cold emotionless', 'playful wink',
+          'surprised wide eyes', 'determined jaw set', 'seductive half-lidded', 'innocent curious',
+          'laughing joyful', 'melancholic distant', 'angry fierce', 'gentle serene smile'
+        ]
+      },
+      special_power: {
+        label: '⚡ Power / Aura',
+        opts: [
+          'none', 'glowing energy aura', 'floating magic circles', 'electricity arcing', 'dark shadow tendrils',
+          'wind swirling around', 'ice frost forming', 'fire flames wisping', 'water flow ribbons',
+          'digital glitch distortion', 'holographic projections', 'cherry blossom vortex',
+          'cosmic star particles', 'blood magic dripping', 'lightning wings manifesting', 'void dark matter'
+        ]
+      }
+    };
+    const STYLES = {
+      cyber: { name: "Cyber Neon", desc: "cyberpunk anime art style, neon glow, digital aesthetic, Makoto Shinkai inspired, ultra detailed linework, vibrant neon palette", neg: "realistic photo, 3D render, blurry, muted colors, low detail, sketch rough" },
+      kawaii: { name: "Kawaii Pop", desc: "kawaii anime pop art style, bright pastel colors, cute big eyes, glossy clean shading, chibi-influenced proportions, Sugar Bunnies aesthetic", neg: "dark, gore, realistic, blurry, ugly, deformed, 3D render" },
+      dark: { name: "Dark Anime", desc: "dark anime illustration, moody atmospheric art, Yoshitaka Amano influenced, dramatic shadows, deep color palette, mature detailed style", neg: "cute kawaii, bright pastel, blurry, low quality, 3D render, realistic photo" },
+      pixel: { name: "Pixel Art", desc: "pixel art anime character, 32-bit retro game sprite style, clean pixel edges, limited color palette, NES/SNES era aesthetic, detailed pixel shading", neg: "smooth, anti-aliased, realistic, blurry, 3D render, watercolor" },
+      magical: { name: "Magical Girl", desc: "magical girl anime style, Sailor Moon inspired, sparkly magical effects, pastel rainbow colors, elaborate costume detail, shojo manga aesthetic", neg: "dark, gritty, realistic, blurry, 3D render, ugly, poorly drawn" },
+      gothic: { name: "Gothic Lolita", desc: "gothic lolita anime art, dark elegant aesthetic, Junji Ito meets CLAMP style, lace and ribbon detail, dramatic dark palette, high fashion illustration", neg: "cute pastel, realistic photo, 3D render, blurry, low quality, nsfw" },
+      mecha: { name: "Mecha Armor", desc: "mecha anime art style, Gundam inspired armor design, hard-surface illustration, dynamic metallic shading, Mamoru Nagano influence, ultra-detailed mechanical", neg: "organic soft, realistic photo, blurry, low quality, 3D render, sketch" },
+      spirit: { name: "Spirit Nature", desc: "spirit and nature anime style, Hayao Miyazaki Studio Ghibli inspired, ethereal watercolor atmosphere, flowing organic forms, magical realism illustration", neg: "cyberpunk, neon, dark gritty, realistic photo, 3D render, blurry, ugly" }
+    };
+    const styleEmojis = { cyber: "⚡", kawaii: "🍬", dark: "🖤", pixel: "🕹", magical: "✨", gothic: "🩸", mecha: "🤖", spirit: "🌿" };
+    const baseNeg = "low quality, blurry, ugly, deformed, extra limbs, bad anatomy, watermark, signature, text, multiple characters, duplicate, mutated";
+
+    let curStyle = null;
+    const selected = {};
+    const usedPrompts = new Set();
+    let generatedCount = 0;
+
+    function totalCombos() {
+      let total = 1;
+      Object.values(TRAITS).forEach(t => {
+        total *= t.opts.length;
+      });
+      total *= Object.keys(STYLES).length;
+      return total;
+    }
+
+    function updateStats() {
+      const total = totalCombos();
+      const uniq = usedPrompts.size;
+      const left = total - uniq;
+      document.getElementById('s-total').textContent = total.toLocaleString();
+      document.getElementById('s-gen').textContent = generatedCount.toLocaleString();
+      document.getElementById('s-left').textContent = left.toLocaleString();
+      document.getElementById('s-uniq').textContent = uniq.toLocaleString();
+    }
+
+    function buildStyleGrid() {
+      const grid = document.getElementById('style-grid');
+      Object.entries(STYLES).forEach(([id, st]) => {
+        const btn = document.createElement('button');
+        btn.className = 'type-btn';
+        btn.dataset.style = id;
+        btn.innerHTML = `${styleEmojis[id] || '🎨'} ${st.name}`;
+        btn.onclick = () => selectStyle(id, btn);
+        grid.appendChild(btn);
+      });
+    }
+
+    function selectStyle(id, btn) {
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      curStyle = id;
+      document.getElementById('neg-output').textContent = `${STYLES[id].neg}, ${baseNeg}`;
+    }
+
+    function buildTraitGrid() {
+      const grid = document.getElementById('trait-grid');
+      grid.innerHTML = '';
+      const colorArray = ['#FF6B9D', '#FFB347', '#6BCB77', '#4ECDC4', '#C77DFF', '#FFD93D'];
+
+      Object.keys(TRAITS).forEach((key, index) => {
+        const trait = TRAITS[key];
+        const card = document.createElement('div');
+        card.className = `trait-card card-${key}`;
+        const col = colorArray[index % colorArray.length];
+        const iconMatch = trait.label.match(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/);
+        const icon = iconMatch ? iconMatch[0] : '✨';
+        const plainLabel = trait.label.replace(icon, '').trim();
+
+        card.innerHTML = `
+                  <div class="trait-label" style="color:${col}">
+                    <span>${icon}</span>${plainLabel}
+                  </div>
+                  <div class="options-wrap" id="trait-${key}"></div>
+                `;
+        grid.appendChild(card);
+
+        const wrap = card.querySelector(`#trait-${key}`);
+        trait.opts.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = opt;
+          btn.dataset.key = key;
+          btn.dataset.val = opt;
+          btn.onclick = () => selectTrait(key, opt, btn);
+          wrap.appendChild(btn);
+        });
+      });
+    }
+
+    function selectTrait(key, val, btn) {
+      document.querySelectorAll(`[data-key="${key}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selected[key] = val;
+    }
+
+    function buildPrompt(r, st) {
+      const accPart = r.accessories === 'none' ? '' : `, ${r.accessories}`;
+      const fxPart = r.special_power === 'none' ? '' : `, ${r.special_power}`;
+      const bgFx = r.bg_effect === 'none' ? '' : `, ${r.bg_effect}`;
+      return `A ${r.age_look} ${r.archetype} anime character, ${r.gender}, ${r.skin_tone} skin, ${r.hair_color} ${r.hair_style} hair, ${r.eye_style}, ${r.expression} expression, wearing ${r.outfit_top} and ${r.outfit_bottom}${accPart}${fxPart}, ${r.background} background${bgFx}, ${r.mood_lighting}, ${r.art_finish}, ${st.desc}, PFP NFT portrait composition, centered framing, ultra detailed, sharp focus, masterpiece quality, trending on OpenSea, 4K`;
+    }
+
+    function generatePrompt() {
+      const out = document.getElementById('prompt-output');
+      if (!curStyle) {
+        out.textContent = '⚠️ Please select an art style first!';
+        out.classList.add('empty');
+        return;
+      }
+      if (Object.keys(selected).length < 3) {
+        out.textContent = '⚠️ Please select at least 3 traits first!';
+        out.classList.add('empty');
+        return;
+      }
+
+      const st = STYLES[curStyle];
+      const prompt = buildPrompt(selected, st);
+
+      if (usedPrompts.has(prompt)) {
+        const toast = document.getElementById('toast');
+        toast.textContent = '⚠️ This prompt was already generated!';
+        toast.style.background = '#FF5F57';
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => {
+            toast.textContent = '✅ Copied to clipboard!';
+            toast.style.background = 'var(--outline)';
+          }, 300);
+        }, 2200);
+      } else {
+        usedPrompts.add(prompt);
+      }
+
+      generatedCount++;
+      updateStats();
+
+      out.textContent = prompt;
+      out.classList.remove('empty');
+
+      const r = calcRarity(selected);
+      const labels = { common: '⚪ Common', rare: '🔵 Rare', epic: '🔴 Epic', legendary: '🟡 Legendary' };
+      const classes = { common: 'rarity-common', rare: 'rarity-rare', epic: 'rarity-epic', legendary: 'rarity-legendary' };
+      document.getElementById('rarity-label').innerHTML = `<span class="rarity-badge ${classes[r]}">${labels[r] || labels.common}</span>`;
+
+      const tagRow = document.getElementById('tag-row');
+      tagRow.innerHTML = `<span class="platform-tag" style="background:#fff3cd">✓ ${st.name.toUpperCase()}</span>`;
+    }
+
+    function calcRarity(r) {
+      const legendary = ['heterochromia', 'void mage', 'blood mage', 'divine archer', 'cosmic witch', 'fallen angel', 'star guardian', 'holographic iridescent', 'fractal galaxy eyes', 'void dark matter', 'mechanical cyber eye'];
+      const epic = ['demon hunter', 'phantom thief', 'cursed prince', 'time traveler', 'cyber geisha', 'ghost bride', 'frost forming', 'lightning wings', 'cosmic star particles'];
+      const s = Object.values(r).join(' ').toLowerCase();
+      if (legendary.some(w => s.includes(w))) return 'legendary';
+      if (epic.some(w => s.includes(w))) return 'epic';
+      const rareKw = ['glowing', 'neon', 'holographic', 'ethereal', 'crystal', 'ghost', 'shadow', 'rainbow'].filter(w => s.includes(w));
+      if (rareKw.length >= 3) return 'rare';
+      return 'common';
+    }
+
+    function randomize() {
+      const styles = Object.keys(STYLES);
+      const randStyle = styles[Math.floor(Math.random() * styles.length)];
+      const btn = document.querySelector(`[data-style="${randStyle}"]`);
+      if (btn) selectStyle(randStyle, btn);
+      setTimeout(() => {
+        const traitKeys = Object.keys(TRAITS);
+        let attempts = 0;
+        let foundUnique = false;
+        let bestCombo = null;
+
+        while (attempts < 1000 && !foundUnique) {
+          bestCombo = {};
+          traitKeys.forEach(key => {
+            const buttons = document.querySelectorAll(`[data-key="${key}"]`);
+            if (buttons.length) {
+              const rand = buttons[Math.floor(Math.random() * buttons.length)];
+              bestCombo[key] = rand;
+            }
+          });
+
+          const rObj = {};
+          traitKeys.forEach(key => {
+            if (bestCombo[key]) rObj[key] = bestCombo[key].dataset.val;
+          });
+
+          const promptText = buildPrompt(rObj, STYLES[curStyle]);
+          if (!usedPrompts.has(promptText)) {
+            foundUnique = true;
+          }
+          attempts++;
+        }
+
+        if (bestCombo) {
+          traitKeys.forEach(key => {
+            if (bestCombo[key]) {
+              selectTrait(key, bestCombo[key].dataset.val, bestCombo[key]);
+            }
+          });
+        }
+        generatePrompt();
+      }, 50);
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('prompt-output').textContent;
+      if (!text || text.startsWith('←') || text.startsWith('⚠️')) return;
+      const negText = document.getElementById('neg-output').textContent;
+      const fullText = text + '\n\nNegative Prompt: ' + negText.trim();
+      navigator.clipboard.writeText(fullText).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+
+    buildStyleGrid();
+    buildTraitGrid();
+    updateStats();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Studio - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FF6B9D;
+            --yellow: #FFD93D;
+            --mint: #6BCB77;
+            --blue: #4ECDC4;
+            --lavender: #C77DFF;
+            --peach: #FFB347;
+            --bg: #FFF9F0;
+            --card: #ffffff;
+            --outline: #1a1a2e;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 40px 24px;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 157, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 217, 61, 0.08) 0%, transparent 60%);
+        }
+
+        .emoji-bar {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            animation: bounce 2.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--outline);
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* ── PORTAL GRID ── */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .portal-card {
+            background: var(--card);
+            border: 4px solid var(--outline);
+            border-radius: 28px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 8px 8px 0px var(--outline);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 12px;
+        }
+        .card-doodle::before { background: var(--pink); }
+        .card-anime::before { background: var(--blue); }
+        .card-3d::before { background: var(--yellow); }
+
+        .portal-card:hover {
+            transform: translate(-4px, -6px);
+            box-shadow: 12px 14px 0px var(--outline);
+        }
+
+        .portal-card:active {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px var(--outline);
+        }
+
+        .card-icon {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .portal-card:hover .card-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .card-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            color: var(--outline);
+            margin-bottom: 16px;
+        }
+
+        .card-desc {
+            font-weight: 700;
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .btn-launch {
+            font-family: 'Fredoka One', cursive;
+            padding: 16px 24px;
+            border: 3px solid var(--outline);
+            border-radius: 50px;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            width: 100%;
+            box-shadow: 3px 3px 0 var(--outline);
+        }
+
+        .portal-card:hover .btn-launch {
+            box-shadow: 5px 5px 0 var(--outline);
+            transform: translate(-2px, -2px);
+        }
+
+        .card-doodle .btn-launch { background: var(--pink); color: white; }
+        .card-anime .btn-launch { background: var(--blue); color: var(--outline); }
+        .card-3d .btn-launch { background: var(--yellow); color: var(--outline); }
+
+        /* Floating shapes in background */
+        .shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 { top: 10%; left: 10%; font-size: 3rem; animation-delay: 0s; }
+        .shape-2 { top: 20%; right: 15%; font-size: 2rem; animation-delay: 1s; }
+        .shape-3 { bottom: 15%; left: 20%; font-size: 2.5rem; animation-delay: 2s; }
+        .shape-4 { bottom: 25%; right: 10%; font-size: 3.5rem; animation-delay: 0.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Elements -->
+    <div class="shape shape-1">✦</div>
+    <div class="shape shape-2">★</div>
+    <div class="shape shape-3">●</div>
+    <div class="shape shape-4">✦</div>
+
+    <div class="emoji-bar">🚀 🎨 ✨ 🧸 💻 🌟</div>
+    <h1>AI Prompt Studio</h1>
+    <p class="subtitle">Welcome to your creative suite! Choose an aesthetic below to launch a generator and build your perfect Midjourney / OpenSea prompt.</p>
+
+    <div class="portal-grid">
+        <!-- Doodle -->
+        <a href="doodle-nft-prompt-generator.html" class="portal-card card-doodle">
+            <div class="card-icon">🎨</div>
+            <div class="card-title">Doodle Art</div>
+            <div class="card-desc">Generate whimsical, hand-drawn PFP avatars with bright pastel colors and thick bold outlines. Perfect for classic 2D NFTs.</div>
+            <div class="btn-launch">Launch Doodle →</div>
+        </a>
+
+        <!-- Anime -->
+        <a href="anime-nft-prompt-generator.html" class="portal-card card-anime">
+            <div class="card-icon">✨</div>
+            <div class="card-title">Anime Studio</div>
+            <div class="card-desc">Create highly detailed anime characters ranging from gritty cyberpunk neon environments to cute magical girl aesthetics.</div>
+            <div class="btn-launch">Launch Anime →</div>
+        </a>
+
+        <!-- 3D -->
+        <a href="3d-nft-prompt-generator.html" class="portal-card card-3d">
+            <div class="card-icon">🧸</div>
+            <div class="card-title">3D Figurines</div>
+            <div class="card-desc">Render stunning 3D collectible toys in cinematic lighting. Explore styles like glossy plastic, fluffy velvet, or hyper-real clay.</div>
+            <div class="btn-launch">Launch 3D →</div>
+        </a>
+    </div>
+
+</body>
+</html>
