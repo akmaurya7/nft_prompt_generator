@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doodle NFT Prompt Generator — All Living Beings</title>
+    <title>3D Character NFT Prompt Generator</title>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
@@ -163,86 +163,23 @@
         .type-btn.active {
             transform: translate(-2px, -2px);
             box-shadow: 5px 5px 0 var(--outline);
-        }
-
-        .type-btn[data-type="human"].active {
             background: #ffd6e7;
         }
 
-        .type-btn[data-type="cat"].active {
+        .type-btn:nth-child(even).active {
             background: #ffe5cc;
         }
 
-        .type-btn[data-type="dog"].active {
-            background: #fff3cc;
+        .type-btn:nth-child(3n).active {
+            background: #d6f5e3;
         }
 
-        .type-btn[data-type="bear"].active {
+        .type-btn:nth-child(4n).active {
             background: #d6f0ff;
         }
 
-        .type-btn[data-type="rabbit"].active {
+        .type-btn:nth-child(5n).active {
             background: #f5d6ff;
-        }
-
-        .type-btn[data-type="fox"].active {
-            background: #ffe5cc;
-        }
-
-        .type-btn[data-type="frog"].active {
-            background: #d6f5e3;
-        }
-
-        .type-btn[data-type="bird"].active {
-            background: #d6f0ff;
-        }
-
-        .type-btn[data-type="dragon"].active {
-            background: #ffd6e7;
-        }
-
-        .type-btn[data-type="unicorn"].active {
-            background: #f5d6ff;
-        }
-
-        .type-btn[data-type="dinosaur"].active {
-            background: #d6f5e3;
-        }
-
-        .type-btn[data-type="fish"].active {
-            background: #cce8ff;
-        }
-
-        .type-btn[data-type="octopus"].active {
-            background: #e0d6ff;
-        }
-
-        .type-btn[data-type="bee"].active {
-            background: #fff3cc;
-        }
-
-        .type-btn[data-type="butterfly"].active {
-            background: #ffd6f0;
-        }
-
-        .type-btn[data-type="snail"].active {
-            background: #d6ffe8;
-        }
-
-        .type-btn[data-type="alien"].active {
-            background: #d6ffe8;
-        }
-
-        .type-btn[data-type="mushroom"].active {
-            background: #ffd6e7;
-        }
-
-        .type-btn[data-type="plant"].active {
-            background: #d6f5e3;
-        }
-
-        .type-btn[data-type="shark"].active {
-            background: #cce8ff;
         }
 
         /* ── Trait Grid ── */
@@ -314,41 +251,68 @@
             color: #111;
         }
 
-        /* Color-coded active states */
-        .card-species_variant .opt-btn.active {
+        .trait-card:nth-child(1) .opt-btn.active {
             background: #ffd6e7;
         }
 
-        .card-body_color .opt-btn.active {
+        .trait-card:nth-child(2) .opt-btn.active {
             background: #ffe5cc;
         }
 
-        .card-markings .opt-btn.active {
+        .trait-card:nth-child(3) .opt-btn.active {
             background: #d6f5e3;
         }
 
-        .card-eyes .opt-btn.active {
+        .trait-card:nth-child(4) .opt-btn.active {
             background: #d6f0ff;
         }
 
-        .card-accessory .opt-btn.active {
+        .trait-card:nth-child(5) .opt-btn.active {
             background: #e8d6ff;
         }
 
-        .card-outfit .opt-btn.active {
+        .trait-card:nth-child(6) .opt-btn.active {
             background: #fff3cc;
         }
 
-        .card-expression .opt-btn.active {
+        .trait-card:nth-child(7) .opt-btn.active {
             background: #ffd6f0;
         }
 
-        .card-background .opt-btn.active {
+        .trait-card:nth-child(8) .opt-btn.active {
             background: #d6ffe8;
         }
 
-        .card-special .opt-btn.active {
+        .trait-card:nth-child(9) .opt-btn.active {
             background: #ffe0b2;
+        }
+
+        .trait-card:nth-child(10) .opt-btn.active {
+            background: #fff3cc;
+        }
+
+        .trait-card:nth-child(11) .opt-btn.active {
+            background: #ffd6e7;
+        }
+
+        .trait-card:nth-child(12) .opt-btn.active {
+            background: #d6f5e3;
+        }
+
+        .trait-card:nth-child(13) .opt-btn.active {
+            background: #e8d6ff;
+        }
+
+        .trait-card:nth-child(14) .opt-btn.active {
+            background: #ffe5cc;
+        }
+
+        .trait-card:nth-child(15) .opt-btn.active {
+            background: #d6f5e3;
+        }
+
+        .trait-card:nth-child(16) .opt-btn.active {
+            background: #d6f0ff;
         }
 
         /* ── Actions ── */
@@ -504,6 +468,24 @@
             line-height: 1.5;
         }
 
+        .tag-row {
+            padding: 12px 24px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 2px dashed #eee;
+        }
+
+        .platform-tag {
+            background: #fff8e1;
+            border: 2px solid #ffd54f;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #555;
+        }
+
         .copied-toast {
             position: fixed;
             bottom: 32px;
@@ -548,27 +530,25 @@
             border: 2px solid #90caf9;
         }
 
+        .rarity-epic {
+            background: #ffd6f0;
+            color: #c2185b;
+            border: 2px solid #f48fb1;
+        }
+
         .rarity-legendary {
             background: linear-gradient(90deg, #ffd700, #ff8c00);
             color: white;
             border: 2px solid #e65100;
-        }
-
-        .no-traits-msg {
-            text-align: center;
-            padding: 30px;
-            color: #ccc;
-            font-style: italic;
-            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="emoji-bar">🐉 🐱 🦋 🐸 🌿 🦄 🐙 🦎</div>
-    <h1>Doodle NFT Prompt Generator</h1>
-    <p class="subtitle">Choose a creature → pick your traits → copy your AI art prompt ✨</p>
+    <div class="emoji-bar">🧸 🧊 💎 ⚙️ 🧶 🟦 🎨 ✨</div>
+    <h1>3D Character NFT Generator</h1>
+    <p class="subtitle">Choose a render style → pick your traits → copy your 3D prompt ✨</p>
 
     <!-- STATS -->
     <div class="stats-strip">
@@ -578,10 +558,10 @@
         <div class="stat-box"><span class="stat-v" id="s-uniq">0</span><span class="stat-k">Unique IDs</span></div>
     </div>
 
-    <!-- Character Type -->
+    <!-- Style Selector -->
     <div class="type-section">
-        <div class="section-title">🌍 Choose Your Living Being</div>
-        <div class="type-grid" id="type-grid"></div>
+        <div class="section-title">🎨 Choose Render Style</div>
+        <div class="type-grid" id="style-grid"></div>
     </div>
 
     <!-- Trait Cards -->
@@ -603,1317 +583,173 @@
             <span>YOUR PROMPT</span>
             <span id="rarity-label"></span>
         </div>
-        <div class="prompt-text empty" id="prompt-output" onclick="copyPrompt()">← Choose a creature type and pick your
-            traits above</div>
+        <div class="prompt-text empty" id="prompt-output" onclick="copyPrompt()">← Choose a style and pick your traits
+            above</div>
         <div class="negative-section">
             <div class="neg-label">⛔ Negative Prompt</div>
-            <div class="neg-text" id="neg-output">realistic, photorealistic, 3D render, dark colors, complex background,
-                detailed texture, anime, pixel art, blurry, ugly, distorted, extra limbs</div>
+            <div class="neg-text" id="neg-output">2D, flat, cartoon, anime, sketch, watercolor, blurry, low quality,
+                ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background
+            </div>
         </div>
+        <div class="tag-row" id="tag-row"></div>
     </div>
 
     <div class="copied-toast" id="toast">✅ Copied to clipboard!</div>
 
     <script>
-        // ══════════════════════════════════════════════════
-        // CHARACTER TYPES
-        // ══════════════════════════════════════════════════
-        const characterTypes = [
-            { id: "human", emoji: "👤", label: "Human" },
-            { id: "cat", emoji: "🐱", label: "Cat" },
-            { id: "dog", emoji: "🐶", label: "Dog" },
-            { id: "bear", emoji: "🐻", label: "Bear" },
-            { id: "rabbit", emoji: "🐰", label: "Rabbit" },
-            { id: "fox", emoji: "🦊", label: "Fox" },
-            { id: "frog", emoji: "🐸", label: "Frog" },
-            { id: "bird", emoji: "🦜", label: "Bird" },
-            { id: "dragon", emoji: "🐉", label: "Dragon" },
-            { id: "unicorn", emoji: "🦄", label: "Unicorn" },
-            { id: "dinosaur", emoji: "🦕", label: "Dinosaur" },
-            { id: "fish", emoji: "🐠", label: "Fish" },
-            { id: "octopus", emoji: "🐙", label: "Octopus" },
-            { id: "shark", emoji: "🦈", label: "Shark" },
-            { id: "bee", emoji: "🐝", label: "Bee" },
-            { id: "butterfly", emoji: "🦋", label: "Butterfly" },
-            { id: "snail", emoji: "🐌", label: "Snail" },
-            { id: "alien", emoji: "👽", label: "Alien" },
-            { id: "mushroom", emoji: "🍄", label: "Mushroom" },
-            { id: "plant", emoji: "🌿", label: "Plant Being" },
-        ];
-
-        // ══════════════════════════════════════════════════
-        // TRAITS PER CHARACTER TYPE
-        // Each type has: species_variant, body_color, markings, eyes, accessory, outfit, expression, background, special
-        // ══════════════════════════════════════════════════
-        const traitData = {
-
-            human: {
-                species_variant: {
-                    label: "Hair / Head", icon: "💇", options: [
-                        { l: "Pink Fluffy Afro", r: "common" }, { l: "Blue Beanie", r: "common" }, { l: "Orange Bucket Hat", r: "common" },
-                        { l: "Purple Cloud Hair", r: "rare" }, { l: "Rainbow Mohawk", r: "rare" }, { l: "Golden Crown", r: "legendary" },
-                        { l: "Witch Hat", r: "rare" }, { l: "Astronaut Helmet", r: "legendary" }, { l: "Cowboy Hat", r: "common" },
-                        { l: "Halo", r: "rare" }, { l: "Space Buns", r: "common" }, { l: "Silver Bob", r: "rare" },
-                        { l: "Long Braids", r: "common" }, { l: "Dragon Horns", r: "legendary" }, { l: "Flower Wreath", r: "rare" },
-                    ]
-                },
-                body_color: {
-                    label: "Skin Tone", icon: "🎨", options: [
-                        { l: "Peachy", r: "common" }, { l: "Chocolate", r: "common" }, { l: "Mint Green", r: "rare" },
-                        { l: "Lavender", r: "rare" }, { l: "Sky Blue", r: "legendary" }, { l: "Warm Beige", r: "common" },
-                        { l: "Rosy Pink", r: "rare" }, { l: "Golden", r: "legendary" }, { l: "Ivory", r: "common" },
-                        { l: "Mocha", r: "common" }, { l: "Starlight Silver", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Face Detail", icon: "✏️", options: [
-                        { l: "Freckles", r: "common" }, { l: "Star Blush", r: "rare" }, { l: "Sparkle Cheeks", r: "rare" },
-                        { l: "Heart Tattoo", r: "common" }, { l: "Lightning Bolt", r: "rare" }, { l: "None", r: "common" },
-                        { l: "Rainbow Stripe", r: "legendary" }, { l: "Gem Forehead", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Heart Eyes ♥️", r: "rare" },
-                        { l: "Spiral Eyes", r: "legendary" }, { l: "Cross Eyes", r: "common" }, { l: "Diamond Eyes 💎", r: "legendary" },
-                        { l: "Sleepy Eyes", r: "common" }, { l: "Wide Eyes", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🕶️", options: [
-                        { l: "Sunglasses", r: "common" }, { l: "Headphones", r: "common" }, { l: "Monocle", r: "rare" },
-                        { l: "Bow Tie", r: "common" }, { l: "Pearl Necklace", r: "rare" }, { l: "Chain", r: "rare" },
-                        { l: "Ear Rings", r: "common" }, { l: "Crystal Wand", r: "legendary" }, { l: "Laser Eyes", r: "legendary" },
-                    ]
-                },
-                outfit: {
-                    label: "Outfit", icon: "👕", options: [
-                        { l: "Yellow Hoodie", r: "common" }, { l: "Striped Tee", r: "common" }, { l: "Astronaut Suit", r: "legendary" },
-                        { l: "Wizard Robe", r: "legendary" }, { l: "Pastel Jacket", r: "common" }, { l: "Rainbow Overalls", r: "rare" },
-                        { l: "Leather Jacket", r: "rare" }, { l: "Pajamas", r: "common" }, { l: "Tuxedo", r: "legendary" },
-                        { l: "Sailor Uniform", r: "common" }, { l: "Kimono", r: "rare" }, { l: "Denim Vest", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "😊", options: [
-                        { l: "Big Smile", r: "common" }, { l: "Cheeky Grin", r: "common" }, { l: "Surprised", r: "common" },
-                        { l: "Winking", r: "rare" }, { l: "Crying Laughing", r: "rare" }, { l: "Cool Face", r: "common" },
-                        { l: "Sleeping", r: "rare" }, { l: "Evil Grin", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Sky Blue", r: "common" }, { l: "Mint Green", r: "common" }, { l: "Peach", r: "common" },
-                        { l: "Lavender", r: "common" }, { l: "Warm Yellow", r: "common" }, { l: "Coral Pink", r: "rare" },
-                        { l: "Cotton Candy", r: "rare" }, { l: "Galaxy Purple", r: "legendary" }, { l: "Cherry Blossom", r: "rare" },
-                        { l: "Retro Sunset", r: "legendary" }, { l: "Polka Dot", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Skateboard 🛹", r: "rare" }, { l: "Angel Wings 👼", r: "legendary" },
-                        { l: "Balloon 🎈", r: "common" }, { l: "Sword ⚔️", r: "legendary" }, { l: "Pizza Slice 🍕", r: "rare" },
-                        { l: "Flower Crown 🌸", r: "rare" }, { l: "Magic Potion 🧪", r: "rare" }, { l: "Rainbow Aura", r: "legendary" },
-                        { l: "Ghost Pet 👻", r: "legendary" }, { l: "Bubble Shield", r: "rare" },
-                    ]
-                },
+        const TRAITS = {
+            species: {
+                label: "🐾 Species / Race",
+                opts: [
+                    "orc warrior", "fox spirit", "giraffe", "dragon", "lizard", "shark", "wolf", "ice golem",
+                    "corgi dog", "fairy child", "octopus chef", "goblin", "rabbit", "bear", "panda", "cat",
+                    "frog", "owl", "tiger", "elephant", "penguin", "monkey", "raccoon", "deer", "axolotl",
+                    "hamster", "chameleon", "capybara", "fennec fox", "red panda", "sloth", "koala", "otter",
+                    "platypus", "crab", "lobster", "seahorse", "narwhal", "walrus", "bison", "ram", "lynx",
+                    "snow leopard", "cheetah", "hyena", "meerkat", "armadillo", "pangolin", "tapir", "okapi",
+                    "alien humanoid", "robot android", "skeleton warrior", "zombie", "vampire", "werewolf",
+                    "mermaid", "centaur", "minotaur", "cyclops", "gnome", "dwarf", "elf", "fairy", "troll"
+                ]
             },
-
-            cat: {
-                species_variant: {
-                    label: "Cat Breed Style", icon: "🐱", options: [
-                        { l: "Shorthair", r: "common" }, { l: "Fluffy Longhair", r: "common" }, { l: "Scottish Fold", r: "rare" },
-                        { l: "Sphynx", r: "rare" }, { l: "Maine Coon", r: "rare" }, { l: "Siamese", r: "common" },
-                        { l: "Munchkin", r: "rare" }, { l: "Bengal", r: "legendary" }, { l: "Ragdoll", r: "common" },
-                        { l: "Persian", r: "common" }, { l: "Calico Mix", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Fur Color", icon: "🎨", options: [
-                        { l: "Orange Tabby", r: "common" }, { l: "White Fluffy", r: "common" }, { l: "Midnight Black", r: "rare" },
-                        { l: "Grey Tuxedo", r: "common" }, { l: "Pastel Lavender", r: "rare" }, { l: "Cotton Candy Pink", r: "rare" },
-                        { l: "Golden", r: "legendary" }, { l: "Midnight Blue", r: "legendary" }, { l: "Cream", r: "common" },
-                        { l: "Tortoiseshell", r: "rare" }, { l: "Rainbow Striped", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Fur Pattern", icon: "🖊️", options: [
-                        { l: "Tabby Stripes", r: "common" }, { l: "Spots", r: "common" }, { l: "Solid", r: "common" },
-                        { l: "Tuxedo Patch", r: "rare" }, { l: "Star Marking", r: "rare" }, { l: "Swirl Pattern", r: "rare" },
-                        { l: "Ombre Fade", r: "legendary" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Odd Eyes (Heterochromia)", r: "legendary" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Green Slits", r: "common" }, { l: "Blue Round", r: "common" },
-                        { l: "Golden", r: "legendary" }, { l: "Sleepy Half-Open", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🎀", options: [
-                        { l: "Ribbon Bow", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Collar Bell", r: "common" },
-                        { l: "Bandana", r: "common" }, { l: "Sunglasses", r: "rare" }, { l: "Witch Hat 🧙", r: "rare" },
-                        { l: "Sailor Cap", r: "common" }, { l: "Feather Boa", r: "legendary" }, { l: "Monocle", r: "rare" },
-                        { l: "Diamond Collar", r: "legendary" }, { l: "Flower Crown", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🧣", options: [
-                        { l: "Tiny Hoodie", r: "common" }, { l: "Wizard Robe", r: "legendary" }, { l: "Astronaut Suit", r: "legendary" },
-                        { l: "Knitted Sweater", r: "common" }, { l: "Superhero Cape", r: "rare" }, { l: "Chef Apron", r: "rare" },
-                        { l: "Pirate Coat", r: "rare" }, { l: "Kimono", r: "rare" }, { l: "Birthday Sash", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "😼", options: [
-                        { l: "Happy Squint", r: "common" }, { l: "Grumpy", r: "common" }, { l: "Smug", r: "rare" },
-                        { l: "Loaf Mode", r: "common" }, { l: "Surprised", r: "common" }, { l: "Yawning", r: "rare" },
-                        { l: "Plotting", r: "legendary" }, { l: "Blep", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Cozy Orange", r: "common" }, { l: "Pastel Pink", r: "common" }, { l: "Night Sky", r: "rare" },
-                        { l: "Cherry Blossom", r: "rare" }, { l: "Sunny Yellow", r: "common" }, { l: "Cloudy Blue", r: "common" },
-                        { l: "Galaxy Purple", r: "legendary" }, { l: "Neon Grid", r: "legendary" }, { l: "Warm Beige", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Floating Fish 🐟", r: "rare" }, { l: "Yarn Ball 🧶", r: "common" },
-                        { l: "Ghost Tail", r: "legendary" }, { l: "Wings 🪽", r: "legendary" }, { l: "Halo", r: "rare" },
-                        { l: "Pocket Kitten", r: "legendary" }, { l: "Magic Paw Aura", r: "rare" },
-                    ]
-                },
+            gender: {
+                label: "⚧ Gender / Build",
+                opts: [
+                    "chubby male", "slim female", "muscular male", "petite female", "gender-neutral",
+                    "stocky male", "lanky male", "curvy female", "athletic female", "tiny chibi"
+                ]
             },
-
-            dog: {
-                species_variant: {
-                    label: "Dog Breed Style", icon: "🐶", options: [
-                        { l: "Shiba Inu", r: "common" }, { l: "Corgi", r: "common" }, { l: "Poodle", r: "rare" },
-                        { l: "Dalmatian", r: "rare" }, { l: "Husky", r: "common" }, { l: "Golden Retriever", r: "common" },
-                        { l: "Bulldog", r: "common" }, { l: "Dachshund", r: "rare" }, { l: "Chihuahua", r: "common" },
-                        { l: "Samoyed", r: "rare" }, { l: "Wolf Hybrid", r: "legendary" }, { l: "Pomeranian", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Fur Color", icon: "🎨", options: [
-                        { l: "Cream", r: "common" }, { l: "Golden", r: "common" }, { l: "Rust Orange", r: "common" },
-                        { l: "White", r: "common" }, { l: "Black", r: "common" }, { l: "Grey", r: "common" },
-                        { l: "Lavender", r: "legendary" }, { l: "Sky Blue", r: "legendary" }, { l: "Spotted Mix", r: "rare" },
-                        { l: "Caramel", r: "common" }, { l: "Cotton Candy", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Fur Pattern", icon: "🖊️", options: [
-                        { l: "Solid", r: "common" }, { l: "Spots", r: "rare" }, { l: "Tricolor", r: "rare" },
-                        { l: "Brindle", r: "rare" }, { l: "Mask", r: "common" }, { l: "None", r: "common" },
-                        { l: "Star Patch", r: "rare" }, { l: "Rainbow Streaks", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Big Round Dot Eyes", r: "common" }, { l: "Puppy Eyes", r: "common" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Heterochromia", r: "legendary" }, { l: "Golden Eyes", r: "rare" },
-                        { l: "Sleepy", r: "common" }, { l: "Derpy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🦴", options: [
-                        { l: "Bandana", r: "common" }, { l: "Spiked Collar", r: "rare" }, { l: "Bow Tie", r: "common" },
-                        { l: "Tiny Crown", r: "legendary" }, { l: "Sunglasses", r: "rare" }, { l: "Pilot Goggles", r: "legendary" },
-                        { l: "Flower Crown", r: "rare" }, { l: "Party Hat", r: "common" }, { l: "Skateboard", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🦺", options: [
-                        { l: "Hero Cape", r: "rare" }, { l: "Police Vest", r: "common" }, { l: "Hoodie", r: "common" },
-                        { l: "Astronaut Suit", r: "legendary" }, { l: "Witch Costume", r: "rare" }, { l: "Suit & Tie", r: "legendary" },
-                        { l: "Chef Hat & Apron", r: "rare" }, { l: "Rain Jacket", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐕", options: [
-                        { l: "Tongue Out", r: "common" }, { l: "Big Smile", r: "common" }, { l: "Good Boi Face", r: "common" },
-                        { l: "Suspicious", r: "rare" }, { l: "Howling", r: "rare" }, { l: "Sleepy", r: "common" },
-                        { l: "Zoomies Energy", r: "legendary" }, { l: "Sad Puppy", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Park Green", r: "common" }, { l: "Sunny Yellow", r: "common" }, { l: "Snow White", r: "rare" },
-                        { l: "Beach Peach", r: "common" }, { l: "City Skyline", r: "rare" }, { l: "Rainbow", r: "legendary" },
-                        { l: "Galaxy", r: "legendary" }, { l: "Warm Brown", r: "common" }, { l: "Pastel Blue", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Floating Bone 🦴", r: "common" }, { l: "Magic Stick 🪄", r: "rare" },
-                        { l: "Wings 🪽", r: "legendary" }, { l: "Halo", r: "rare" }, { l: "Rocket Pack 🚀", r: "legendary" },
-                        { l: "Baby Pup Sidekick", r: "legendary" }, { l: "Bubble Aura", r: "rare" },
-                    ]
-                },
+            skin_material: {
+                label: "🎨 Skin / Surface",
+                opts: [
+                    "green warty skin", "orange scaly skin", "sandy brown fur", "glossy white fur",
+                    "blue-grey fur", "brown spotted fur", "metallic silver skin", "translucent crystal skin",
+                    "dark chocolate skin", "golden tan skin", "pale lavender skin", "warm peach skin",
+                    "forest green skin", "midnight blue skin", "rose pink skin", "teal iridescent skin",
+                    "warm amber skin", "cool grey skin", "cream white skin", "burnt sienna skin",
+                    "cobalt blue skin", "emerald green skin", "dusty mauve skin", "coral pink skin",
+                    "obsidian black skin", "snow white skin", "mossy green texture", "sandstone texture",
+                    "polished chrome skin", "matte rubber skin", "frosted glass skin", "liquid mercury skin"
+                ]
             },
-
-            bear: {
-                species_variant: {
-                    label: "Bear Type", icon: "🐻", options: [
-                        { l: "Brown Bear", r: "common" }, { l: "Polar Bear", r: "common" }, { l: "Panda", r: "rare" },
-                        { l: "Grizzly", r: "common" }, { l: "Sun Bear", r: "rare" }, { l: "Spectacled Bear", r: "rare" },
-                        { l: "Teddy Bear", r: "common" }, { l: "Ghost Bear", r: "legendary" }, { l: "Rainbow Bear", r: "legendary" },
-                        { l: "Koala", r: "common" }, { l: "Baby Bear Cub", r: "rare" },
-                    ]
-                },
-                body_color: {
-                    label: "Fur Color", icon: "🎨", options: [
-                        { l: "Warm Brown", r: "common" }, { l: "Snow White", r: "common" }, { l: "Black & White", r: "rare" },
-                        { l: "Honey Gold", r: "common" }, { l: "Pastel Pink", r: "rare" }, { l: "Lavender", r: "legendary" },
-                        { l: "Midnight Blue", r: "legendary" }, { l: "Silver", r: "rare" }, { l: "Russet Red", r: "common" },
-                    ]
-                },
-                markings: {
-                    label: "Markings", icon: "🖊️", options: [
-                        { l: "None", r: "common" }, { l: "Tummy Patch", r: "common" }, { l: "Eye Patches", r: "rare" },
-                        { l: "Star Pattern", r: "rare" }, { l: "Stripes", r: "rare" }, { l: "Ombre", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Sleepy", r: "common" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Golden", r: "legendary" }, { l: "Cross-eyes", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🍯", options: [
-                        { l: "Honey Jar 🍯", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Scarf", r: "common" },
-                        { l: "Sunglasses", r: "rare" }, { l: "Flower Crown", r: "rare" }, { l: "Fishing Rod", r: "common" },
-                        { l: "Backpack", r: "common" }, { l: "Crystal Orb", r: "legendary" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🧸", options: [
-                        { l: "Fluffy Vest", r: "common" }, { l: "Ranger Hat", r: "common" }, { l: "Wizard Robe", r: "legendary" },
-                        { l: "Astronaut Suit", r: "legendary" }, { l: "Chef Apron", r: "rare" }, { l: "Holiday Sweater", r: "common" },
-                        { l: "Knight Armor", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐾", options: [
-                        { l: "Content Smile", r: "common" }, { l: "Grumpy", r: "common" }, { l: "Hungry", r: "common" },
-                        { l: "Roaring", r: "rare" }, { l: "Sleeping", r: "common" }, { l: "Surprised", r: "rare" },
-                        { l: "Evil Smirk", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Forest Green", r: "common" }, { l: "Snow White", r: "common" }, { l: "Autumn Orange", r: "rare" },
-                        { l: "Mountain Blue", r: "rare" }, { l: "Honey Yellow", r: "common" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Cozy Cabin", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Salmon 🐟", r: "common" }, { l: "Wings 🪽", r: "legendary" },
-                        { l: "Ice Crown", r: "legendary" }, { l: "Bee Swarm", r: "rare" }, { l: "Magic Aura", r: "legendary" },
-                        { l: "Tiny Cabin", r: "rare" },
-                    ]
-                },
+            outfit_top: {
+                label: "👕 Top / Jacket",
+                opts: [
+                    "khaki cargo vest", "brown leather jacket", "dark navy trench coat", "orange puffer jacket",
+                    "purple neon hoodie", "grey zip-up hoodie", "red varsity jacket", "blue denim jacket",
+                    "white lab coat", "black biker jacket", "floral hawaiian shirt", "striped sailor top",
+                    "tactical military jacket", "cozy knit sweater", "pastel pink cardigan", "emerald bomber jacket",
+                    "yellow windbreaker", "plaid flannel shirt", "tuxedo jacket", "pirate coat", "wizard robe",
+                    "samurai armor top", "knight breastplate", "chef jacket", "doctor scrubs", "astronaut suit top",
+                    "medieval tunic", "cowboy vest", "punk band tee", "oversized graphic tee", "basketball jersey",
+                    "soccer jersey", "tennis polo", "flannel lumberjack shirt", "trench coat", "peacoat",
+                    "fur-lined parka", "neon tracksuit top", "camo jacket", "satin varsity jacket"
+                ]
             },
-
-            rabbit: {
-                species_variant: {
-                    label: "Rabbit Style", icon: "🐰", options: [
-                        { l: "Lop-eared", r: "common" }, { l: "Holland Lop", r: "common" }, { l: "Rex Rabbit", r: "rare" },
-                        { l: "Angora Fluff", r: "rare" }, { l: "Dwarf", r: "common" }, { l: "Wild Cottontail", r: "common" },
-                        { l: "Giant Bunny", r: "rare" }, { l: "Moon Rabbit", r: "legendary" }, { l: "Shadow Rabbit", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Fur Color", icon: "🎨", options: [
-                        { l: "White", r: "common" }, { l: "Grey", r: "common" }, { l: "Brown", r: "common" },
-                        { l: "Black", r: "common" }, { l: "Cream", r: "common" }, { l: "Pastel Pink", r: "rare" },
-                        { l: "Lavender", r: "legendary" }, { l: "Sky Blue", r: "legendary" }, { l: "Chocolate", r: "common" },
-                    ]
-                },
-                markings: {
-                    label: "Markings", icon: "🖊️", options: [
-                        { l: "None", r: "common" }, { l: "Tummy Patch", r: "common" }, { l: "Ear Tips", r: "common" },
-                        { l: "Star Marking", r: "rare" }, { l: "Ombre", r: "legendary" }, { l: "Freckles", r: "rare" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Red Eyes", r: "rare" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Blue", r: "common" }, { l: "Golden", r: "legendary" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🎀", options: [
-                        { l: "Ribbon", r: "common" }, { l: "Carrot 🥕", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" },
-                        { l: "Witch Hat", r: "rare" }, { l: "Flower Crown", r: "rare" }, { l: "Clock Watch ⏰", r: "rare" },
-                        { l: "Crystal Staff", r: "legendary" }, { l: "Glasses", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🧣", options: [
-                        { l: "Knitted Sweater", r: "common" }, { l: "Magician Suit", r: "legendary" }, { l: "Astronaut Suit", r: "legendary" },
-                        { l: "Fairy Dress", r: "rare" }, { l: "School Uniform", r: "common" }, { l: "Holiday Sweater", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐾", options: [
-                        { l: "Big Smile", r: "common" }, { l: "Shy", r: "common" }, { l: "Surprised", r: "common" },
-                        { l: "Binkying", r: "rare" }, { l: "Thumping", r: "rare" }, { l: "Sleeping", r: "common" },
-                        { l: "Plotting", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Meadow Green", r: "common" }, { l: "Pastel Pink", r: "common" }, { l: "Moon White", r: "rare" },
-                        { l: "Garden Pink", r: "common" }, { l: "Starfield", r: "legendary" }, { l: "Candy Land", r: "rare" },
-                        { l: "Cozy Burrow", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Carrot Bouquet", r: "common" }, { l: "Wings 🪽", r: "legendary" },
-                        { l: "Magic Hat 🎩", r: "legendary" }, { l: "Bubble Shield", r: "rare" }, { l: "Clover Patch", r: "rare" },
-                    ]
-                },
+            outfit_bottom: {
+                label: "👖 Bottom / Pants",
+                opts: [
+                    "khaki cargo pants", "ripped black jeans", "baggy dark trousers", "olive joggers",
+                    "black shorts", "blue denim jeans", "camo pants", "grey sweatpants", "plaid trousers",
+                    "leather pants", "track pants", "linen wide-leg pants", "pleated dress pants", "overalls",
+                    "cargo shorts", "basketball shorts", "athletic leggings", "plaid skirt", "tutu skirt",
+                    "torn fishnet leggings", "armored leg guards", "samurai hakama", "wizard robes bottom"
+                ]
             },
-
-            fox: {
-                species_variant: {
-                    label: "Fox Type", icon: "🦊", options: [
-                        { l: "Red Fox", r: "common" }, { l: "Arctic Fox", r: "common" }, { l: "Fennec Fox", r: "rare" },
-                        { l: "Grey Fox", r: "common" }, { l: "Nine-Tailed Fox", r: "legendary" }, { l: "Shadow Fox", r: "rare" },
-                        { l: "Crystal Fox", r: "legendary" }, { l: "Kitsune", r: "legendary" }, { l: "Baby Kit", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Fur Color", icon: "🎨", options: [
-                        { l: "Rust Orange", r: "common" }, { l: "Snow White", r: "common" }, { l: "Sand Beige", r: "common" },
-                        { l: "Midnight Black", r: "rare" }, { l: "Silver", r: "rare" }, { l: "Cotton Candy Pink", r: "legendary" },
-                        { l: "Moonlit Blue", r: "legendary" }, { l: "Flame Red", r: "common" },
-                    ]
-                },
-                markings: {
-                    label: "Markings", icon: "🖊️", options: [
-                        { l: "Tip of Tail White", r: "common" }, { l: "Mask", r: "common" }, { l: "Ombre", r: "rare" },
-                        { l: "Star Pattern", r: "rare" }, { l: "Swirls", r: "legendary" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Sly Squint", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Amber", r: "common" },
-                        { l: "Glowing Green", r: "rare" }, { l: "Heart Eyes", r: "rare" }, { l: "Mystic Gold", r: "legendary" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌙", options: [
-                        { l: "Leaf Wreath", r: "common" }, { l: "Mystic Orb", r: "legendary" }, { l: "Crystal Bell", r: "rare" },
-                        { l: "Tiny Crown 👑", r: "legendary" }, { l: "Bandana", r: "common" }, { l: "Star Wand", r: "rare" },
-                        { l: "Lantern", r: "rare" }, { l: "Sunglasses", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🧥", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Shrine Maiden Robe", r: "legendary" }, { l: "Wizard Cloak", r: "legendary" },
-                        { l: "Hoodie", r: "common" }, { l: "Thief Cape", r: "rare" }, { l: "Festival Kimono", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦊", options: [
-                        { l: "Mischievous Grin", r: "common" }, { l: "Sly Smile", r: "common" }, { l: "Mysterious", r: "rare" },
-                        { l: "Curious", r: "common" }, { l: "Baring Fangs", r: "legendary" }, { l: "Content", r: "common" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Autumn Forest", r: "common" }, { l: "Moonlit Night", r: "rare" }, { l: "Cherry Blossom", r: "rare" },
-                        { l: "Snowy Plain", r: "common" }, { l: "Galaxy", r: "legendary" }, { l: "Shrine Gate Red", r: "legendary" },
-                        { l: "Meadow Green", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Floating Wisps", r: "rare" }, { l: "Multiple Tails 🦊", r: "legendary" },
-                        { l: "Sakura Petals", r: "rare" }, { l: "Shadow Clone", r: "legendary" }, { l: "Star Burst Aura", r: "rare" },
-                    ]
-                },
+            footwear: {
+                label: "👟 Footwear",
+                opts: [
+                    "brown boots", "white sneakers", "high-top basketball shoes", "military combat boots",
+                    "neon running shoes", "chelsea boots", "chunky platform shoes", "flip flops",
+                    "strapped sandals", "cowboy boots", "roller skates", "ski boots", "galoshes",
+                    "loafers", "slip-on sneakers", "hiking boots", "ankle boots", "no shoes bare feet",
+                    "robot leg armor", "wooden clogs", "rain boots", "wrestling shoes"
+                ]
             },
-
-            frog: {
-                species_variant: {
-                    label: "Frog Type", icon: "🐸", options: [
-                        { l: "Tree Frog", r: "common" }, { l: "Poison Dart Frog", r: "rare" }, { l: "Bullfrog", r: "common" },
-                        { l: "Glass Frog", r: "rare" }, { l: "Rain Frog", r: "common" }, { l: "Golden Frog", r: "legendary" },
-                        { l: "Phantom Frog", r: "legendary" }, { l: "Ninja Frog", r: "rare" }, { l: "Royal Toad", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Skin Color", icon: "🎨", options: [
-                        { l: "Lime Green", r: "common" }, { l: "Neon Green", r: "common" }, { l: "Blue", r: "rare" },
-                        { l: "Red", r: "rare" }, { l: "Yellow", r: "rare" }, { l: "Purple", r: "legendary" },
-                        { l: "Gold", r: "legendary" }, { l: "Turquoise", r: "rare" }, { l: "Pink", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Skin Pattern", icon: "🖊️", options: [
-                        { l: "Spots", r: "common" }, { l: "Stripes", r: "rare" }, { l: "Gradient Belly", r: "common" },
-                        { l: "Star Pattern", r: "rare" }, { l: "None / Solid", r: "common" }, { l: "Swirl", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Bulging Round", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Golden", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Spiral", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🍄", options: [
-                        { l: "Lily Pad Hat 🌿", r: "common" }, { l: "Crown 👑", r: "legendary" }, { l: "Tiny Drum", r: "rare" },
-                        { l: "Sunglasses", r: "common" }, { l: "Mushroom Hat", r: "rare" }, { l: "Rain Hat", r: "common" },
-                        { l: "Magic Staff", r: "legendary" }, { l: "Flower", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🎭", options: [
-                        { l: "None", r: "common" }, { l: "Raincoat", r: "common" }, { l: "Wizard Robe", r: "legendary" },
-                        { l: "Ninja Suit", r: "rare" }, { l: "Royal Cape", r: "legendary" }, { l: "Superhero Suit", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐸", options: [
-                        { l: "Happy Ribbit", r: "common" }, { l: "Grumpy", r: "common" }, { l: "Puffed Up", r: "rare" },
-                        { l: "Surprised", r: "common" }, { l: "Smug", r: "rare" }, { l: "Sleepy", r: "common" },
-                        { l: "Battle Ready", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Pond Green", r: "common" }, { l: "Rainy Blue", r: "common" }, { l: "Jungle", r: "rare" },
-                        { l: "Lily Pad", r: "common" }, { l: "Galaxy", r: "legendary" }, { l: "Rainbow", r: "rare" },
-                        { l: "Night Sky", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Fly Snack 🪰", r: "common" }, { l: "Wings 🪽", r: "legendary" },
-                        { l: "Rain Cloud 🌧️", r: "rare" }, { l: "Magic Bubble", r: "rare" }, { l: "Glowing Warts", r: "legendary" },
-                    ]
-                },
+            hat: {
+                label: "🎩 Headwear",
+                opts: [
+                    "none", "black bucket hat", "backwards snapback", "cowboy hat", "wizard hat",
+                    "top hat", "beanie cap", "beret", "headband", "baseball cap", "crown", "viking helmet",
+                    "astronaut helmet", "chef hat", "pirate hat", "samurai helmet", "military beret",
+                    "flower crown", "cat ears headband", "wolf ears hoodie", "party hat", "hard hat",
+                    "sombrero", "fez", "fedora", "straw hat", "winter fur hat", "motorcycle helmet",
+                    "knight helmet visor up", "jester hat", "pope mitre", "graduation cap"
+                ]
             },
-
-            bird: {
-                species_variant: {
-                    label: "Bird Type", icon: "🦜", options: [
-                        { l: "Parrot", r: "common" }, { l: "Owl", r: "rare" }, { l: "Toucan", r: "common" },
-                        { l: "Flamingo", r: "rare" }, { l: "Penguin", r: "common" }, { l: "Peacock", r: "legendary" },
-                        { l: "Hummingbird", r: "rare" }, { l: "Eagle", r: "rare" }, { l: "Duck", r: "common" },
-                        { l: "Cockatiel", r: "common" }, { l: "Raven", r: "rare" }, { l: "Phoenix", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Feather Color", icon: "🎨", options: [
-                        { l: "Tropical Rainbow", r: "common" }, { l: "Sky Blue", r: "common" }, { l: "Flamingo Pink", r: "rare" },
-                        { l: "Midnight Black", r: "rare" }, { l: "Snow White", r: "common" }, { l: "Ember Orange", r: "rare" },
-                        { l: "Galaxy Purple", r: "legendary" }, { l: "Electric Yellow", r: "common" }, { l: "Teal", r: "rare" },
-                        { l: "Golden", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Feather Pattern", icon: "🖊️", options: [
-                        { l: "Solid", r: "common" }, { l: "Spots", r: "rare" }, { l: "Striped", r: "common" },
-                        { l: "Iridescent", r: "legendary" }, { l: "Ombre", r: "rare" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Round Dot", r: "common" }, { l: "Wise Owl Eyes", r: "rare" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Golden", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌺", options: [
-                        { l: "Flower in Beak", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Pirate Eye Patch", r: "rare" },
-                        { l: "Sunglasses", r: "rare" }, { l: "Tiny Scarf", r: "common" }, { l: "Wizard Hat", r: "rare" },
-                        { l: "Crystal Perch", r: "legendary" }, { l: "Bow", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🎩", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Pirate Jacket", r: "rare" }, { l: "Astronaut Helmet", r: "legendary" },
-                        { l: "Tiny Vest", r: "common" }, { l: "Chef Hat", r: "rare" }, { l: "Superhero Cape", r: "legendary" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦜", options: [
-                        { l: "Cheerful Chirp", r: "common" }, { l: "Curious Tilt", r: "common" }, { l: "Proud Puff", r: "rare" },
-                        { l: "Sleepy", r: "common" }, { l: "Squawking", r: "rare" }, { l: "Smug", r: "rare" },
-                        { l: "Majestic", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Sky Blue", r: "common" }, { l: "Tropical Teal", r: "common" }, { l: "Sunset Orange", r: "rare" },
-                        { l: "Jungle", r: "rare" }, { l: "Snowy", r: "rare" }, { l: "Rainbow", r: "legendary" },
-                        { l: "Galaxy", r: "legendary" }, { l: "Garden Pink", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Flame Trail 🔥", r: "legendary" }, { l: "Sparkle Wings", r: "rare" },
-                        { l: "Star Nest", r: "rare" }, { l: "Singing Notes 🎵", r: "common" }, { l: "Magic Feathers", r: "legendary" },
-                    ]
-                },
+            accessory: {
+                label: "🕶️ Accessories",
+                opts: [
+                    "none", "round sunglasses", "gold chain necklace", "earring", "nose ring", "wristband",
+                    "backpack", "messenger bag", "scarf", "bow tie", "tie", "monocle", "pocket watch",
+                    "fingerless gloves", "fingerless leather gloves", "wrist tattoos", "bandana around neck",
+                    "small wings", "tail", "holster belt", "tool belt", "camera", "skateboard", "sword on back",
+                    "staff", "magic wand", "umbrella", "briefcase", "bouquet of flowers", "basketball",
+                    "coffee cup", "book", "scroll", "potion bottle", "trophy", "guitar", "violin"
+                ]
             },
-
-            dragon: {
-                species_variant: {
-                    label: "Dragon Type", icon: "🐉", options: [
-                        { l: "Western Dragon", r: "common" }, { l: "Eastern Long Dragon", r: "rare" }, { l: "Baby Drake", r: "common" },
-                        { l: "Sea Dragon", r: "rare" }, { l: "Ice Dragon", r: "rare" }, { l: "Fire Dragon", r: "common" },
-                        { l: "Storm Dragon", r: "legendary" }, { l: "Rainbow Dragon", r: "legendary" }, { l: "Tiny Lap Dragon", r: "rare" },
-                        { l: "Shadow Dragon", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Scale Color", icon: "🎨", options: [
-                        { l: "Emerald Green", r: "common" }, { l: "Ruby Red", r: "common" }, { l: "Sapphire Blue", r: "rare" },
-                        { l: "Obsidian Black", r: "rare" }, { l: "Golden", r: "legendary" }, { l: "Snow White", r: "rare" },
-                        { l: "Amethyst Purple", r: "rare" }, { l: "Copper", r: "common" }, { l: "Neon Pink", r: "legendary" },
-                        { l: "Prismatic", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Scale Pattern", icon: "🖊️", options: [
-                        { l: "Solid Scales", r: "common" }, { l: "Ombre Gradient", r: "rare" }, { l: "Star Pattern", r: "rare" },
-                        { l: "Glowing Veins", r: "legendary" }, { l: "Striped", r: "common" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Slit Pupils", r: "common" }, { l: "Glowing Fire", r: "rare" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Ice Crystal", r: "legendary" }, { l: "Heart Eyes", r: "rare" }, { l: "Golden", r: "common" },
-                        { l: "Storm Purple", r: "legendary" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🔮", options: [
-                        { l: "Treasure Coin 🪙", r: "common" }, { l: "Spiked Crown 👑", r: "legendary" }, { l: "Crystal Orb 🔮", r: "rare" },
-                        { l: "Tiny Knight Helmet", r: "rare" }, { l: "Flower Crown", r: "rare" }, { l: "Magic Gem", r: "legendary" },
-                        { l: "Scroll", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "⚔️", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Wizard Hat", r: "rare" }, { l: "Pirate Bandana", r: "rare" },
-                        { l: "Knight Armor", r: "legendary" }, { l: "Party Hat", r: "common" }, { l: "Witch Robe", r: "legendary" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐉", options: [
-                        { l: "Fire Breath Smile", r: "common" }, { l: "Sleepy Puff", r: "common" }, { l: "Proud Roar", r: "rare" },
-                        { l: "Curious", r: "common" }, { l: "Menacing Grin", r: "legendary" }, { l: "Playful", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Volcano Glow", r: "common" }, { l: "Ice Cave", r: "rare" }, { l: "Storm Cloud", r: "rare" },
-                        { l: "Enchanted Forest", r: "rare" }, { l: "Galaxy", r: "legendary" }, { l: "Treasure Cave", r: "legendary" },
-                        { l: "Sunset Sky", r: "common" }, { l: "Neon City", r: "legendary" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Fire Breath 🔥", r: "legendary" }, { l: "Ice Breath ❄️", r: "legendary" },
-                        { l: "Coin Pile 🪙", r: "common" }, { l: "Tiny Rider", r: "legendary" }, { l: "Storm Aura", r: "rare" },
-                        { l: "Star Scale Glow", r: "rare" },
-                    ]
-                },
+            expression: {
+                label: "😄 Expression",
+                opts: [
+                    "grumpy frown", "confident smirk", "happy toothy grin", "stoic neutral", "sleepy droopy eyes",
+                    "excited wide eyes", "sad puppy eyes", "determined fierce gaze", "shy blushing", "surprised O-mouth",
+                    "cool closed-eye smile", "smug raised eyebrow", "loving heart eyes", "laughing squint",
+                    "focused intense stare", "innocent big eyes", "nervous sweat drop", "proud chin up",
+                    "bored half-lidded", "curious tilted head", "sneaky side glance", "serene peaceful smile"
+                ]
             },
-
-            unicorn: {
-                species_variant: {
-                    label: "Unicorn Type", icon: "🦄", options: [
-                        { l: "Classic Unicorn", r: "common" }, { l: "Alicorn (Winged)", r: "legendary" }, { l: "Sea-corn (Narwhal)", r: "rare" },
-                        { l: "Mini Unicorn", r: "common" }, { l: "Dark Unicorn", r: "rare" }, { l: "Cloud Unicorn", r: "rare" },
-                        { l: "Rainbow Unicorn", r: "legendary" }, { l: "Ghost Unicorn", r: "legendary" }, { l: "Baby Foal", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Coat Color", icon: "🎨", options: [
-                        { l: "Pearlescent White", r: "common" }, { l: "Cotton Candy Pink", r: "common" }, { l: "Lavender", r: "rare" },
-                        { l: "Sky Blue", r: "rare" }, { l: "Mint", r: "common" }, { l: "Golden", r: "legendary" },
-                        { l: "Midnight", r: "legendary" }, { l: "Holographic", r: "legendary" }, { l: "Cream", r: "common" },
-                    ]
-                },
-                markings: {
-                    label: "Markings", icon: "🖊️", options: [
-                        { l: "Star Spots", r: "rare" }, { l: "None", r: "common" }, { l: "Ombre Shimmer", r: "legendary" },
-                        { l: "Heart Patch", r: "rare" }, { l: "Galaxy Swirl", r: "legendary" }, { l: "Flower Imprint", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Big Sparkling", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Heart Eyes", r: "rare" },
-                        { l: "Rainbow Iris", r: "legendary" }, { l: "Diamond", r: "legendary" }, { l: "Closed Bliss", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌈", options: [
-                        { l: "Flower Crown 🌸", r: "common" }, { l: "Crystal Horn Ring", r: "legendary" }, { l: "Rainbow Mane Ribbon", r: "common" },
-                        { l: "Tiara", r: "rare" }, { l: "Glitter Cape", r: "rare" }, { l: "Magic Wand", r: "legendary" },
-                        { l: "Potion Satchel", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🎀", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Fairy Armor", r: "legendary" }, { l: "Princess Sash", r: "rare" },
-                        { l: "Astronaut Saddle", r: "legendary" }, { l: "Party Streamers", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦄", options: [
-                        { l: "Joyful", r: "common" }, { l: "Majestic", r: "rare" }, { l: "Dreamy", r: "common" },
-                        { l: "Sassy", r: "rare" }, { l: "Laughing", r: "common" }, { l: "Mystic", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Rainbow", r: "common" }, { l: "Candy Land", r: "common" }, { l: "Starfield", r: "rare" },
-                        { l: "Cloud Kingdom", r: "rare" }, { l: "Enchanted Meadow", r: "common" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Crystal Cave", r: "legendary" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Glitter Trail 🌟", r: "common" }, { l: "Rainbow Beam", r: "legendary" },
-                        { l: "Fairy Companion", r: "legendary" }, { l: "Cloud Surfing", r: "rare" }, { l: "Star Shower", r: "rare" },
-                    ]
-                },
+            pose: {
+                label: "🕴️ Pose",
+                opts: [
+                    "standing arms crossed", "hands in pockets casual stand", "one hand on hip", "power stance wide legs",
+                    "waving one hand", "pointing finger forward", "thumbs up", "peace sign V fingers",
+                    "hands behind back", "arms raised victorious", "leaning on one leg", "tiptoe stretch",
+                    "sitting cross-legged", "crouching ready stance", "walking mid-stride", "running pose",
+                    "jumping mid-air", "kicking pose", "punching forward", "holding item in both hands",
+                    "looking over shoulder", "back turned head look back", "floating hover pose",
+                    "meditative seated", "riding imaginary bike", "surfing stance", "yoga tree pose"
+                ]
             },
-
-            dinosaur: {
-                species_variant: {
-                    label: "Dino Species", icon: "🦕", options: [
-                        { l: "T-Rex", r: "common" }, { l: "Triceratops", r: "common" }, { l: "Stegosaurus", r: "common" },
-                        { l: "Brachiosaurus", r: "rare" }, { l: "Velociraptor", r: "rare" }, { l: "Ankylosaurus", r: "rare" },
-                        { l: "Pterodactyl", r: "rare" }, { l: "Spinosaurus", r: "legendary" }, { l: "Baby Dino", r: "common" },
-                        { l: "Feathered Dino", r: "legendary" }, { l: "Crystal Dino", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Scale Color", icon: "🎨", options: [
-                        { l: "Dino Green", r: "common" }, { l: "Amber", r: "common" }, { l: "Sky Blue", r: "rare" },
-                        { l: "Sandy", r: "common" }, { l: "Fire Red", r: "rare" }, { l: "Lavender", r: "legendary" },
-                        { l: "Teal", r: "rare" }, { l: "Golden", r: "legendary" }, { l: "Midnight Black", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Scale Pattern", icon: "🖊️", options: [
-                        { l: "Spots", r: "common" }, { l: "Stripes", r: "rare" }, { l: "Solid", r: "common" },
-                        { l: "Bone Print", r: "rare" }, { l: "Star Pattern", r: "legendary" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Big Goofy", r: "common" }, { l: "Glowing", r: "rare" },
-                        { l: "Star Eyes ⭐", r: "rare" }, { l: "Fire Eyes", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🦴", options: [
-                        { l: "Party Hat", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Bone Necklace 🦴", r: "rare" },
-                        { l: "Sunglasses", r: "rare" }, { l: "Flower Crown", r: "common" }, { l: "Astronaut Helmet", r: "legendary" },
-                        { l: "Knight Helmet", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🎭", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Tiny Vest", r: "common" }, { l: "Chef Hat & Apron", r: "rare" },
-                        { l: "Astronaut Suit", r: "legendary" }, { l: "Wizard Robe", r: "legendary" }, { l: "Superhero Cape", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦕", options: [
-                        { l: "Happy Chomp", r: "common" }, { l: "ROAAR Face", r: "rare" }, { l: "Sleepy", r: "common" },
-                        { l: "Confused", r: "common" }, { l: "Proud", r: "rare" }, { l: "Tiny Arms Sad", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Jungle Green", r: "common" }, { l: "Volcano", r: "rare" }, { l: "Prehistoric Sky", r: "common" },
-                        { l: "Asteroid Glow", r: "rare" }, { l: "Ice Age", r: "rare" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Museum", r: "legendary" }, { l: "Swamp", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Tiny Meteor ☄️", r: "rare" }, { l: "Wings 🪽", r: "legendary" },
-                        { l: "Fossil Aura", r: "legendary" }, { l: "Feather Trail", r: "rare" }, { l: "Fire Stomp", r: "rare" },
-                    ]
-                },
+            bg_color: {
+                label: "🌈 Background Color",
+                opts: [
+                    "pure white studio", "warm cream off-white", "cool light grey", "soft beige", "pale sage green",
+                    "dusty lavender", "baby blue", "blush pink", "warm sand", "charcoal gradient",
+                    "soft peach", "mint green", "sky blue", "lemon yellow", "lilac purple",
+                    "slate blue", "warm tan", "rose white", "stone grey", "ivory"
+                ]
             },
-
-            fish: {
-                species_variant: {
-                    label: "Fish Type", icon: "🐠", options: [
-                        { l: "Clownfish", r: "common" }, { l: "Pufferfish", r: "rare" }, { l: "Angelfish", r: "common" },
-                        { l: "Koi", r: "rare" }, { l: "Goldfish", r: "common" }, { l: "Betta Fish", r: "rare" },
-                        { l: "Swordfish", r: "rare" }, { l: "Axolotl", r: "legendary" }, { l: "Coelacanth", r: "legendary" },
-                        { l: "Manta Ray", r: "legendary" }, { l: "Lanternfish", r: "rare" }, { l: "Blob Fish", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Scale Color", icon: "🎨", options: [
-                        { l: "Orange & White", r: "common" }, { l: "Tropical Blue", r: "common" }, { l: "Gold", r: "rare" },
-                        { l: "Rainbow", r: "legendary" }, { l: "Pink", r: "rare" }, { l: "Midnight Black", r: "rare" },
-                        { l: "Turquoise", r: "common" }, { l: "Red", r: "common" }, { l: "Holographic", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Scale Pattern", icon: "🖊️", options: [
-                        { l: "Stripes", r: "common" }, { l: "Spots", r: "rare" }, { l: "Solid", r: "common" },
-                        { l: "Ombre", r: "rare" }, { l: "Star Pattern", r: "legendary" }, { l: "Iridescent", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Big Round", r: "common" }, { l: "Dot Eyes", r: "common" }, { l: "Glowing", r: "rare" },
-                        { l: "Star Eyes ⭐", r: "rare" }, { l: "Heart Eyes", r: "rare" }, { l: "Telescope (Puffed)", r: "legendary" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🏄", options: [
-                        { l: "Tiny Crown 👑", r: "legendary" }, { l: "Pearl Necklace", r: "rare" }, { l: "Sailor Hat", r: "common" },
-                        { l: "Sunglasses", r: "rare" }, { l: "Flower", r: "common" }, { l: "Lantern 🔦", r: "rare" },
-                        { l: "Crystal Scale", r: "legendary" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🌊", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Pirate Bandana", r: "rare" }, { l: "Tiny Robe", r: "rare" },
-                        { l: "Astronaut Bubble", r: "legendary" }, { l: "Knitted Fin Warmer", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐟", options: [
-                        { l: "Blub Smile", r: "common" }, { l: "Grumpy Pout", r: "common" }, { l: "Surprised O-Face", r: "common" },
-                        { l: "Majestic", r: "rare" }, { l: "Glowing Smile", r: "legendary" }, { l: "Playful", r: "common" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Ocean Blue", r: "common" }, { l: "Coral Reef", r: "common" }, { l: "Deep Sea Dark", r: "rare" },
-                        { l: "Bubble Bath", r: "rare" }, { l: "Koi Pond", r: "rare" }, { l: "Galaxy Ocean", r: "legendary" },
-                        { l: "Sushi Restaurant", r: "legendary" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Bubble Trail", r: "common" }, { l: "Glowing Lantern", r: "rare" },
-                        { l: "Wings 🪽", r: "legendary" }, { l: "Treasure Chest", r: "rare" }, { l: "Bioluminescent Glow", r: "legendary" },
-                    ]
-                },
+            lighting: {
+                label: "💡 Lighting",
+                opts: [
+                    "soft studio lighting", "dramatic rim lighting", "warm golden hour light", "cool blue fill light",
+                    "cinematic three-point lighting", "soft diffused box light", "harsh direct top light",
+                    "ambient occlusion shadow", "backlit silhouette glow", "neon glow bounce light",
+                    "subsurface scatter glow", "even flat product lighting", "moody low-key lighting"
+                ]
             },
-
-            octopus: {
-                species_variant: {
-                    label: "Cephalopod Type", icon: "🐙", options: [
-                        { l: "Common Octopus", r: "common" }, { l: "Blue-Ringed", r: "rare" }, { l: "Mimic Octopus", r: "rare" },
-                        { l: "Dumbo Octopus", r: "rare" }, { l: "Giant Pacific", r: "legendary" }, { l: "Squid", r: "common" },
-                        { l: "Nautilus", r: "legendary" }, { l: "Baby Octopus", r: "common" }, { l: "Ghost Octopus", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Skin Color", icon: "🎨", options: [
-                        { l: "Terracotta Orange", r: "common" }, { l: "Deep Red", r: "common" }, { l: "Electric Blue", r: "rare" },
-                        { l: "Purple", r: "rare" }, { l: "Pink", r: "rare" }, { l: "Holographic", r: "legendary" },
-                        { l: "Black", r: "common" }, { l: "Teal", r: "common" }, { l: "Rainbow Shift", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Skin Pattern", icon: "🖊️", options: [
-                        { l: "Sucker Pattern", r: "common" }, { l: "Spots", r: "common" }, { l: "Blue Rings", r: "rare" },
-                        { l: "Camouflage", r: "rare" }, { l: "Star Pattern", r: "legendary" }, { l: "Iridescent", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "W-Shaped Pupil", r: "common" }, { l: "Glowing Blue", r: "rare" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Round Dot", r: "common" }, { l: "Rainbow Iris", r: "legendary" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🪸", options: [
-                        { l: "Mini Crown 👑", r: "legendary" }, { l: "Treasure Pearl", r: "rare" }, { l: "Ink Quill", r: "common" },
-                        { l: "Sailor Hat", r: "common" }, { l: "Monocle", r: "rare" }, { l: "Crystal Ball", r: "legendary" },
-                        { l: "Flower", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🦑", options: [
-                        { l: "None / Natural", r: "common" }, { l: "8-Arm Mittens", r: "rare" }, { l: "Tiny Waistcoat", r: "rare" },
-                        { l: "Astronaut Bowl Helmet", r: "legendary" }, { l: "Wizard Robe", r: "legendary" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐙", options: [
-                        { l: "Cheerful", r: "common" }, { l: "Curious", r: "common" }, { l: "Ink-Spray Grin", r: "rare" },
-                        { l: "Majestic", r: "rare" }, { l: "Plotting", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Deep Ocean", r: "common" }, { l: "Coral Reef", r: "common" }, { l: "Sunlit Shallow", r: "common" },
-                        { l: "Bioluminescent Dark", r: "legendary" }, { l: "Ink Cloud", r: "rare" }, { l: "Galaxy Sea", r: "legendary" },
-                        { l: "Aquarium", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Ink Cloud 🖤", r: "common" }, { l: "Glowing Tentacles", r: "rare" },
-                        { l: "Wings 🪽", r: "legendary" }, { l: "Ink Art Painting", r: "rare" }, { l: "Rainbow Chromatophores", r: "legendary" },
-                    ]
-                },
-            },
-
-            shark: {
-                species_variant: {
-                    label: "Shark Type", icon: "🦈", options: [
-                        { l: "Great White", r: "common" }, { l: "Hammerhead", r: "rare" }, { l: "Whale Shark", r: "rare" },
-                        { l: "Nurse Shark", r: "common" }, { l: "Baby Shark 🎵", r: "legendary" }, { l: "Ninja Shark", r: "rare" },
-                        { l: "Angel Shark", r: "legendary" }, { l: "Goblin Shark", r: "legendary" }, { l: "Reef Shark", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Skin Color", icon: "🎨", options: [
-                        { l: "Classic Grey", r: "common" }, { l: "Ocean Blue", r: "common" }, { l: "Sandy Brown", r: "common" },
-                        { l: "Neon Pink", r: "rare" }, { l: "Midnight Black", r: "rare" }, { l: "Cotton Candy", r: "legendary" },
-                        { l: "Holographic", r: "legendary" }, { l: "Red", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Skin Pattern", icon: "🖊️", options: [
-                        { l: "White Belly", r: "common" }, { l: "Spots", r: "rare" }, { l: "Stripes", r: "rare" },
-                        { l: "Solid", r: "common" }, { l: "Star Pattern", r: "legendary" }, { l: "Neon Veins", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Black Dot", r: "common" }, { l: "Glowing Blue", r: "rare" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Menacing Yellow", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "⚓", options: [
-                        { l: "Fin Party Hat", r: "common" }, { l: "Anchor Tattoo", r: "rare" }, { l: "Sunglasses", r: "rare" },
-                        { l: "Pirate Bandana", r: "common" }, { l: "Crown 👑", r: "legendary" }, { l: "Neon Sign", r: "legendary" },
-                        { l: "Tiny Cape", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🦈", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Pirate Jacket", r: "rare" }, { l: "Superhero Cape", r: "legendary" },
-                        { l: "Businessman Suit", r: "rare" }, { l: "Cute Onesie", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦷", options: [
-                        { l: "Toothy Grin", r: "common" }, { l: "Sleepy", r: "common" }, { l: "Confused", r: "common" },
-                        { l: "Menacing", r: "legendary" }, { l: "Friendly Smile", r: "rare" }, { l: "Chomping", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Ocean Blue", r: "common" }, { l: "Deep Dark", r: "rare" }, { l: "Coral Reef", r: "common" },
-                        { l: "Sunset Sea", r: "rare" }, { l: "Galaxy Ocean", r: "legendary" }, { l: "Neon Underwater", r: "legendary" },
-                        { l: "Beach", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Lasers from Fins", r: "legendary" }, { l: "Tiny Pilot Fish", r: "rare" },
-                        { l: "Rainbow Wake", r: "rare" }, { l: "Cosmic Surfboard", r: "legendary" }, { l: "Bubble Helmet", r: "rare" },
-                    ]
-                },
-            },
-
-            bee: {
-                species_variant: {
-                    label: "Bee Type", icon: "🐝", options: [
-                        { l: "Honeybee", r: "common" }, { l: "Bumblebee", r: "common" }, { l: "Carpenter Bee", r: "rare" },
-                        { l: "Mason Bee", r: "common" }, { l: "Queen Bee", r: "legendary" }, { l: "Ghost Bee", r: "rare" },
-                        { l: "Robot Bee", r: "legendary" }, { l: "Tiny Bee Baby", r: "common" }, { l: "Warrior Bee", r: "rare" },
-                    ]
-                },
-                body_color: {
-                    label: "Body Color", icon: "🎨", options: [
-                        { l: "Classic Yellow & Black", r: "common" }, { l: "Orange & Black", r: "common" }, { l: "Blue & Black", r: "rare" },
-                        { l: "Gold", r: "legendary" }, { l: "White Fluffy", r: "rare" }, { l: "Pink & Black", r: "rare" },
-                        { l: "Rainbow", r: "legendary" }, { l: "Midnight", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Stripe Pattern", icon: "🖊️", options: [
-                        { l: "Classic Stripes", r: "common" }, { l: "Fat Stripes", r: "common" }, { l: "Spots", r: "rare" },
-                        { l: "Star Stripes", r: "legendary" }, { l: "Solid", r: "rare" }, { l: "Ombre", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Compound Dot", r: "common" }, { l: "Big Round", r: "common" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Glowing Gold", r: "legendary" }, { l: "Cute Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🍯", options: [
-                        { l: "Honey Jar 🍯", r: "common" }, { l: "Queen Crown 👑", r: "legendary" }, { l: "Flower Hat", r: "common" },
-                        { l: "Tiny Sword", r: "rare" }, { l: "Pollen Bag", r: "common" }, { l: "Crystal Wing Pin", r: "legendary" },
-                        { l: "Sunglasses", r: "rare" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🧡", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Knight Armor", r: "legendary" }, { l: "Chef Apron", r: "rare" },
-                        { l: "Princess Dress", r: "rare" }, { l: "Astronaut Suit", r: "legendary" }, { l: "Worker Vest", r: "common" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐝", options: [
-                        { l: "Buzzing Happy", r: "common" }, { l: "Collecting Focus", r: "common" }, { l: "Stinging Mad", r: "rare" },
-                        { l: "Sleepy", r: "common" }, { l: "Queen Smug", r: "legendary" }, { l: "Surprised", r: "common" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Flower Meadow", r: "common" }, { l: "Honeycomb Yellow", r: "common" }, { l: "Garden Pink", r: "common" },
-                        { l: "Beehive", r: "rare" }, { l: "Rainbow Bloom", r: "legendary" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Sunny Blue Sky", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Flower Crown 🌸", r: "common" }, { l: "Honey Drip Trail", r: "rare" },
-                        { l: "Wings Glow ✨", r: "legendary" }, { l: "Pollen Cloud", r: "rare" }, { l: "Royal Jelly Aura", r: "legendary" },
-                    ]
-                },
-            },
-
-            butterfly: {
-                species_variant: {
-                    label: "Butterfly Type", icon: "🦋", options: [
-                        { l: "Monarch", r: "common" }, { l: "Blue Morpho", r: "rare" }, { l: "Swallowtail", r: "common" },
-                        { l: "Atlas Moth", r: "rare" }, { l: "Glasswing", r: "legendary" }, { l: "Sunset Moth", r: "legendary" },
-                        { l: "Tiny Caterpillar", r: "common" }, { l: "Luna Moth", r: "rare" }, { l: "Cabbage White", r: "common" },
-                    ]
-                },
-                body_color: {
-                    label: "Wing Color", icon: "🎨", options: [
-                        { l: "Orange & Black", r: "common" }, { l: "Electric Blue", r: "rare" }, { l: "White & Yellow", r: "common" },
-                        { l: "Purple", r: "rare" }, { l: "Pink", r: "rare" }, { l: "Rainbow", r: "legendary" },
-                        { l: "Transparent", r: "legendary" }, { l: "Red", r: "common" }, { l: "Holographic", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Wing Pattern", icon: "🖊️", options: [
-                        { l: "Classic Spots", r: "common" }, { l: "Eyespots", r: "rare" }, { l: "Solid Color", r: "common" },
-                        { l: "Stained Glass", r: "legendary" }, { l: "Ombre", r: "rare" }, { l: "Star Pattern", r: "rare" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Compound Dot", r: "common" }, { l: "Big Cute", r: "common" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Golden Shimmer", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌸", options: [
-                        { l: "Flower Crown 🌸", r: "common" }, { l: "Antennae Bow", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" },
-                        { l: "Crystal Nectar Cup", r: "rare" }, { l: "Star Wand", r: "rare" }, { l: "Magic Dust Bag", r: "legendary" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🪄", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Fairy Dress", r: "rare" }, { l: "Witch Outfit", r: "legendary" },
-                        { l: "Tiny Vest", r: "common" }, { l: "Royal Robe", r: "legendary" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🦋", options: [
-                        { l: "Fluttering Smile", r: "common" }, { l: "Curious", r: "common" }, { l: "Majestic", r: "rare" },
-                        { l: "Sleepy", r: "common" }, { l: "Glowing Joy", r: "legendary" }, { l: "Determined", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Garden Pink", r: "common" }, { l: "Summer Meadow", r: "common" }, { l: "Sunset Orange", r: "rare" },
-                        { l: "Forest Green", r: "rare" }, { l: "Rainbow", r: "legendary" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Cherry Blossom", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Sparkling Dust Trail", r: "common" }, { l: "Giant Wings Glow", r: "legendary" },
-                        { l: "Flower Swarm", r: "rare" }, { l: "Magic Cocoon", r: "rare" }, { l: "Rainbow Aura", r: "legendary" },
-                    ]
-                },
-            },
-
-            snail: {
-                species_variant: {
-                    label: "Snail Style", icon: "🐌", options: [
-                        { l: "Garden Snail", r: "common" }, { l: "Sea Snail", r: "common" }, { l: "Giant African Snail", r: "rare" },
-                        { l: "Cone Snail", r: "rare" }, { l: "Nudibranch", r: "legendary" }, { l: "Space Snail", r: "legendary" },
-                        { l: "Tiny Baby Snail", r: "common" }, { l: "Racing Snail", r: "rare" },
-                    ]
-                },
-                body_color: {
-                    label: "Body Color", icon: "🎨", options: [
-                        { l: "Tan & Brown", r: "common" }, { l: "Lime Green", r: "common" }, { l: "Pink", r: "rare" },
-                        { l: "Blue", r: "legendary" }, { l: "Yellow", r: "rare" }, { l: "Rainbow", r: "legendary" },
-                        { l: "Cream", r: "common" }, { l: "Purple", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Shell Pattern", icon: "🐚", options: [
-                        { l: "Classic Spiral", r: "common" }, { l: "Striped", r: "common" }, { l: "Spotted", r: "rare" },
-                        { l: "Star Pattern", r: "rare" }, { l: "Ombre", r: "legendary" }, { l: "Tie-Dye", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Stalked Dot Eyes", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Heart Eyes", r: "rare" },
-                        { l: "Big Round", r: "common" }, { l: "Crystal", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌿", options: [
-                        { l: "Leaf Hat", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Racing Number", r: "rare" },
-                        { l: "Flower", r: "common" }, { l: "Mushroom Hat", r: "rare" }, { l: "Crystal Shell Gem", r: "legendary" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🐌", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Racing Helmet", r: "rare" }, { l: "Tiny Scarf", r: "common" },
-                        { l: "Knight Armor", r: "legendary" }, { l: "Flower Dress", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🐌", options: [
-                        { l: "Slow & Happy", r: "common" }, { l: "Determined", r: "rare" }, { l: "Sleepy", r: "common" },
-                        { l: "Confident", r: "rare" }, { l: "Shy", r: "common" }, { l: "Philosophical", r: "legendary" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Garden Green", r: "common" }, { l: "Rainy Grey", r: "common" }, { l: "Mushroom Forest", r: "rare" },
-                        { l: "Sunny Yellow", r: "common" }, { l: "Rainbow Trail", r: "legendary" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Leaf Canopy", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Slime Trail Glow", r: "common" }, { l: "Rocket Shell 🚀", r: "legendary" },
-                        { l: "Flower Bouquet", r: "rare" }, { l: "Tiny House", r: "rare" }, { l: "Speed Lines", r: "legendary" },
-                    ]
-                },
-            },
-
-            alien: {
-                species_variant: {
-                    label: "Alien Type", icon: "👽", options: [
-                        { l: "Classic Grey Alien", r: "common" }, { l: "Multi-Armed", r: "rare" }, { l: "Blob Alien", r: "common" },
-                        { l: "Insectoid", r: "rare" }, { l: "Crystal Being", r: "legendary" }, { l: "Fluffy Alien", r: "rare" },
-                        { l: "Tiny Little Green Man", r: "common" }, { l: "Neon Alien", r: "legendary" }, { l: "Tentacle Alien", r: "rare" },
-                        { l: "Robot Hybrid", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Skin Color", icon: "🎨", options: [
-                        { l: "Alien Green", r: "common" }, { l: "Grey", r: "common" }, { l: "Neon Blue", r: "rare" },
-                        { l: "Purple", r: "rare" }, { l: "Pink", r: "rare" }, { l: "Gold", r: "legendary" },
-                        { l: "Translucent", r: "legendary" }, { l: "Orange", r: "common" }, { l: "Rainbow", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Skin Detail", icon: "🖊️", options: [
-                        { l: "Spots", r: "common" }, { l: "Circuits", r: "rare" }, { l: "Glowing Veins", r: "legendary" },
-                        { l: "Swirls", r: "rare" }, { l: "Solid", r: "common" }, { l: "Star Pattern", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Big Black Oval", r: "common" }, { l: "3 Eyes", r: "rare" }, { l: "Glowing", r: "rare" },
-                        { l: "Star Eyes ⭐", r: "rare" }, { l: "Compound Insect", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🛸", options: [
-                        { l: "Antenna", r: "common" }, { l: "Floating UFO Hat 🛸", r: "legendary" }, { l: "Ray Gun", r: "rare" },
-                        { l: "Crystal Orb", r: "rare" }, { l: "Space Helmet", r: "common" }, { l: "Translation Cube", r: "legendary" },
-                        { l: "Flower", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🚀", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Astronaut Suit", r: "legendary" }, { l: "Lab Coat", r: "rare" },
-                        { l: "Royal Robe", r: "legendary" }, { l: "Tourist Outfit", r: "common" }, { l: "Battle Armor", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "👽", options: [
-                        { l: "Curious About Earth", r: "common" }, { l: "Confused", r: "common" }, { l: "Peace Sign", r: "rare" },
-                        { l: "Analyzing", r: "rare" }, { l: "Plotting World Domination", r: "legendary" }, { l: "Friendly", r: "common" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Galaxy Purple", r: "common" }, { l: "Planet Surface", r: "common" }, { l: "Nebula", r: "rare" },
-                        { l: "UFO Interior", r: "rare" }, { l: "Earth (from space)", r: "rare" }, { l: "Wormhole", r: "legendary" },
-                        { l: "Neon Grid", r: "legendary" }, { l: "Starfield", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Beam of Light ☀️", r: "rare" }, { l: "UFO Pet 🛸", r: "legendary" },
-                        { l: "Tractor Beam", r: "legendary" }, { l: "Star Map", r: "rare" }, { l: "Glowing Aura", r: "rare" },
-                    ]
-                },
-            },
-
-            mushroom: {
-                species_variant: {
-                    label: "Mushroom Type", icon: "🍄", options: [
-                        { l: "Fly Agaric (Red Spots)", r: "common" }, { l: "Chanterelle", r: "common" }, { l: "Morel", r: "rare" },
-                        { l: "Ghost Mushroom", r: "legendary" }, { l: "Puffball", r: "common" }, { l: "Rainbow Shelf", r: "legendary" },
-                        { l: "Tiny Spore Baby", r: "common" }, { l: "Glowing Bioluminescent", r: "legendary" }, { l: "Parasol Mushroom", r: "rare" },
-                        { l: "Lion's Mane", r: "rare" },
-                    ]
-                },
-                body_color: {
-                    label: "Cap Color", icon: "🎨", options: [
-                        { l: "Classic Red", r: "common" }, { l: "White", r: "common" }, { l: "Orange", r: "common" },
-                        { l: "Purple", r: "rare" }, { l: "Blue", r: "rare" }, { l: "Gold", r: "legendary" },
-                        { l: "Rainbow", r: "legendary" }, { l: "Pink", r: "rare" }, { l: "Neon Green", r: "rare" },
-                    ]
-                },
-                markings: {
-                    label: "Cap Pattern", icon: "🖊️", options: [
-                        { l: "White Spots", r: "common" }, { l: "Stripes", r: "common" }, { l: "None / Solid", r: "common" },
-                        { l: "Star Pattern", r: "rare" }, { l: "Ombre", r: "legendary" }, { l: "Glowing Dots", r: "legendary" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Dot Eyes", r: "common" }, { l: "Star Eyes ⭐", r: "rare" }, { l: "Heart Eyes", r: "rare" },
-                        { l: "Glowing", r: "legendary" }, { l: "Sleepy", r: "common" }, { l: "Big Round", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌿", options: [
-                        { l: "Tiny Frog 🐸", r: "rare" }, { l: "Crown 👑", r: "legendary" }, { l: "Acorn Hat", r: "common" },
-                        { l: "Dewdrop", r: "common" }, { l: "Firefly", r: "rare" }, { l: "Crystal Stem", r: "legendary" },
-                        { l: "Snail Shell", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🍄", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Wizard Robe", r: "legendary" }, { l: "Tiny Scarf", r: "common" },
-                        { l: "Knight Armor", r: "rare" }, { l: "Flower Dress", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🍄", options: [
-                        { l: "Cozy Smile", r: "common" }, { l: "Mysterious", r: "rare" }, { l: "Shy", r: "common" },
-                        { l: "Blooming Happy", r: "common" }, { l: "Ancient Wisdom", r: "legendary" }, { l: "Surprised", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Forest Floor", r: "common" }, { l: "Misty Green", r: "common" }, { l: "Rainbow Meadow", r: "rare" },
-                        { l: "Dark Cave Glow", r: "legendary" }, { l: "Fairy Ring", r: "rare" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Rainy Day", r: "common" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Spore Puff Cloud", r: "common" }, { l: "Fairy Ring 🌀", r: "rare" },
-                        { l: "Bioluminescent Glow", r: "legendary" }, { l: "Tiny Village", r: "legendary" }, { l: "Floating Mycelium", r: "rare" },
-                    ]
-                },
-            },
-
-            plant: {
-                species_variant: {
-                    label: "Plant Type", icon: "🌿", options: [
-                        { l: "Cactus Person", r: "common" }, { l: "Venus Flytrap", r: "rare" }, { l: "Sunflower Being", r: "common" },
-                        { l: "Vine Entity", r: "common" }, { l: "Cherry Blossom Spirit", r: "rare" }, { l: "Succulent", r: "common" },
-                        { l: "Ancient Tree", r: "legendary" }, { l: "Carnivorous Bloom", r: "legendary" }, { l: "Water Lily", r: "rare" },
-                        { l: "Fern Spirit", r: "rare" }, { l: "Glowing Moss", r: "legendary" },
-                    ]
-                },
-                body_color: {
-                    label: "Plant Color", icon: "🎨", options: [
-                        { l: "Leaf Green", r: "common" }, { l: "Teal", r: "common" }, { l: "Sunflower Yellow", r: "rare" },
-                        { l: "Pink Blossom", r: "rare" }, { l: "Desert Tan", r: "common" }, { l: "Midnight Blue", r: "legendary" },
-                        { l: "Golden", r: "legendary" }, { l: "White", r: "rare" }, { l: "Rainbow", r: "legendary" },
-                    ]
-                },
-                markings: {
-                    label: "Leaf Pattern", icon: "🖊️", options: [
-                        { l: "Leaf Veins", r: "common" }, { l: "Spots", r: "common" }, { l: "Flower Pattern", r: "rare" },
-                        { l: "Star Leaves", r: "legendary" }, { l: "Ombre", r: "rare" }, { l: "None", r: "common" },
-                    ]
-                },
-                eyes: {
-                    label: "Eyes", icon: "👁️", options: [
-                        { l: "Petal Eyes", r: "common" }, { l: "Dot Eyes", r: "common" }, { l: "Star Eyes ⭐", r: "rare" },
-                        { l: "Heart Eyes", r: "rare" }, { l: "Glowing", r: "legendary" }, { l: "Sleepy", r: "common" },
-                    ]
-                },
-                accessory: {
-                    label: "Accessory", icon: "🌻", options: [
-                        { l: "Flower Bloom Hat", r: "common" }, { l: "Tiny Crown 👑", r: "legendary" }, { l: "Dewdrop Necklace", r: "rare" },
-                        { l: "Butterfly Friend 🦋", r: "rare" }, { l: "Fruit Earrings", r: "common" }, { l: "Crystal Root", r: "legendary" },
-                        { l: "Bee Friend 🐝", r: "common" },
-                    ]
-                },
-                outfit: {
-                    label: "Costume", icon: "🌱", options: [
-                        { l: "None / Natural", r: "common" }, { l: "Leaf Armor", r: "rare" }, { l: "Flower Dress", r: "common" },
-                        { l: "Wizard Bark Robe", r: "legendary" }, { l: "Vine Wrap", r: "rare" },
-                    ]
-                },
-                expression: {
-                    label: "Expression", icon: "🌿", options: [
-                        { l: "Photosynthesis Glow", r: "common" }, { l: "Swaying Happy", r: "common" }, { l: "Ancient Calm", r: "rare" },
-                        { l: "Sprouting Joy", r: "common" }, { l: "Rooted Wisdom", r: "legendary" }, { l: "Wilting Sad", r: "rare" },
-                    ]
-                },
-                background: {
-                    label: "Background", icon: "🖼️", options: [
-                        { l: "Garden Green", r: "common" }, { l: "Sunny Meadow", r: "common" }, { l: "Rainy Forest", r: "rare" },
-                        { l: "Desert Sand", r: "common" }, { l: "Cherry Blossom", r: "rare" }, { l: "Galaxy", r: "legendary" },
-                        { l: "Ancient Grove", r: "legendary" }, { l: "Rainbow", r: "rare" },
-                    ]
-                },
-                special: {
-                    label: "Special Trait", icon: "✨", options: [
-                        { l: "None", r: "common" }, { l: "Growing Flowers", r: "common" }, { l: "Root Tendrils", r: "rare" },
-                        { l: "Fruit Drop 🍎", r: "rare" }, { l: "Ancient Spirit Aura", r: "legendary" }, { l: "Bloom Storm", r: "legendary" },
-                        { l: "Pollinator Swarm", r: "rare" },
-                    ]
-                },
-            },
+            size_style: {
+                label: "📏 Proportion",
+                opts: [
+                    "super deformed big head small body", "chibi 2-head-tall ratio", "realistic proportions",
+                    "toy figurine chunky compact", "tall and slim elegant", "wide and stocky powerful",
+                    "exaggerated giant hands", "tiny legs big torso", "bobblehead large cranium",
+                    "athletic balanced proportions"
+                ]
+            }
         };
+        const STYLES = {
+            clay: { name: "Clay Render", desc: "smooth clay material render, matte clay texture, claymation aesthetic, soft rounded edges, clay sculpt, Octane render", neg: "glossy, metallic, realistic skin, pixel art, 2D, sketch" },
+            plastic: { name: "Glossy Plastic", desc: "glossy plastic toy material, ABS plastic sheen, collector toy aesthetic, vibrant colors, smooth surface reflections, Blender cycles render", neg: "matte, clay, rough texture, 2D, sketch, blurry" },
+            crystal: { name: "Crystal Glass", desc: "translucent crystal glass material, caustic light refraction, ice-like clarity, subsurface scattering, precious stone aesthetic, cinema4D render", neg: "opaque, clay, matte, 2D, flat, blurry" },
+            metal: { name: "Polished Metal", desc: "polished chrome metal material, mirror reflections, metallic sheen, brushed aluminum accents, industrial finish, KeyShot render", neg: "matte, clay, translucent, 2D, sketch, blurry" },
+            toy: { name: "Vinyl Toy", desc: "vinyl designer toy material, KAWS style collectible, Bearbrick inspired, urban toy aesthetic, matte vinyl finish, limited edition figure render", neg: "glossy excessive, 2D, flat, blurry, sketch" },
+            chibi: { name: "Soft Chibi", desc: "soft chibi 3D character, rounded soft body, plush-like texture, warm cozy lighting, Pixar-inspired render, adorable proportions, pastel tones", neg: "harsh, dark, 2D, flat, rough, realistic gore" },
+            voxel: { name: "Voxel 3D", desc: "voxel art 3D character, minecraft-inspired blocky style, pixel voxel aesthetic, colorful cubed forms, isometric-friendly design, MagicaVoxel render", neg: "smooth, organic curves, 2D flat, sketch, blurry" },
+            flocked: { name: "Flocked Matte", desc: "flocked velvet matte surface material, fuzzy textile texture, soft matte finish, tactile fabric-like render, museum figurine aesthetic", neg: "glossy, shiny, reflective, 2D, blurry, sketch" }
+        };
+        const styleEmojis = { clay: "🟤", plastic: "🔵", crystal: "💎", metal: "⚙️", toy: "🧸", chibi: "🌿", voxel: "🟦", flocked: "🧶" };
+        const baseNeg = "2D, flat, cartoon, anime, sketch, watercolor, blurry, low quality, ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background";
 
-        // ══════════════════════════════════════════════════
-        // STATE
-        // ══════════════════════════════════════════════════
         const firebaseConfig = {
             apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
             authDomain: "demosetup-62c0c.firebaseapp.com",
@@ -1928,45 +764,36 @@
 
         const cyrb53 = (str, seed = 0) => {
             let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
-            for (let i = 0, ch; i < str.length; i++) {
+            for(let i = 0, ch; i < str.length; i++) {
                 ch = str.charCodeAt(i);
                 h1 = Math.imul(h1 ^ ch, 2654435761);
                 h2 = Math.imul(h2 ^ ch, 1597334677);
             }
-            h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-            h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+            h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
             return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString();
         };
 
-        let currentType = null;
+        let curStyle = null;
         const selected = {};
         const usedPrompts = new Set();
         let generatedCount = 0;
 
-        db.ref('doodle/usedPrompts').on('child_added', snap => {
+        db.ref('3d/usedPrompts').on('child_added', snap => {
             usedPrompts.add(snap.key);
             updateStats();
         });
-        db.ref('doodle/generatedCount').on('value', snap => {
+        db.ref('3d/generatedCount').on('value', snap => {
             generatedCount = snap.val() || 0;
             updateStats();
         });
 
-        // ══════════════════════════════════════════════════
-        // STATS
-        // ══════════════════════════════════════════════════
         function totalCombos() {
-            let total = 0;
-            characterTypes.forEach(ct => {
-                let typeCombos = 1;
-                const typeTraits = traitData[ct.id];
-                if (typeTraits) {
-                    Object.values(typeTraits).forEach(t => {
-                        typeCombos *= t.options.length;
-                    });
-                    total += typeCombos;
-                }
+            let total = 1;
+            Object.values(TRAITS).forEach(t => {
+                total *= t.opts.length;
             });
+            total *= Object.keys(STYLES).length;
             return total;
         }
 
@@ -1980,76 +807,55 @@
             document.getElementById('s-uniq').textContent = uniq.toLocaleString();
         }
 
-        // ══════════════════════════════════════════════════
-        // BUILD CHARACTER TYPE BUTTONS
-        // ══════════════════════════════════════════════════
-        function buildTypeGrid() {
-            const grid = document.getElementById('type-grid');
-            characterTypes.forEach(ct => {
+        function buildStyleGrid() {
+            const grid = document.getElementById('style-grid');
+            Object.entries(STYLES).forEach(([id, st]) => {
                 const btn = document.createElement('button');
                 btn.className = 'type-btn';
-                btn.dataset.type = ct.id;
-                btn.innerHTML = `${ct.emoji} ${ct.label}`;
-                btn.onclick = () => selectType(ct.id, btn);
+                btn.dataset.style = id;
+                btn.innerHTML = `${styleEmojis[id] || '🎨'} ${st.name}`;
+                btn.onclick = () => selectStyle(id, btn);
                 grid.appendChild(btn);
             });
         }
 
-        function selectType(typeId, btn) {
+        function selectStyle(id, btn) {
             document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentType = typeId;
-            Object.keys(selected).forEach(k => delete selected[k]);
-            buildTraitGrid(typeId);
+            curStyle = id;
+            document.getElementById('neg-output').textContent = `${STYLES[id].neg}, ${baseNeg}`;
         }
 
-        // ══════════════════════════════════════════════════
-        // BUILD TRAIT CARDS
-        // ══════════════════════════════════════════════════
-        function buildTraitGrid(typeId) {
+        function buildTraitGrid() {
             const grid = document.getElementById('trait-grid');
             grid.innerHTML = '';
-            const typeTraits = traitData[typeId];
-            if (!typeTraits) return;
+            const colorArray = ['#FF6B9D', '#FFB347', '#6BCB77', '#4ECDC4', '#C77DFF', '#FFD93D'];
 
-            const traitKeys = Object.keys(typeTraits);
-
-            traitKeys.forEach(key => {
-                const trait = typeTraits[key];
-
+            Object.keys(TRAITS).forEach((key, index) => {
+                const trait = TRAITS[key];
                 const card = document.createElement('div');
                 card.className = `trait-card card-${key}`;
-
-                const colorMap = {
-                    species_variant: '#FF6B9D',
-                    body_color: '#FFB347',
-                    markings: '#6BCB77',
-                    eyes: '#4ECDC4',
-                    accessory: '#C77DFF',
-                    outfit: '#FFD93D',
-                    expression: '#FF6B9D',
-                    background: '#4ECDC4',
-                    special: '#FFB347'
-                };
-                const col = colorMap[key] || '#888';
+                const col = colorArray[index % colorArray.length];
+                const iconMatch = trait.label.match(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/);
+                const icon = iconMatch ? iconMatch[0] : '✨';
+                const plainLabel = trait.label.replace(icon, '').trim();
 
                 card.innerHTML = `
-                    <div class="trait-label" style="color:${col}">
-                        <span>${trait.icon}</span>${trait.label}
-                    </div>
-                    <div class="options-wrap" id="trait-${key}"></div>
+                  <div class="trait-label" style="color:${col}">
+                    <span>${icon}</span>${plainLabel}
+                  </div>
+                  <div class="options-wrap" id="trait-${key}"></div>
                 `;
                 grid.appendChild(card);
 
                 const wrap = card.querySelector(`#trait-${key}`);
-                trait.options.forEach(opt => {
+                trait.opts.forEach(opt => {
                     const btn = document.createElement('button');
                     btn.className = 'opt-btn';
-                    btn.textContent = opt.l;
+                    btn.textContent = opt;
                     btn.dataset.key = key;
-                    btn.dataset.val = opt.l;
-                    btn.dataset.rarity = opt.r;
-                    btn.onclick = () => selectTrait(key, opt.l, btn);
+                    btn.dataset.val = opt;
+                    btn.onclick = () => selectTrait(key, opt, btn);
                     wrap.appendChild(btn);
                 });
             });
@@ -2058,16 +864,19 @@
         function selectTrait(key, val, btn) {
             document.querySelectorAll(`[data-key="${key}"]`).forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            selected[key] = { val, rarity: btn.dataset.rarity };
+            selected[key] = val;
         }
 
-        // ══════════════════════════════════════════════════
-        // GENERATE PROMPT
-        // ══════════════════════════════════════════════════
+        function buildPrompt(r, st) {
+            const hatPart = r.hat === 'none' ? 'no hat' : `wearing ${r.hat}`;
+            const accPart = r.accessory === 'none' ? 'no accessories' : `with ${r.accessory}`;
+            return `A ${r.size_style} ${r.gender} ${r.species} character, ${r.skin_material}, wearing ${r.outfit_top} and ${r.outfit_bottom}, ${r.footwear}, ${hatPart}, ${accPart}, ${r.expression} facial expression, ${r.pose}, ${r.bg_color} minimal studio background, ${r.lighting}, ${st.desc}, full body 3D render, collectible NFT figurine, sharp focus, ultra detailed, 4K resolution, product photography style, centered composition, trending on OpenSea`;
+        }
+
         function generatePrompt() {
             const out = document.getElementById('prompt-output');
-            if (!currentType) {
-                out.textContent = '⚠️ Please select a creature type first!';
+            if (!curStyle) {
+                out.textContent = '⚠️ Please select a render style first!';
                 out.classList.add('empty');
                 return;
             }
@@ -2077,19 +886,8 @@
                 return;
             }
 
-            const s = selected;
-            const typeInfo = characterTypes.find(ct => ct.id === currentType);
-            const typeName = typeInfo ? typeInfo.label : 'creature';
-
-            const parts = [];
-            const traitKeys = Object.keys(traitData[currentType] || {});
-            traitKeys.forEach(key => {
-                if (s[key] && s[key].val && s[key].val !== 'None' && s[key].val !== 'None / Natural') {
-                    parts.push(s[key].val.replace(/[^\w\s]/gi, '').trim().toLowerCase());
-                }
-            });
-
-            const prompt = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.`;
+            const st = STYLES[curStyle];
+            const prompt = buildPrompt(selected, st);
             const promptHash = cyrb53(prompt);
 
             if (usedPrompts.has(promptHash)) {
@@ -2106,37 +904,40 @@
                 }, 2200);
             } else {
                 usedPrompts.add(promptHash);
-                db.ref(`doodle/usedPrompts/${promptHash}`).set(true);
-                db.ref('doodle/generatedCount').set(firebase.database.ServerValue.increment(1));
+                db.ref(`3d/usedPrompts/${promptHash}`).set(true);
+                db.ref('3d/generatedCount').set(firebase.database.ServerValue.increment(1));
             }
 
             out.textContent = prompt;
             out.classList.remove('empty');
 
-            const r = getRarityScore();
-            const labels = { common: '⚪ Common', rare: '🔵 Rare', legendary: '🟡 Legendary' };
-            const classes = { common: 'rarity-common', rare: 'rarity-rare', legendary: 'rarity-legendary' };
-            document.getElementById('rarity-label').innerHTML = `<span class="rarity-badge ${classes[r]}">${labels[r]}</span>`;
+            const r = calcRarity(selected);
+            const labels = { common: '⚪ Common', rare: '🔵 Rare', epic: '🔴 Epic', legendary: '🟡 Legendary' };
+            const classes = { common: 'rarity-common', rare: 'rarity-rare', epic: 'rarity-epic', legendary: 'rarity-legendary' };
+            document.getElementById('rarity-label').innerHTML = `<span class="rarity-badge ${classes[r]}">${labels[r] || labels.common}</span>`;
+
+            const tagRow = document.getElementById('tag-row');
+            tagRow.innerHTML = `<span class="platform-tag" style="background:#fff3cd">✓ ${st.name.toUpperCase()}</span>`;
         }
 
-        function getRarityScore() {
-            const rarityMap = { common: 0, rare: 1, legendary: 2 };
-            const vals = Object.values(selected).map(s => rarityMap[s.rarity] || 0);
-            const total = vals.reduce((a, b) => a + b, 0);
-            if (total >= 7) return 'legendary';
-            if (total >= 3) return 'rare';
+        function calcRarity(r) {
+            const legendary = ['crystal skin', 'chrome skin', 'mercury skin', 'alien humanoid', 'dragon', 'ice golem', 'translucent crystal skin', 'liquid mercury skin', 'frosted glass skin', 'polished chrome skin'];
+            const epic = ['wolf', 'vampire', 'werewolf', 'mermaid', 'skeleton warrior', 'zombie', 'centaur', 'metallic silver skin', 'cobalt blue skin', 'emerald green skin'];
+            const s = Object.values(r).join(' ').toLowerCase();
+            if (legendary.some(w => s.includes(w))) return 'legendary';
+            if (epic.some(w => s.includes(w))) return 'epic';
+            const rareCount = ['frost', 'shadow', 'neon', 'glitch', 'holographic', 'satin'].filter(w => s.includes(w)).length;
+            if (rareCount >= 2) return 'rare';
             return 'common';
         }
 
         function randomize() {
-            const randType = characterTypes[Math.floor(Math.random() * characterTypes.length)];
-            const btn = document.querySelector(`[data-type="${randType.id}"]`);
-            if (btn) selectType(randType.id, btn);
-
+            const styles = Object.keys(STYLES);
+            const randStyle = styles[Math.floor(Math.random() * styles.length)];
+            const btn = document.querySelector(`[data-style="${randStyle}"]`);
+            if (btn) selectStyle(randStyle, btn);
             setTimeout(() => {
-                const typeId = currentType;
-                const traitKeys = Object.keys(traitData[typeId] || []);
-
+                const traitKeys = Object.keys(TRAITS);
                 let attempts = 0;
                 let foundUnique = false;
                 let bestCombo = null;
@@ -2151,20 +952,12 @@
                         }
                     });
 
-                    const parts = [];
+                    const rObj = {};
                     traitKeys.forEach(key => {
-                        if (bestCombo[key]) {
-                            const val = bestCombo[key].dataset.val;
-                            if (val && val !== 'None' && val !== 'None / Natural') {
-                                parts.push(val.replace(/[^\w\s]/gi, '').trim().toLowerCase());
-                            }
-                        }
+                        if (bestCombo[key]) rObj[key] = bestCombo[key].dataset.val;
                     });
 
-                    const typeInfo = characterTypes.find(ct => ct.id === typeId);
-                    const typeName = typeInfo ? typeInfo.label : 'creature';
-                    const promptText = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.`;
-
+                    const promptText = buildPrompt(rObj, STYLES[curStyle]);
                     if (!usedPrompts.has(cyrb53(promptText))) {
                         foundUnique = true;
                     }
@@ -2185,10 +978,8 @@
         function copyPrompt() {
             const text = document.getElementById('prompt-output').textContent;
             if (!text || text.startsWith('←') || text.startsWith('⚠️')) return;
-
             const negText = document.getElementById('neg-output').textContent;
             const fullText = text + '\n\nNegative Prompt: ' + negText.trim();
-
             navigator.clipboard.writeText(fullText).then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
@@ -2196,8 +987,8 @@
             });
         }
 
-        // Init
-        buildTypeGrid();
+        buildStyleGrid();
+        buildTraitGrid();
         updateStats();
     </script>
 </body>
