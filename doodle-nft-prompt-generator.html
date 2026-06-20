@@ -315,11 +315,11 @@
         }
 
         /* Color-coded active states */
-        .card-species .opt-btn.active {
+        .card-species_variant .opt-btn.active {
             background: #ffd6e7;
         }
 
-        .card-color .opt-btn.active {
+        .card-body_color .opt-btn.active {
             background: #ffe5cc;
         }
 
@@ -343,16 +343,12 @@
             background: #ffd6f0;
         }
 
-        .card-bg .opt-btn.active {
+        .card-background .opt-btn.active {
             background: #d6ffe8;
         }
 
         .card-special .opt-btn.active {
             background: #ffe0b2;
-        }
-
-        .card-platform .opt-btn.active {
-            background: #fff3cc;
         }
 
         /* ── Actions ── */
@@ -508,24 +504,6 @@
             line-height: 1.5;
         }
 
-        .tag-row {
-            padding: 12px 24px 18px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            border-top: 2px dashed #eee;
-        }
-
-        .platform-tag {
-            background: #fff8e1;
-            border: 2px solid #ffd54f;
-            border-radius: 50px;
-            padding: 4px 12px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #555;
-        }
-
         .copied-toast {
             position: fixed;
             bottom: 32px;
@@ -632,7 +610,6 @@
             <div class="neg-text" id="neg-output">realistic, photorealistic, 3D render, dark colors, complex background,
                 detailed texture, anime, pixel art, blurry, ugly, distorted, extra limbs</div>
         </div>
-        <div class="tag-row" id="tag-row"></div>
     </div>
 
     <div class="copied-toast" id="toast">✅ Copied to clipboard!</div>
@@ -1935,23 +1912,6 @@
         };
 
         // ══════════════════════════════════════════════════
-        // PLATFORM CONFIG
-        // ══════════════════════════════════════════════════
-        const platforms = [
-            { label: "Midjourney", rarity: "common" },
-            { label: "DALL-E 3", rarity: "common" },
-            { label: "Stable Diffusion", rarity: "common" },
-            { label: "Adobe Firefly", rarity: "common" },
-        ];
-
-        const platformSuffixes = {
-            "Midjourney": "--style cute --ar 1:1 --v 6",
-            "DALL-E 3": "In the style of Doodles NFT collection by Burnt Toast.",
-            "Stable Diffusion": "doodles_nft lora, cartoon lineart checkpoint, high quality",
-            "Adobe Firefly": "flat illustration style, vector art, bold outlines",
-        };
-
-        // ══════════════════════════════════════════════════
         // STATE
         // ══════════════════════════════════════════════════
         const firebaseConfig = {
@@ -1968,13 +1928,13 @@
 
         const cyrb53 = (str, seed = 0) => {
             let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
-            for(let i = 0, ch; i < str.length; i++) {
+            for (let i = 0, ch; i < str.length; i++) {
                 ch = str.charCodeAt(i);
                 h1 = Math.imul(h1 ^ ch, 2654435761);
                 h2 = Math.imul(h2 ^ ch, 1597334677);
             }
-            h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-            h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+            h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
             return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString();
         };
 
@@ -2004,7 +1964,6 @@
                     Object.values(typeTraits).forEach(t => {
                         typeCombos *= t.options.length;
                     });
-                    typeCombos *= platforms.length;
                     total += typeCombos;
                 }
             });
@@ -2054,30 +2013,32 @@
             if (!typeTraits) return;
 
             const traitKeys = Object.keys(typeTraits);
-            const allTraitKeys = [...traitKeys, 'platform'];
 
-            allTraitKeys.forEach(key => {
-                const trait = key === 'platform'
-                    ? { label: "Platform Style", icon: "🛠️", options: platforms.map(p => ({ l: p.label, r: p.rarity })) }
-                    : typeTraits[key];
+            traitKeys.forEach(key => {
+                const trait = typeTraits[key];
 
                 const card = document.createElement('div');
                 card.className = `trait-card card-${key}`;
 
                 const colorMap = {
-                    species_variant: '#FF6B9D', body_color: '#FFB347', markings: '#6BCB77',
-                    eyes: '#4ECDC4', accessory: '#C77DFF', outfit: '#FFD93D',
-                    expression: '#FF6B9D', background: '#4ECDC4', special: '#FFB347',
-                    platform: '#FFD93D'
+                    species_variant: '#FF6B9D',
+                    body_color: '#FFB347',
+                    markings: '#6BCB77',
+                    eyes: '#4ECDC4',
+                    accessory: '#C77DFF',
+                    outfit: '#FFD93D',
+                    expression: '#FF6B9D',
+                    background: '#4ECDC4',
+                    special: '#FFB347'
                 };
                 const col = colorMap[key] || '#888';
 
                 card.innerHTML = `
-      <div class="trait-label" style="color:${col}">
-        <span>${trait.icon}</span>${trait.label}
-      </div>
-      <div class="options-wrap" id="trait-${key}"></div>
-    `;
+                    <div class="trait-label" style="color:${col}">
+                        <span>${trait.icon}</span>${trait.label}
+                    </div>
+                    <div class="options-wrap" id="trait-${key}"></div>
+                `;
                 grid.appendChild(card);
 
                 const wrap = card.querySelector(`#trait-${key}`);
@@ -2128,10 +2089,7 @@
                 }
             });
 
-            const plat = s.platform ? s.platform.val : null;
-            const suffix = plat ? `\n\n${platformSuffixes[plat]}` : '';
-
-            const prompt = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.${suffix}`;
+            const prompt = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.`;
             const promptHash = cyrb53(prompt);
 
             if (usedPrompts.has(promptHash)) {
@@ -2147,7 +2105,7 @@
                     }, 300);
                 }, 2200);
             } else {
-                usedPrompts.add(promptHash); // add locally immediately to prevent double clicks
+                usedPrompts.add(promptHash);
                 db.ref(`doodle/usedPrompts/${promptHash}`).set(true);
                 db.ref('doodle/generatedCount').set(firebase.database.ServerValue.increment(1));
             }
@@ -2159,16 +2117,6 @@
             const labels = { common: '⚪ Common', rare: '🔵 Rare', legendary: '🟡 Legendary' };
             const classes = { common: 'rarity-common', rare: 'rarity-rare', legendary: 'rarity-legendary' };
             document.getElementById('rarity-label').innerHTML = `<span class="rarity-badge ${classes[r]}">${labels[r]}</span>`;
-
-            const tagRow = document.getElementById('tag-row');
-            tagRow.innerHTML = '';
-            platforms.forEach(p => {
-                const tag = document.createElement('span');
-                tag.className = 'platform-tag';
-                tag.textContent = (plat === p.label ? '✓ ' : '') + p.label;
-                if (plat === p.label) tag.style.background = '#fff3cd';
-                tagRow.appendChild(tag);
-            });
         }
 
         function getRarityScore() {
@@ -2184,9 +2132,10 @@
             const randType = characterTypes[Math.floor(Math.random() * characterTypes.length)];
             const btn = document.querySelector(`[data-type="${randType.id}"]`);
             if (btn) selectType(randType.id, btn);
+
             setTimeout(() => {
                 const typeId = currentType;
-                const traitKeys = [...Object.keys(traitData[typeId] || {}), 'platform'];
+                const traitKeys = Object.keys(traitData[typeId] || []);
 
                 let attempts = 0;
                 let foundUnique = false;
@@ -2204,7 +2153,7 @@
 
                     const parts = [];
                     traitKeys.forEach(key => {
-                        if (key !== 'platform' && bestCombo[key]) {
+                        if (bestCombo[key]) {
                             const val = bestCombo[key].dataset.val;
                             if (val && val !== 'None' && val !== 'None / Natural') {
                                 parts.push(val.replace(/[^\w\s]/gi, '').trim().toLowerCase());
@@ -2214,9 +2163,7 @@
 
                     const typeInfo = characterTypes.find(ct => ct.id === typeId);
                     const typeName = typeInfo ? typeInfo.label : 'creature';
-                    const plat = bestCombo['platform'] ? bestCombo['platform'].dataset.val : null;
-                    const suffix = plat ? `\n\n${platformSuffixes[plat]}` : '';
-                    const promptText = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.${suffix}`;
+                    const promptText = `A Doodles NFT ${typeName} character, pastel rainbow color palette, thick bold black outline, hand-drawn doodle art style, cute round face with simple dot eyes, ${parts.join(', ')}, flat 2D illustration, soft gradient cel shading, whimsical and playful aesthetic, collectible PFP avatar art, centered composition, square format, high quality digital art.`;
 
                     if (!usedPrompts.has(cyrb53(promptText))) {
                         foundUnique = true;
@@ -2238,8 +2185,10 @@
         function copyPrompt() {
             const text = document.getElementById('prompt-output').textContent;
             if (!text || text.startsWith('←') || text.startsWith('⚠️')) return;
+
             const negText = document.getElementById('neg-output').textContent;
             const fullText = text + '\n\nNegative Prompt: ' + negText.trim();
+
             navigator.clipboard.writeText(fullText).then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
