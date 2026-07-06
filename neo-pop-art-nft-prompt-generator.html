@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Pop Art NFT Prompt Generator — Girls Edition</title>
+    <meta name="description" content="Generate unique Neo Pop Art style NFT prompts for female and young girl characters. Bold colors, halftone dots, and comic-book energy.">
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FF2D87;
+            --yellow: #FFE500;
+            --mint: #00E5A0;
+            --blue: #00BFFF;
+            --lavender: #B24BFF;
+            --peach: #FF6B35;
+            --bg: #FFF5F9;
+            --card: #ffffff;
+            --outline: #1a1a2e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding: 24px 16px 60px;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 45, 135, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(178, 75, 255, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 229, 0, 0.08) 0%, transparent 60%);
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: var(--outline);
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .emoji-bar {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 960px;
+            margin: 0 auto 28px;
+        }
+
+        .stat-box {
+            background: var(--card);
+            border: 3px solid var(--outline);
+            border-radius: 16px;
+            padding: 14px 16px;
+            text-align: center;
+            box-shadow: 4px 4px 0 var(--outline);
+        }
+
+        .stat-v {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            color: var(--pink);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .stat-k {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        @media(max-width:600px) {
+            .stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ── Style Selector ── */
+        .type-section {
+            max-width: 960px;
+            margin: 0 auto 28px;
+        }
+
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            color: var(--outline);
+            margin-bottom: 12px;
+            padding-left: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .type-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .type-btn {
+            background: white;
+            border: 3px solid var(--outline);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 3px 3px 0 var(--outline);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--outline);
+        }
+
+        .type-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--outline);
+        }
+
+        .type-btn.active {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--outline);
+            background: #ffd6e7;
+        }
+
+        .type-btn:nth-child(even).active {
+            background: #ffe5cc;
+        }
+
+        .type-btn:nth-child(3n).active {
+            background: #d6f5e3;
+        }
+
+        .type-btn:nth-child(4n).active {
+            background: #d6f0ff;
+        }
+
+        .type-btn:nth-child(5n).active {
+            background: #f5d6ff;
+        }
+
+        /* ── Trait Grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 14px;
+            max-width: 960px;
+            margin: 0 auto 24px;
+        }
+
+        .trait-card {
+            background: var(--card);
+            border: 3px solid var(--outline);
+            border-radius: 20px;
+            padding: 16px 18px;
+            box-shadow: 5px 5px 0px var(--outline);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .trait-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px var(--outline);
+        }
+
+        .trait-label {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trait-label span {
+            font-size: 1.1rem;
+        }
+
+        .options-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .opt-btn {
+            background: #f5f5f5;
+            border: 2.5px solid #ccc;
+            border-radius: 50px;
+            padding: 5px 12px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #444;
+        }
+
+        .opt-btn:hover {
+            border-color: var(--outline);
+            background: #fffbe7;
+            transform: scale(1.04);
+        }
+
+        .opt-btn.active {
+            border-color: var(--outline);
+            box-shadow: 3px 3px 0 var(--outline);
+            color: #111;
+        }
+
+        .trait-card:nth-child(1) .opt-btn.active { background: #ffd6e7; }
+        .trait-card:nth-child(2) .opt-btn.active { background: #ffe5cc; }
+        .trait-card:nth-child(3) .opt-btn.active { background: #d6f5e3; }
+        .trait-card:nth-child(4) .opt-btn.active { background: #d6f0ff; }
+        .trait-card:nth-child(5) .opt-btn.active { background: #e8d6ff; }
+        .trait-card:nth-child(6) .opt-btn.active { background: #fff3cc; }
+        .trait-card:nth-child(7) .opt-btn.active { background: #ffd6f0; }
+        .trait-card:nth-child(8) .opt-btn.active { background: #d6ffe8; }
+        .trait-card:nth-child(9) .opt-btn.active { background: #ffe0b2; }
+        .trait-card:nth-child(10) .opt-btn.active { background: #fff3cc; }
+        .trait-card:nth-child(11) .opt-btn.active { background: #ffd6e7; }
+        .trait-card:nth-child(12) .opt-btn.active { background: #d6f5e3; }
+        .trait-card:nth-child(13) .opt-btn.active { background: #e8d6ff; }
+        .trait-card:nth-child(14) .opt-btn.active { background: #ffe5cc; }
+        .trait-card:nth-child(15) .opt-btn.active { background: #d6f5e3; }
+        .trait-card:nth-child(16) .opt-btn.active { background: #d6f0ff; }
+
+        /* ── Actions ── */
+        .actions {
+            max-width: 960px;
+            margin: 0 auto 24px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 20px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            border: 3px solid var(--outline);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 4px 4px 0 var(--outline);
+        }
+
+        .btn-main:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--outline);
+        }
+
+        .btn-main:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--outline);
+        }
+
+        .btn-generate {
+            background: var(--yellow);
+            color: var(--outline);
+        }
+
+        .btn-random {
+            background: var(--pink);
+            color: white;
+        }
+
+        .btn-copy {
+            background: var(--mint);
+            color: white;
+        }
+
+        /* ── Output ── */
+        .output-box {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border: 3px solid var(--outline);
+            border-radius: 20px;
+            box-shadow: 6px 6px 0 var(--outline);
+            overflow: hidden;
+        }
+
+        .output-header {
+            background: var(--outline);
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-header .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot1 { background: #FF5F57; }
+        .dot2 { background: #FFBD2E; }
+        .dot3 { background: #28C940; }
+
+        .prompt-text {
+            padding: 20px 24px;
+            font-size: 0.93rem;
+            line-height: 1.75;
+            color: #222;
+            font-weight: 600;
+            min-height: 100px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            cursor: pointer;
+            transition: background 0.15s;
+            position: relative;
+        }
+
+        .prompt-text:not(.empty):hover {
+            background: #fafafa;
+        }
+
+        .prompt-text:not(.empty):hover::after {
+            content: 'Click to copy';
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--mint);
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .prompt-text.empty {
+            color: #bbb;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .negative-section {
+            border-top: 2px dashed #eee;
+            padding: 14px 24px;
+            background: #fafafa;
+        }
+
+        .neg-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 6px;
+        }
+
+        .neg-text {
+            font-size: 0.85rem;
+            color: #777;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .tag-row {
+            padding: 12px 24px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 2px dashed #eee;
+        }
+
+        .platform-tag {
+            background: #fff8e1;
+            border: 2px solid #ffd54f;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .copied-toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--outline);
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            padding: 12px 28px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .copied-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .rarity-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        .rarity-common {
+            background: #e0e0e0;
+            color: #555;
+            border: 2px solid #ccc;
+        }
+
+        .rarity-rare {
+            background: #d0e8ff;
+            color: #1565c0;
+            border: 2px solid #90caf9;
+        }
+
+        .rarity-epic {
+            background: #ffd6f0;
+            color: #c2185b;
+            border: 2px solid #f48fb1;
+        }
+
+        .rarity-legendary {
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            color: white;
+            border: 2px solid #e65100;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="emoji-bar">💖 🎨 💥 ⚡ 🌈 🌸 ✨ 👧</div>
+    <h1>Neo Pop Art NFT — Girls Edition</h1>
+    <p class="subtitle">Choose a pop art style → pick your traits → generate your unique girl character prompt 💖</p>
+
+    <!-- STATS -->
+    <div class="stats-strip">
+        <div class="stat-box"><span class="stat-v" id="s-total">—</span><span class="stat-k">Total Combos</span></div>
+        <div class="stat-box"><span class="stat-v" id="s-gen">0</span><span class="stat-k">Generated</span></div>
+        <div class="stat-box"><span class="stat-v" id="s-left">—</span><span class="stat-k">Remaining</span></div>
+        <div class="stat-box"><span class="stat-v" id="s-uniq">0</span><span class="stat-k">Unique IDs</span></div>
+    </div>
+
+    <!-- Style Selector -->
+    <div class="type-section">
+        <div class="section-title">🎨 Choose Pop Art Style</div>
+        <div class="type-grid" id="style-grid"></div>
+    </div>
+
+    <!-- Trait Cards -->
+    <div class="grid" id="trait-grid"></div>
+
+    <div class="actions">
+        <button class="btn-main btn-generate" onclick="generatePrompt()">✨ Generate Prompt</button>
+        <button class="btn-main btn-random" onclick="randomize()">🎲 Randomize All</button>
+        <button class="btn-main btn-copy" onclick="copyPrompt()">📋 Copy Prompt</button>
+    </div>
+
+    <div class="output-box">
+        <div class="output-header">
+            <div class="dots">
+                <div class="dot dot1"></div>
+                <div class="dot dot2"></div>
+                <div class="dot dot3"></div>
+            </div>
+            <span>YOUR PROMPT</span>
+            <span id="rarity-label"></span>
+        </div>
+        <div class="prompt-text empty" id="prompt-output" onclick="copyPrompt()">← Choose a pop art style and pick your traits above</div>
+        <div class="negative-section">
+            <div class="neg-label">⛔ Negative Prompt</div>
+            <div class="neg-text" id="neg-output">3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, watermark, signature, busy background, cluttered, dark background, male, boy, masculine, beard, mustache</div>
+        </div>
+        <div class="tag-row" id="tag-row"></div>
+    </div>
+
+    <div class="copied-toast" id="toast">✅ Copied to clipboard!</div>
+
+    <script>
+        const TRAITS = {
+            character_type: {
+                label: "👧 Character Type",
+                opts: [
+                    "teenage girl", "young woman", "little girl", "tween girl", "college girl",
+                    "girl next door", "school girl", "trendy girl", "festival girl", "dreamy girl",
+                    "rebel girl", "shy girl", "confident girl", "sporty girl", "artsy girl",
+                    "bookworm girl", "gamer girl", "dancer girl", "singer girl", "skater girl",
+                    "surfer girl", "cheerleader", "flower girl", "fairy girl", "princess girl",
+                    "warrior girl", "mermaid girl", "angel girl", "witch girl", "elf girl",
+                    "punk girl", "goth girl", "pastel girl", "kawaii girl", "retro girl"
+                ]
+            },
+            ethnicity: {
+                label: "🌍 Ethnicity / Skin Tone",
+                opts: [
+                    "fair skin", "warm beige skin", "golden tan skin", "olive skin", "light brown skin",
+                    "medium brown skin", "dark brown skin", "deep ebony skin", "porcelain white skin",
+                    "rosy peach skin", "sun-kissed bronze skin", "cool ivory skin", "warm caramel skin",
+                    "honey gold skin", "rich mahogany skin", "amber glow skin", "cocoa brown skin",
+                    "tawny skin", "almond skin", "copper skin"
+                ]
+            },
+            face_shape: {
+                label: "💎 Face Shape",
+                opts: [
+                    "round face", "oval face", "heart-shaped face", "diamond face", "square jaw face",
+                    "angular face", "soft rounded cheeks", "high cheekbones face", "delicate v-line face",
+                    "full cheeks baby face", "narrow elfin face", "wide bright face"
+                ]
+            },
+            hairstyle: {
+                label: "💇 Hairstyle",
+                opts: [
+                    "long flowing straight hair", "messy bob cut", "twin pigtails", "high ponytail",
+                    "space buns", "braided crown", "curly afro", "wavy beach hair", "pixie cut",
+                    "side-swept bangs", "half-up half-down", "french braids", "bubble ponytail",
+                    "sleek low bun", "voluminous curls", "box braids", "micro braids", "fishtail braid",
+                    "short choppy layers", "long layered with bangs", "butterfly locs", "cornrows",
+                    "loose messy waves", "top knot bun", "curtain bangs with layers", "double dutch braids",
+                    "shag cut with fringe", "ribbon-tied ponytail", "low twin tails", "waterfall braid",
+                    "mohawk-style faux hawk", "slicked-back wet look", "asymmetric side cut"
+                ]
+            },
+            hair_color: {
+                label: "🎨 Hair Color",
+                opts: [
+                    "jet black", "platinum blonde", "bubblegum pink", "electric blue", "fiery red",
+                    "lavender purple", "mint green", "sunset orange", "cotton candy pink", "neon yellow",
+                    "pastel rainbow ombre", "dark chocolate brown", "honey blonde", "silver white",
+                    "teal blue-green", "rose gold", "cherry red", "cobalt blue", "peachy coral",
+                    "lilac and cream two-tone", "galaxy purple-blue ombre", "strawberry blonde",
+                    "forest green", "ash grey", "warm auburn", "caramel brown highlights",
+                    "holographic iridescent", "split dye half-and-half"
+                ]
+            },
+            eye_style: {
+                label: "👁️ Eye Style",
+                opts: [
+                    "big sparkling round eyes", "almond-shaped eyes", "cat eyes with liner",
+                    "doe eyes with long lashes", "hooded mysterious eyes", "wide innocent eyes",
+                    "winged eyeliner eyes", "glitter eyeshadow eyes", "smoky dramatic eyes",
+                    "natural no-makeup eyes", "heart-shaped contact lens eyes", "star-pupil fantasy eyes",
+                    "gradient eyeshadow eyes", "bold graphic liner eyes", "retro 60s thick liner eyes",
+                    "neon pop color eyeshadow eyes", "crystal gem-encrusted eye makeup"
+                ]
+            },
+            eye_color: {
+                label: "🔮 Eye Color",
+                opts: [
+                    "deep brown", "bright green", "sky blue", "amber gold", "violet purple",
+                    "hazel", "dark chocolate", "stormy grey", "aquamarine", "honey brown",
+                    "emerald green", "ice blue", "warm copper", "turquoise", "obsidian black",
+                    "rose pink (fantasy)", "golden yellow (fantasy)", "heterochromia two-tone"
+                ]
+            },
+            outfit: {
+                label: "👗 Outfit",
+                opts: [
+                    "oversized graphic tee with mini skirt", "crop top and high-waist jeans",
+                    "colorful bomber jacket and shorts", "flowy summer dress", "school uniform with blazer",
+                    "hoodie dress with thigh-high boots", "leather jacket and plaid skirt",
+                    "vintage 90s windbreaker tracksuit", "kawaii lolita dress", "streetwear cargo pants and tube top",
+                    "preppy cardigan and pleated skirt", "athletic sports bra and joggers",
+                    "bohemian maxi dress with fringe", "futuristic neon bodysuit", "overall shorts with striped tee",
+                    "puff-sleeve blouse and paper bag shorts", "sequin party dress", "tie-dye sweatshirt and leggings",
+                    "off-shoulder top with bell-bottom jeans", "puffy cloud jacket and mini skirt",
+                    "mesh top layered over band tee", "denim vest over floral dress",
+                    "corset top with wide-leg pants", "ballet-core wrap top and tutu skirt",
+                    "Y2K butterfly top and low-rise jeans", "cottagecore pinafore dress",
+                    "cyber-goth outfit with neon straps", "mermaid-scale iridescent dress",
+                    "fairy-kei pastel layered outfit", "harajuku mixed-pattern ensemble"
+                ]
+            },
+            footwear: {
+                label: "👟 Footwear",
+                opts: [
+                    "chunky platform sneakers", "strappy sandals", "combat boots", "ballet flats",
+                    "high-top canvas shoes", "knee-high boots", "retro roller skates", "sparkle jelly shoes",
+                    "fluffy slippers", "wedge heels", "mary jane shoes", "ankle boots with buckles",
+                    "gladiator sandals", "neon running shoes", "cowboy boots", "ugg-style fuzzy boots",
+                    "clear acrylic heels", "embroidered slip-ons", "rainbow platform shoes",
+                    "lace-up granny boots", "barefoot with anklet"
+                ]
+            },
+            accessory: {
+                label: "💍 Accessories",
+                opts: [
+                    "none", "oversized hoop earrings", "layered necklaces", "statement sunglasses",
+                    "hair clips and barrettes", "flower crown", "choker necklace", "charm bracelet",
+                    "crossbody mini bag", "beret hat", "bucket hat", "headband with bow",
+                    "pearl earrings", "bandana scarf", "fingerless gloves", "tote bag with pins",
+                    "lollipop prop", "bubble gum bubble", "skateboard", "boombox",
+                    "camera on neck strap", "phone with cute case", "cat ear headband",
+                    "heart-shaped sunglasses", "ribbon choker", "star-shaped earrings",
+                    "butterfly hair clips", "daisy chain necklace", "beaded friendship bracelets",
+                    "mini backpack with patches", "umbrella (cute pattern)", "magic wand"
+                ]
+            },
+            expression: {
+                label: "😊 Expression",
+                opts: [
+                    "confident smirk", "bright toothy grin", "pouty lips", "blowing a kiss",
+                    "winking playfully", "sticking tongue out", "serene closed-eye smile",
+                    "surprised wide eyes", "determined fierce gaze", "shy blushing with downcast eyes",
+                    "laughing with eyes squinted", "cool aloof expression", "dreamy far-away look",
+                    "sassy raised eyebrow", "cute peace sign smile", "fierce model pout",
+                    "innocent doe-eyed look", "joyful eyes-closed laugh", "mysterious half-smile",
+                    "bubbly excited expression", "contemplative thoughtful look"
+                ]
+            },
+            pose: {
+                label: "🕺 Pose",
+                opts: [
+                    "hand on hip confident stance", "peace sign selfie pose", "sitting cross-legged",
+                    "mid-jump joyful leap", "twirling in dress", "leaning forward playfully",
+                    "arms raised victory pose", "looking over shoulder", "blowing kiss to viewer",
+                    "running mid-stride", "dancing freely", "hands behind back sweet pose",
+                    "crouching low action pose", "standing with crossed arms", "tiptoe ballerina stretch",
+                    "hugging knees seated", "lying on stomach chin in hands", "skateboard kick trick",
+                    "pointing at viewer", "hair flip mid-toss", "walking confidently forward",
+                    "backlit silhouette dramatic pose"
+                ]
+            },
+            bg_pattern: {
+                label: "🌈 Background Pattern",
+                opts: [
+                    "halftone dot pattern", "comic speed lines", "bold pop art starburst",
+                    "large ben-day dots", "gradient color wash", "geometric triangles",
+                    "splattered paint drips", "concentric circles", "zigzag pop stripes",
+                    "checkerboard pattern", "polka dots", "retro sunburst rays",
+                    "graffiti wall background", "comic panel grid", "abstract color blocks",
+                    "confetti explosion", "neon grid lines", "watercolor splash background",
+                    "kawaii cloud pattern", "star and sparkle field", "pixel art mosaic",
+                    "floral pop pattern", "glitch art stripes"
+                ]
+            },
+            bg_color: {
+                label: "🎯 Background Color",
+                opts: [
+                    "hot pink", "electric yellow", "cyan blue", "vivid coral", "lime green",
+                    "tangerine orange", "magenta", "bright lavender", "cherry red", "turquoise",
+                    "sunflower gold", "bubblegum pink", "periwinkle blue", "acid green",
+                    "salmon pink", "powder blue", "warm peach", "neon purple",
+                    "split complementary pink-green", "triadic red-yellow-blue pop"
+                ]
+            },
+            pop_effects: {
+                label: "💥 Pop Art Effects",
+                opts: [
+                    "bold black outlines", "halftone shading dots", "comic speech bubble 'POW!'",
+                    "comic speech bubble 'BAM!'", "comic speech bubble 'WOW!'",
+                    "onomatopoeia text effects", "Lichtenstein-style ben-day dots",
+                    "thick contour lines", "flat color fills with outlines",
+                    "screen-print layer effect", "duotone color split", "color separation overlay",
+                    "retro CMYK dot pattern", "warhol-style color repetition",
+                    "neon glow outlines", "dripping paint effect", "stencil spray effect",
+                    "cross-hatch shading lines", "pop art star bursts", "cartoon motion lines",
+                    "glitch distortion bands", "chromatic aberration edges"
+                ]
+            },
+            mood: {
+                label: "✨ Mood / Vibe",
+                opts: [
+                    "energetic and bold", "dreamy and soft", "rebellious and edgy",
+                    "playful and fun", "elegant and chic", "mysterious and moody",
+                    "retro nostalgic", "futuristic cyber", "romantic and sweet",
+                    "fierce and powerful", "whimsical and magical", "cool and laid-back",
+                    "glamorous and sparkly", "adventurous and wild", "cute and kawaii",
+                    "empowered and strong", "melancholic and artistic", "sunny and cheerful"
+                ]
+            }
+        };
+
+        const STYLES = {
+            lichtenstein: {
+                name: "Lichtenstein Classic",
+                desc: "Roy Lichtenstein inspired neo pop art, bold primary colors, heavy black outlines, prominent ben-day halftone dots, comic book panel aesthetic, screen-print flat color, iconic pop art masterpiece",
+                neg: "3D render, photorealistic, blurry, watercolor, sketch, pencil art, male, boy, masculine"
+            },
+            warhol: {
+                name: "Warhol Repeat",
+                desc: "Andy Warhol inspired screen-print pop art, bold saturated color variations, high contrast flat color fills, celebrity portrait pop art style, silkscreen aesthetic, iconic repeated image motif",
+                neg: "3D render, photorealistic, blurry, soft gradient, male, boy, masculine"
+            },
+            retro_comic: {
+                name: "Retro Comic Book",
+                desc: "vintage 1960s comic book pop art, thick ink outlines, four-color CMYK print style, retro halftone dots, comic panel border, classic American comic aesthetic, golden age illustration",
+                neg: "3D, photorealistic, watercolor, pencil sketch, male, boy, masculine"
+            },
+            neon_pop: {
+                name: "Neon Pop Glow",
+                desc: "modern neon pop art, electric vibrant neon colors on dark background, glowing fluorescent outlines, bold graphic contrast, contemporary street pop aesthetic, UV blacklight art style",
+                neg: "muted colors, pastel, photorealistic, 3D render, male, boy, masculine"
+            },
+            kawaii_pop: {
+                name: "Kawaii Pop Art",
+                desc: "Japanese kawaii meets pop art, cute chibi-influenced proportions with pop art halftone dots, pastel pop colors with bold outlines, adorable graphic art style, Harajuku-inspired pop aesthetic",
+                neg: "realistic, dark, gritty, horror, 3D render, male, boy, masculine"
+            },
+            street_pop: {
+                name: "Street Pop / Urban",
+                desc: "urban street art pop style, graffiti-inspired bold graphics, spray paint texture, stencil art aesthetic, Banksy meets pop art, bold social commentary art, urban wall mural style",
+                neg: "photorealistic, 3D render, soft, delicate, watercolor, male, boy, masculine"
+            },
+            vaporwave_pop: {
+                name: "Vaporwave Pop",
+                desc: "vaporwave aesthetic meets pop art, retro 80s/90s pastel gradients, glitch art elements, VHS static overlay, nostalgic digital pop, synthwave color palette, retrofuturistic pop art",
+                neg: "photorealistic, 3D render, traditional art, pencil sketch, male, boy, masculine"
+            },
+            flat_graphic: {
+                name: "Flat Graphic Pop",
+                desc: "modern flat design pop art, crisp clean geometric shapes, limited bold color palette, minimalist graphic illustration, vector art pop aesthetic, contemporary design poster art",
+                neg: "photorealistic, 3D render, textured, rough, sketchy, male, boy, masculine"
+            }
+        };
+
+        const styleEmojis = {
+            lichtenstein: "🔴", warhol: "🟡", retro_comic: "📖", neon_pop: "💜",
+            kawaii_pop: "🌸", street_pop: "🏙️", vaporwave_pop: "🌊", flat_graphic: "🔷"
+        };
+
+        const baseNeg = "3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, watermark, signature, busy background, cluttered, dark background, male, boy, masculine, beard, mustache";
+
+        // Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
+            authDomain: "demosetup-62c0c.firebaseapp.com",
+            databaseURL: "https://demosetup-62c0c-default-rtdb.firebaseio.com",
+            projectId: "demosetup-62c0c",
+            storageBucket: "demosetup-62c0c.firebasestorage.app",
+            messagingSenderId: "93404032712",
+            appId: "1:93404032712:web:bf96d78c86739d1d437ffd"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const cyrb53 = (str, seed = 0) => {
+            let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+            for (let i = 0, ch; i < str.length; i++) {
+                ch = str.charCodeAt(i);
+                h1 = Math.imul(h1 ^ ch, 2654435761);
+                h2 = Math.imul(h2 ^ ch, 1597334677);
+            }
+            h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+            return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString();
+        };
+
+        let curStyle = null;
+        const selected = {};
+        const usedPrompts = new Set();
+        let generatedCount = 0;
+
+        db.ref('neopopart/usedPrompts').on('child_added', snap => {
+            usedPrompts.add(snap.key);
+            updateStats();
+        });
+        db.ref('neopopart/generatedCount').on('value', snap => {
+            generatedCount = snap.val() || 0;
+            updateStats();
+        });
+
+        function totalCombos() {
+            let total = 1;
+            Object.values(TRAITS).forEach(t => {
+                total *= t.opts.length;
+            });
+            total *= Object.keys(STYLES).length;
+            return total;
+        }
+
+        function updateStats() {
+            const total = totalCombos();
+            const uniq = usedPrompts.size;
+            const left = total - uniq;
+            document.getElementById('s-total').textContent = total.toLocaleString();
+            document.getElementById('s-gen').textContent = generatedCount.toLocaleString();
+            document.getElementById('s-left').textContent = left.toLocaleString();
+            document.getElementById('s-uniq').textContent = uniq.toLocaleString();
+        }
+
+        function buildStyleGrid() {
+            const grid = document.getElementById('style-grid');
+            Object.entries(STYLES).forEach(([id, st]) => {
+                const btn = document.createElement('button');
+                btn.className = 'type-btn';
+                btn.dataset.style = id;
+                btn.innerHTML = `${styleEmojis[id] || '🎨'} ${st.name}`;
+                btn.onclick = () => selectStyle(id, btn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectStyle(id, btn) {
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            curStyle = id;
+            document.getElementById('neg-output').textContent = `${STYLES[id].neg}, ${baseNeg}`;
+        }
+
+        function buildTraitGrid() {
+            const grid = document.getElementById('trait-grid');
+            grid.innerHTML = '';
+            const colorArray = ['#FF2D87', '#FFB347', '#00E5A0', '#00BFFF', '#B24BFF', '#FFE500'];
+
+            Object.keys(TRAITS).forEach((key, index) => {
+                const trait = TRAITS[key];
+                const card = document.createElement('div');
+                card.className = `trait-card card-${key}`;
+                const col = colorArray[index % colorArray.length];
+                const iconMatch = trait.label.match(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/);
+                const icon = iconMatch ? iconMatch[0] : '✨';
+                const plainLabel = trait.label.replace(icon, '').trim();
+
+                card.innerHTML = `
+                  <div class="trait-label" style="color:${col}">
+                    <span>${icon}</span>${plainLabel}
+                  </div>
+                  <div class="options-wrap" id="trait-${key}"></div>
+                `;
+                grid.appendChild(card);
+
+                const wrap = card.querySelector(`#trait-${key}`);
+                trait.opts.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'opt-btn';
+                    btn.textContent = opt;
+                    btn.dataset.key = key;
+                    btn.dataset.val = opt;
+                    btn.onclick = () => selectTrait(key, opt, btn);
+                    wrap.appendChild(btn);
+                });
+            });
+        }
+
+        function selectTrait(key, val, btn) {
+            document.querySelectorAll(`[data-key="${key}"]`).forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selected[key] = val;
+        }
+
+        function buildPrompt(r, st) {
+            const accPart = r.accessory === 'none' ? 'no accessories' : `with ${r.accessory}`;
+            return `Premium Neo Pop Art NFT illustration, female character only, full body portrait, ${r.character_type} with ${r.ethnicity}, ${r.face_shape}, ${r.hairstyle} in ${r.hair_color}, ${r.eye_style} with ${r.eye_color} eyes, wearing ${r.outfit}, ${r.footwear}, ${accPart}, ${r.expression} facial expression, ${r.pose}, ${r.pop_effects}, ${r.bg_pattern} background in ${r.bg_color} color, ${r.mood} mood and atmosphere, ${st.desc}, luxury NFT collection art piece, consistent unified art direction, cohesive collection style, ultra-sharp focus, hyper detailed, 8K resolution, centered composition, masterpiece quality, ArtStation trending, premium digital collectible`;
+        }
+
+        function generatePrompt() {
+            const out = document.getElementById('prompt-output');
+            if (!curStyle) {
+                out.textContent = '⚠️ Please select a pop art style first!';
+                out.classList.add('empty');
+                return;
+            }
+            if (Object.keys(selected).length < 3) {
+                out.textContent = '⚠️ Please select at least 3 traits first!';
+                out.classList.add('empty');
+                return;
+            }
+
+            const st = STYLES[curStyle];
+            const prompt = buildPrompt(selected, st);
+            const promptHash = cyrb53(prompt);
+
+            if (usedPrompts.has(promptHash)) {
+                const toast = document.getElementById('toast');
+                toast.textContent = '⚠️ This prompt was already generated!';
+                toast.style.background = '#FF5F57';
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.textContent = '✅ Copied to clipboard!';
+                        toast.style.background = 'var(--outline)';
+                    }, 300);
+                }, 2200);
+            } else {
+                usedPrompts.add(promptHash);
+                db.ref(`neopopart/usedPrompts/${promptHash}`).set(true);
+                db.ref('neopopart/generatedCount').set(firebase.database.ServerValue.increment(1));
+            }
+
+            out.textContent = prompt;
+            out.classList.remove('empty');
+
+            const rr = calcRarity(selected);
+            const labels = { common: '⚪ Common', rare: '🔵 Rare', epic: '🔴 Epic', legendary: '🟡 Legendary' };
+            const classes = { common: 'rarity-common', rare: 'rarity-rare', epic: 'rarity-epic', legendary: 'rarity-legendary' };
+            document.getElementById('rarity-label').innerHTML = `<span class="rarity-badge ${classes[rr]}">${labels[rr] || labels.common}</span>`;
+
+            const tagRow = document.getElementById('tag-row');
+            tagRow.innerHTML = `<span class="platform-tag" style="background:#fff3cd">✓ ${st.name.toUpperCase()}</span>`;
+        }
+
+        function calcRarity(r) {
+            const legendary = ['holographic iridescent', 'heterochromia two-tone', 'galaxy purple-blue ombre', 'mermaid girl', 'angel girl', 'fairy girl', 'star-pupil fantasy eyes', 'mermaid-scale iridescent dress', 'warhol-style color repetition', 'chromatic aberration edges'];
+            const epic = ['witch girl', 'warrior girl', 'elf girl', 'neon glow outlines', 'glitch distortion bands', 'cyber-goth outfit with neon straps', 'crystal gem-encrusted eye makeup', 'futuristic neon bodysuit'];
+            const s = Object.values(r).join(' ').toLowerCase();
+            if (legendary.some(w => s.includes(w.toLowerCase()))) return 'legendary';
+            if (epic.some(w => s.includes(w.toLowerCase()))) return 'epic';
+            const rareCount = ['neon', 'glitter', 'holographic', 'rainbow', 'galaxy', 'iridescent', 'pastel rainbow'].filter(w => s.includes(w)).length;
+            if (rareCount >= 2) return 'rare';
+            return 'common';
+        }
+
+        function randomize() {
+            const styles = Object.keys(STYLES);
+            const randStyle = styles[Math.floor(Math.random() * styles.length)];
+            const btn = document.querySelector(`[data-style="${randStyle}"]`);
+            if (btn) selectStyle(randStyle, btn);
+            setTimeout(() => {
+                const traitKeys = Object.keys(TRAITS);
+                let attempts = 0;
+                let foundUnique = false;
+                let bestCombo = null;
+
+                while (attempts < 1000 && !foundUnique) {
+                    bestCombo = {};
+                    traitKeys.forEach(key => {
+                        const buttons = document.querySelectorAll(`[data-key="${key}"]`);
+                        if (buttons.length) {
+                            const rand = buttons[Math.floor(Math.random() * buttons.length)];
+                            bestCombo[key] = rand;
+                        }
+                    });
+
+                    const rObj = {};
+                    traitKeys.forEach(key => {
+                        if (bestCombo[key]) rObj[key] = bestCombo[key].dataset.val;
+                    });
+
+                    const promptText = buildPrompt(rObj, STYLES[curStyle]);
+                    if (!usedPrompts.has(cyrb53(promptText))) {
+                        foundUnique = true;
+                    }
+                    attempts++;
+                }
+
+                if (bestCombo) {
+                    traitKeys.forEach(key => {
+                        if (bestCombo[key]) {
+                            selectTrait(key, bestCombo[key].dataset.val, bestCombo[key]);
+                        }
+                    });
+                }
+                generatePrompt();
+            }, 50);
+        }
+
+        function copyPrompt() {
+            const text = document.getElementById('prompt-output').textContent;
+            if (!text || text.startsWith('←') || text.startsWith('⚠️')) return;
+            const negText = document.getElementById('neg-output').textContent;
+            const fullText = text + '\n\nNegative Prompt: ' + negText.trim();
+            navigator.clipboard.writeText(fullText).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2200);
+            });
+        }
+
+        buildStyleGrid();
+        buildTraitGrid();
+        updateStats();
+    </script>
+</body>
+
+</html>

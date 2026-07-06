@@ -105,6 +105,7 @@
         .card-doodle::before { background: var(--pink); }
         .card-anime::before { background: var(--blue); }
         .card-3d::before { background: var(--yellow); }
+        .card-popart::before { background: var(--lavender); }
 
         .portal-card:hover {
             transform: translate(-4px, -6px);
@@ -175,6 +176,7 @@
         .card-doodle .stat-badge { background: #ffd6e7; }
         .card-anime .stat-badge { background: #d6f0ff; }
         .card-3d .stat-badge { background: #fff3cc; }
+        .card-popart .stat-badge { background: #f5d6ff; }
 
         .btn-launch {
             font-family: 'Fredoka One', cursive;
@@ -196,6 +198,7 @@
         .card-doodle .btn-launch { background: var(--pink); color: white; }
         .card-anime .btn-launch { background: var(--blue); color: var(--outline); }
         .card-3d .btn-launch { background: var(--yellow); color: var(--outline); }
+        .card-popart .btn-launch { background: var(--lavender); color: white; }
 
         /* Floating shapes in background */
         .shape {
@@ -264,6 +267,18 @@
             </div>
             <div class="btn-launch">Launch 3D →</div>
         </a>
+
+        <!-- Neo Pop Art -->
+        <a href="neo-pop-art-nft-prompt-generator.html" class="portal-card card-popart">
+            <div class="card-icon">💥</div>
+            <div class="card-title">Neo Pop Art</div>
+            <div class="card-desc">Create bold, vibrant Neo Pop Art NFT prompts for female & girl characters. Halftone dots, comic energy, and Warhol-inspired vibes.</div>
+            <div class="card-stats">
+                <div class="stat-badge">✨ Generated: <span class="stat-num" id="popart-gen">0</span></div>
+                <div class="stat-badge">🆔 Unique: <span class="stat-num" id="popart-uniq">0</span></div>
+            </div>
+            <div class="btn-launch">Launch Pop Art →</div>
+        </a>
     </div>
 
     <script>
@@ -304,6 +319,15 @@
         db.ref('3d/usedPrompts').on('value', snap => {
             const count = snap.val() ? Object.keys(snap.val()).length : 0;
             document.getElementById('3d-uniq').textContent = count.toLocaleString();
+        });
+
+        // Neo Pop Art stats
+        db.ref('neopopart/generatedCount').on('value', snap => {
+            document.getElementById('popart-gen').textContent = (snap.val() || 0).toLocaleString();
+        });
+        db.ref('neopopart/usedPrompts').on('value', snap => {
+            const count = snap.val() ? Object.keys(snap.val()).length : 0;
+            document.getElementById('popart-uniq').textContent = count.toLocaleString();
         });
     </script>
 
