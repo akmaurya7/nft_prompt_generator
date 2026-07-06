@@ -727,16 +727,6 @@
           'determined focused', 'innocent curious',
           'gentle serene smile', 'stoic calm', 'proud composed'
         ]
-      },
-      special_power: {
-        label: '⚡ Power / Aura',
-        opts: [
-          'none', 'glowing energy aura', 'floating magic circles', 'electricity arcing',
-          'wind swirling around', 'ice frost forming', 'fire flames wisping', 'water flow ribbons',
-          'holographic projections', 'cherry blossom vortex',
-          'cosmic star particles', 'lightning wings manifesting',
-          'radiant light burst', 'crystal shards orbiting', 'ethereal spirit flame'
-        ]
       }
     };
     const STYLES = {
@@ -871,8 +861,7 @@
 
     function buildPrompt(r, st) {
       const accPart = r.accessories === 'none' ? '' : `, wearing ${r.accessories}`;
-      const fxPart = r.special_power === 'none' ? '' : `, with ${r.special_power} effect`;
-      return `Cel-shaded anime character portrait, ${r.age_look} ${r.archetype}, ${r.gender}, ${r.skin_tone} skin, ${r.hair_color} ${r.hair_style} hair, ${r.eye_style}, ${r.expression} expression, wearing ${r.outfit_top} and ${r.outfit_bottom}${accPart}${fxPart}, clean ${r.background} plain background, ${r.mood_lighting}, ${st.desc}, single character centered composition, upper body portrait, clean plain solid color background only, no scenery, no environment, sharp clean lines, bold outlines, vibrant flat colors, premium NFT collectible art, ultra detailed, sharp focus, masterpiece quality, 4K resolution`;
+      return `Cel-shaded anime character portrait, ${r.age_look} ${r.archetype}, ${r.gender}, ${r.skin_tone} skin, ${r.hair_color} ${r.hair_style} hair, ${r.eye_style}, ${r.expression} expression, wearing ${r.outfit_top} and ${r.outfit_bottom}${accPart}, clean ${r.background} plain background, ${r.mood_lighting}, ${st.desc}, single character centered composition, upper body portrait, clean plain solid color background only, no scenery, no environment, sharp clean lines, bold outlines, vibrant flat colors, premium NFT collectible art, ultra detailed, sharp focus, masterpiece quality, 4K resolution`;
     }
 
     function generatePrompt() {
