@@ -532,7 +532,7 @@
         <div class="prompt-text empty" id="prompt-output" onclick="copyPrompt()">← Choose a pop art style and pick your traits above</div>
         <div class="negative-section">
             <div class="neg-label">⛔ Negative Prompt</div>
-            <div class="neg-text" id="neg-output">3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, watermark, signature, busy background, cluttered, dark background, male, boy, masculine, beard, mustache</div>
+            <div class="neg-text" id="neg-output">3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, words, letters, numbers, logo, watermark, signature, writing, caption, title, label, speech bubble, dialog box, comic panel grid, repeated character, multiple copies, tiled pattern of character, busy background, cluttered background, male, boy, masculine, beard, mustache, child-like proportions</div>
         </div>
         <div class="tag-row" id="tag-row"></div>
     </div>
@@ -544,13 +544,16 @@
             character_type: {
                 label: "👧 Character Type",
                 opts: [
-                    "teenage girl", "young woman", "little girl", "tween girl", "college girl",
-                    "girl next door", "school girl", "trendy girl", "festival girl", "dreamy girl",
-                    "rebel girl", "shy girl", "confident girl", "sporty girl", "artsy girl",
-                    "bookworm girl", "gamer girl", "dancer girl", "singer girl", "skater girl",
-                    "surfer girl", "cheerleader", "flower girl", "fairy girl", "princess girl",
-                    "warrior girl", "mermaid girl", "angel girl", "witch girl", "elf girl",
-                    "punk girl", "goth girl", "pastel girl", "kawaii girl", "retro girl"
+                    "gorgeous young woman", "stunning college girl", "attractive fashionista",
+                    "beautiful model girl", "hot trendy girl", "alluring rebel girl",
+                    "sultry confident woman", "glamorous diva", "seductive femme fatale",
+                    "fierce street queen", "elegant socialite", "bold party girl",
+                    "captivating dancer", "irresistible pop star", "charming influencer",
+                    "dazzling festival queen", "magnetic biker chick", "ravishing beach babe",
+                    "enchanting sorceress", "breathtaking warrior queen", "mesmerizing mermaid beauty",
+                    "tempting angel goddess", "bewitching dark witch", "ethereal elf enchantress",
+                    "fiery punk princess", "mysterious goth beauty", "radiant sun goddess",
+                    "hypnotic cyberpunk girl", "provocative pin-up girl", "smoldering rockstar chick"
                 ]
             },
             ethnicity: {
@@ -619,30 +622,33 @@
             outfit: {
                 label: "👗 Outfit",
                 opts: [
-                    "oversized graphic tee with mini skirt", "crop top and high-waist jeans",
-                    "colorful bomber jacket and shorts", "flowy summer dress", "school uniform with blazer",
-                    "hoodie dress with thigh-high boots", "leather jacket and plaid skirt",
-                    "vintage 90s windbreaker tracksuit", "kawaii lolita dress", "streetwear cargo pants and tube top",
-                    "preppy cardigan and pleated skirt", "athletic sports bra and joggers",
-                    "bohemian maxi dress with fringe", "futuristic neon bodysuit", "overall shorts with striped tee",
-                    "puff-sleeve blouse and paper bag shorts", "sequin party dress", "tie-dye sweatshirt and leggings",
-                    "off-shoulder top with bell-bottom jeans", "puffy cloud jacket and mini skirt",
-                    "mesh top layered over band tee", "denim vest over floral dress",
-                    "corset top with wide-leg pants", "ballet-core wrap top and tutu skirt",
-                    "Y2K butterfly top and low-rise jeans", "cottagecore pinafore dress",
-                    "cyber-goth outfit with neon straps", "mermaid-scale iridescent dress",
-                    "fairy-kei pastel layered outfit", "harajuku mixed-pattern ensemble"
+                    "tight crop top and micro mini skirt", "fitted bodycon dress",
+                    "low-cut halter top and hot pants", "sheer mesh bodysuit with bralette",
+                    "leather mini dress with zipper", "off-shoulder fitted crop and high-waist shorts",
+                    "backless satin slip dress", "lace-up corset top with leather pants",
+                    "strapless bandeau top and pencil skirt", "deep V-neck jumpsuit",
+                    "cropped leather jacket over bralette and skirt", "thigh-slit maxi dress",
+                    "tube top and low-rise flared jeans", "cutout bodycon mini dress",
+                    "strappy camisole and skin-tight jeans", "metallic mini dress",
+                    "neon bikini top and sarong wrap", "fitted blazer dress with nothing underneath",
+                    "one-shoulder asymmetric mini dress", "chain-strap crop top and cargo mini",
+                    "sequin bralette and high-waist slit skirt", "latex catsuit",
+                    "wrap-around micro dress", "denim bustier and pleated mini",
+                    "fishnet top over bandeau with leather shorts", "velvet choker dress",
+                    "lace bodysuit with high-waist jeans", "cutout swimsuit one-piece",
+                    "embellished festival bralette and fringe skirt", "satin kimono robe half-open"
                 ]
             },
             footwear: {
-                label: "👟 Footwear",
+                label: "👠 Footwear",
                 opts: [
-                    "chunky platform sneakers", "strappy sandals", "combat boots", "ballet flats",
-                    "high-top canvas shoes", "knee-high boots", "retro roller skates", "sparkle jelly shoes",
-                    "fluffy slippers", "wedge heels", "mary jane shoes", "ankle boots with buckles",
-                    "gladiator sandals", "neon running shoes", "cowboy boots", "ugg-style fuzzy boots",
-                    "clear acrylic heels", "embroidered slip-ons", "rainbow platform shoes",
-                    "lace-up granny boots", "barefoot with anklet"
+                    "stiletto high heels", "strappy lace-up heels", "thigh-high boots",
+                    "platform heels", "knee-high leather boots", "clear acrylic heels",
+                    "chunky platform sneakers", "ankle-strap pumps", "red-bottom stilettos",
+                    "over-the-knee suede boots", "gladiator heeled sandals", "metallic gold heels",
+                    "wedge espadrilles", "peep-toe booties", "combat boots with chains",
+                    "embellished crystal heels", "neon platform boots", "pointed-toe mules",
+                    "satin ribbon ballet heels", "leopard print pumps", "barefoot with anklet chain"
                 ]
             },
             accessory: {
@@ -685,16 +691,17 @@
                 ]
             },
             bg_pattern: {
-                label: "🌈 Background Pattern",
+                label: "🌈 Background Style",
                 opts: [
-                    "halftone dot pattern", "comic speed lines", "bold pop art starburst",
-                    "large ben-day dots", "gradient color wash", "geometric triangles",
-                    "splattered paint drips", "concentric circles", "zigzag pop stripes",
-                    "checkerboard pattern", "polka dots", "retro sunburst rays",
-                    "graffiti wall background", "comic panel grid", "abstract color blocks",
-                    "confetti explosion", "neon grid lines", "watercolor splash background",
-                    "kawaii cloud pattern", "star and sparkle field", "pixel art mosaic",
-                    "floral pop pattern", "glitch art stripes"
+                    "solid flat color fill", "smooth gradient wash", "subtle halftone dot fade",
+                    "soft radial gradient", "clean single-tone backdrop", "gentle two-tone gradient",
+                    "minimal ombre fade", "smooth pastel gradient", "clean matte solid color",
+                    "faint concentric circle gradient", "subtle color-blocked split",
+                    "soft vignette edge fade", "clean seamless studio backdrop",
+                    "flat warm-toned backdrop", "flat cool-toned backdrop",
+                    "minimal abstract gradient", "simple spotlight gradient",
+                    "soft neon glow gradient", "clean duotone background",
+                    "smooth sunset gradient", "elegant monochrome backdrop"
                 ]
             },
             bg_color: {
@@ -710,15 +717,17 @@
             pop_effects: {
                 label: "💥 Pop Art Effects",
                 opts: [
-                    "bold black outlines", "halftone shading dots", "comic speech bubble 'POW!'",
-                    "comic speech bubble 'BAM!'", "comic speech bubble 'WOW!'",
-                    "onomatopoeia text effects", "Lichtenstein-style ben-day dots",
-                    "thick contour lines", "flat color fills with outlines",
-                    "screen-print layer effect", "duotone color split", "color separation overlay",
-                    "retro CMYK dot pattern", "warhol-style color repetition",
-                    "neon glow outlines", "dripping paint effect", "stencil spray effect",
-                    "cross-hatch shading lines", "pop art star bursts", "cartoon motion lines",
-                    "glitch distortion bands", "chromatic aberration edges"
+                    "bold black outlines", "halftone shading dots on character",
+                    "Lichtenstein-style ben-day dots on skin", "thick contour lines",
+                    "flat color fills with bold outlines", "screen-print layer effect",
+                    "duotone color split on character", "color separation overlay on figure",
+                    "retro CMYK dot shading", "neon glow outlines around character",
+                    "dripping paint effect on outlines", "stencil spray texture on clothing",
+                    "cross-hatch shading lines on shadows", "pop art starburst behind character",
+                    "chromatic aberration on character edges", "bold graphic color blocking",
+                    "high-contrast flat color rendering", "screen-tone pattern shading",
+                    "ink splatter accents", "dot-matrix gradient shading",
+                    "vibrant posterized color effect", "glossy pop-art highlight shine"
                 ]
             },
             mood: {
@@ -737,52 +746,52 @@
         const STYLES = {
             lichtenstein: {
                 name: "Lichtenstein Classic",
-                desc: "Roy Lichtenstein inspired neo pop art, bold primary colors, heavy black outlines, prominent ben-day halftone dots, comic book panel aesthetic, screen-print flat color, iconic pop art masterpiece",
-                neg: "3D render, photorealistic, blurry, watercolor, sketch, pencil art, male, boy, masculine"
+                desc: "Roy Lichtenstein inspired neo pop art, single character only, bold primary colors, heavy black outlines, prominent ben-day halftone dots, screen-print flat color, clean solid color background, no text no words no letters no speech bubbles, sexy attractive feminine illustration, iconic pop art masterpiece",
+                neg: "3D render, photorealistic, blurry, watercolor, sketch, pencil art, male, boy, masculine, text, words, letters, speech bubble, repeated character, multiple copies, comic panels, tiled images"
             },
-            warhol: {
-                name: "Warhol Repeat",
-                desc: "Andy Warhol inspired screen-print pop art, bold saturated color variations, high contrast flat color fills, celebrity portrait pop art style, silkscreen aesthetic, iconic repeated image motif",
-                neg: "3D render, photorealistic, blurry, soft gradient, male, boy, masculine"
+            warhol_single: {
+                name: "Warhol Vibrant",
+                desc: "Andy Warhol inspired screen-print pop art, single character only NOT repeated, bold saturated color fills, high contrast flat color, celebrity portrait pop art style, silkscreen color aesthetic, clean solid background, no text no words no letters, sexy glamorous feminine portrait, one single figure centered",
+                neg: "3D render, photorealistic, blurry, soft gradient, male, boy, masculine, text, words, letters, repeated character, multiple copies of character, tiled grid, comic panels"
             },
             retro_comic: {
-                name: "Retro Comic Book",
-                desc: "vintage 1960s comic book pop art, thick ink outlines, four-color CMYK print style, retro halftone dots, comic panel border, classic American comic aesthetic, golden age illustration",
-                neg: "3D, photorealistic, watercolor, pencil sketch, male, boy, masculine"
+                name: "Retro Comic",
+                desc: "vintage 1960s comic book pop art, single character only, thick ink outlines, four-color CMYK print style, retro halftone dots, clean solid background, no text no words no letters no speech bubbles no comic panels, sexy attractive feminine illustration, classic American pop aesthetic",
+                neg: "3D, photorealistic, watercolor, pencil sketch, male, boy, masculine, text, words, letters, speech bubble, comic panel grid, repeated character, multiple copies"
             },
             neon_pop: {
                 name: "Neon Pop Glow",
-                desc: "modern neon pop art, electric vibrant neon colors on dark background, glowing fluorescent outlines, bold graphic contrast, contemporary street pop aesthetic, UV blacklight art style",
-                neg: "muted colors, pastel, photorealistic, 3D render, male, boy, masculine"
+                desc: "modern neon pop art, single character only, electric vibrant neon colors, glowing fluorescent outlines, bold graphic contrast, clean solid dark or vivid background, no text no words no letters, sexy alluring feminine illustration, contemporary pop aesthetic, UV glow art style",
+                neg: "muted colors, pastel, photorealistic, 3D render, male, boy, masculine, text, words, letters, speech bubble, repeated character, multiple copies, comic panels"
             },
             kawaii_pop: {
                 name: "Kawaii Pop Art",
-                desc: "Japanese kawaii meets pop art, cute chibi-influenced proportions with pop art halftone dots, pastel pop colors with bold outlines, adorable graphic art style, Harajuku-inspired pop aesthetic",
-                neg: "realistic, dark, gritty, horror, 3D render, male, boy, masculine"
+                desc: "Japanese kawaii meets pop art, single character only, stylized feminine proportions with pop art halftone dots, pastel pop colors with bold outlines, clean solid background, no text no words no letters, cute yet sexy attractive girl illustration, Harajuku-inspired pop aesthetic",
+                neg: "realistic, dark, gritty, horror, 3D render, male, boy, masculine, text, words, letters, speech bubble, repeated character, multiple copies, comic panels"
             },
             street_pop: {
                 name: "Street Pop / Urban",
-                desc: "urban street art pop style, graffiti-inspired bold graphics, spray paint texture, stencil art aesthetic, Banksy meets pop art, bold social commentary art, urban wall mural style",
-                neg: "photorealistic, 3D render, soft, delicate, watercolor, male, boy, masculine"
+                desc: "urban street art pop style, single character only, graffiti-inspired bold graphics, spray paint texture, stencil art aesthetic, clean solid color background, no text no words no letters no graffiti writing, sexy bold fierce feminine illustration, contemporary urban pop mural style",
+                neg: "photorealistic, 3D render, soft, delicate, watercolor, male, boy, masculine, text, words, letters, graffiti text, speech bubble, repeated character, multiple copies, comic panels"
             },
             vaporwave_pop: {
                 name: "Vaporwave Pop",
-                desc: "vaporwave aesthetic meets pop art, retro 80s/90s pastel gradients, glitch art elements, VHS static overlay, nostalgic digital pop, synthwave color palette, retrofuturistic pop art",
-                neg: "photorealistic, 3D render, traditional art, pencil sketch, male, boy, masculine"
+                desc: "vaporwave aesthetic meets pop art, single character only, retro 80s/90s pastel gradients, subtle glitch art elements, nostalgic digital pop, synthwave color palette, clean smooth gradient background, no text no words no letters, sexy retrofuturistic feminine illustration",
+                neg: "photorealistic, 3D render, traditional art, pencil sketch, male, boy, masculine, text, words, letters, speech bubble, repeated character, multiple copies, comic panels"
             },
             flat_graphic: {
                 name: "Flat Graphic Pop",
-                desc: "modern flat design pop art, crisp clean geometric shapes, limited bold color palette, minimalist graphic illustration, vector art pop aesthetic, contemporary design poster art",
-                neg: "photorealistic, 3D render, textured, rough, sketchy, male, boy, masculine"
+                desc: "modern flat design pop art, single character only, crisp clean geometric shapes, limited bold color palette, minimalist graphic illustration, clean solid background, no text no words no letters, sexy sleek feminine illustration, vector art pop aesthetic, contemporary design art",
+                neg: "photorealistic, 3D render, textured, rough, sketchy, male, boy, masculine, text, words, letters, speech bubble, repeated character, multiple copies, comic panels"
             }
         };
 
         const styleEmojis = {
-            lichtenstein: "🔴", warhol: "🟡", retro_comic: "📖", neon_pop: "💜",
+            lichtenstein: "🔴", warhol_single: "🟡", retro_comic: "📖", neon_pop: "💜",
             kawaii_pop: "🌸", street_pop: "🏙️", vaporwave_pop: "🌊", flat_graphic: "🔷"
         };
 
-        const baseNeg = "3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, watermark, signature, busy background, cluttered, dark background, male, boy, masculine, beard, mustache";
+        const baseNeg = "3D render, photorealistic, blurry, low quality, ugly, deformed, extra limbs, extra fingers, text, words, letters, numbers, logo, title, caption, label, writing, watermark, signature, speech bubble, dialog box, comic panel grid, repeated character, multiple copies of character, tiled pattern, busy background, cluttered background, male, boy, masculine, beard, mustache, child-like proportions";
 
         // Firebase
         const firebaseConfig = {
@@ -904,7 +913,7 @@
 
         function buildPrompt(r, st) {
             const accPart = r.accessory === 'none' ? 'no accessories' : `with ${r.accessory}`;
-            return `Premium Neo Pop Art NFT illustration, female character only, full body portrait, ${r.character_type} with ${r.ethnicity}, ${r.face_shape}, ${r.hairstyle} in ${r.hair_color}, ${r.eye_style} with ${r.eye_color} eyes, wearing ${r.outfit}, ${r.footwear}, ${accPart}, ${r.expression} facial expression, ${r.pose}, ${r.pop_effects}, ${r.bg_pattern} background in ${r.bg_color} color, ${r.mood} mood and atmosphere, ${st.desc}, luxury NFT collection art piece, consistent unified art direction, cohesive collection style, ultra-sharp focus, hyper detailed, 8K resolution, centered composition, masterpiece quality, ArtStation trending, premium digital collectible`;
+            return `Premium Neo Pop Art NFT illustration, SINGLE female character only, sexy attractive hot gorgeous woman, full body portrait, one character only centered in frame, ${r.character_type} with ${r.ethnicity}, ${r.face_shape}, ${r.hairstyle} in ${r.hair_color}, ${r.eye_style} with ${r.eye_color} eyes, wearing ${r.outfit}, ${r.footwear}, ${accPart}, ${r.expression} facial expression, ${r.pose}, ${r.pop_effects}, clean ${r.bg_pattern} in ${r.bg_color} color with absolutely NO text NO words NO letters NO numbers NO logos NO watermarks NO speech bubbles, ${r.mood} mood and atmosphere, ${st.desc}, luxury NFT collection art piece, consistent unified art direction, cohesive collection style, ultra-sharp focus, hyper detailed, 8K resolution, centered composition, single figure only no repeated images, masterpiece quality, ArtStation trending, premium digital collectible`;
         }
 
         function generatePrompt() {
@@ -955,7 +964,7 @@
         }
 
         function calcRarity(r) {
-            const legendary = ['holographic iridescent', 'heterochromia two-tone', 'galaxy purple-blue ombre', 'mermaid girl', 'angel girl', 'fairy girl', 'star-pupil fantasy eyes', 'mermaid-scale iridescent dress', 'warhol-style color repetition', 'chromatic aberration edges'];
+            const legendary = ['holographic iridescent', 'heterochromia two-tone', 'galaxy purple-blue ombre', 'mesmerizing mermaid beauty', 'tempting angel goddess', 'ethereal elf enchantress', 'star-pupil fantasy eyes', 'latex catsuit', 'chromatic aberration on character edges', 'satin kimono robe half-open'];
             const epic = ['witch girl', 'warrior girl', 'elf girl', 'neon glow outlines', 'glitch distortion bands', 'cyber-goth outfit with neon straps', 'crystal gem-encrusted eye makeup', 'futuristic neon bodysuit'];
             const s = Object.values(r).join(' ').toLowerCase();
             if (legendary.some(w => s.includes(w.toLowerCase()))) return 'legendary';
