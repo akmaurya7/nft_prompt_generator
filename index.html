@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Prompt Studio - Home</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -136,10 +138,43 @@
             font-weight: 700;
             color: #777;
             font-size: 0.95rem;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
             line-height: 1.6;
             flex-grow: 1;
         }
+
+        /* ── STATS BADGES ── */
+        .card-stats {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-badge {
+            background: #f5f5f5;
+            border: 2.5px solid var(--outline);
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--outline);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 2px 2px 0 var(--outline);
+        }
+
+        .stat-badge .stat-num {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.95rem;
+        }
+
+        .card-doodle .stat-badge { background: #ffd6e7; }
+        .card-anime .stat-badge { background: #d6f0ff; }
+        .card-3d .stat-badge { background: #fff3cc; }
 
         .btn-launch {
             font-family: 'Fredoka One', cursive;
@@ -199,6 +234,10 @@
             <div class="card-icon">🎨</div>
             <div class="card-title">Doodle Art</div>
             <div class="card-desc">Generate whimsical, hand-drawn PFP avatars with bright pastel colors and thick bold outlines. Perfect for classic 2D NFTs.</div>
+            <div class="card-stats">
+                <div class="stat-badge">✨ Generated: <span class="stat-num" id="doodle-gen">0</span></div>
+                <div class="stat-badge">🆔 Unique: <span class="stat-num" id="doodle-uniq">0</span></div>
+            </div>
             <div class="btn-launch">Launch Doodle →</div>
         </a>
 
@@ -207,6 +246,10 @@
             <div class="card-icon">✨</div>
             <div class="card-title">Anime Studio</div>
             <div class="card-desc">Create highly detailed anime characters ranging from gritty cyberpunk neon environments to cute magical girl aesthetics.</div>
+            <div class="card-stats">
+                <div class="stat-badge">✨ Generated: <span class="stat-num" id="anime-gen">0</span></div>
+                <div class="stat-badge">🆔 Unique: <span class="stat-num" id="anime-uniq">0</span></div>
+            </div>
             <div class="btn-launch">Launch Anime →</div>
         </a>
 
@@ -215,9 +258,54 @@
             <div class="card-icon">🧸</div>
             <div class="card-title">3D Figurines</div>
             <div class="card-desc">Render stunning 3D collectible toys in cinematic lighting. Explore styles like glossy plastic, fluffy velvet, or hyper-real clay.</div>
+            <div class="card-stats">
+                <div class="stat-badge">✨ Generated: <span class="stat-num" id="3d-gen">0</span></div>
+                <div class="stat-badge">🆔 Unique: <span class="stat-num" id="3d-uniq">0</span></div>
+            </div>
             <div class="btn-launch">Launch 3D →</div>
         </a>
     </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
+            authDomain: "demosetup-62c0c.firebaseapp.com",
+            databaseURL: "https://demosetup-62c0c-default-rtdb.firebaseio.com",
+            projectId: "demosetup-62c0c",
+            storageBucket: "demosetup-62c0c.firebasestorage.app",
+            messagingSenderId: "93404032712",
+            appId: "1:93404032712:web:bf96d78c86739d1d437ffd"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Doodle stats
+        db.ref('doodle/generatedCount').on('value', snap => {
+            document.getElementById('doodle-gen').textContent = (snap.val() || 0).toLocaleString();
+        });
+        db.ref('doodle/usedPrompts').on('value', snap => {
+            const count = snap.val() ? Object.keys(snap.val()).length : 0;
+            document.getElementById('doodle-uniq').textContent = count.toLocaleString();
+        });
+
+        // Anime stats
+        db.ref('anime/generatedCount').on('value', snap => {
+            document.getElementById('anime-gen').textContent = (snap.val() || 0).toLocaleString();
+        });
+        db.ref('anime/usedPrompts').on('value', snap => {
+            const count = snap.val() ? Object.keys(snap.val()).length : 0;
+            document.getElementById('anime-uniq').textContent = count.toLocaleString();
+        });
+
+        // 3D stats
+        db.ref('3d/generatedCount').on('value', snap => {
+            document.getElementById('3d-gen').textContent = (snap.val() || 0).toLocaleString();
+        });
+        db.ref('3d/usedPrompts').on('value', snap => {
+            const count = snap.val() ? Object.keys(snap.val()).length : 0;
+            document.getElementById('3d-uniq').textContent = count.toLocaleString();
+        });
+    </script>
 
 </body>
 </html>
