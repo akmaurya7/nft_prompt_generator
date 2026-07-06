@@ -588,7 +588,8 @@
         <div class="negative-section">
             <div class="neg-label">⛔ Negative Prompt</div>
             <div class="neg-text" id="neg-output">2D, flat, cartoon, anime, sketch, watercolor, blurry, low quality,
-                ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background
+                ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background,
+                platform, pedestal, base, stand, ground plane, floor, surface, table, shelf, podium, stage, plinth
             </div>
         </div>
         <div class="tag-row" id="tag-row"></div>
@@ -738,17 +739,17 @@
             }
         };
         const STYLES = {
-            clay: { name: "Clay Render", desc: "smooth clay material render, matte clay texture, claymation aesthetic, soft rounded edges, clay sculpt, Octane render", neg: "glossy, metallic, realistic skin, pixel art, 2D, sketch" },
-            plastic: { name: "Glossy Plastic", desc: "glossy plastic toy material, ABS plastic sheen, collector toy aesthetic, vibrant colors, smooth surface reflections, Blender cycles render", neg: "matte, clay, rough texture, 2D, sketch, blurry" },
-            crystal: { name: "Crystal Glass", desc: "translucent crystal glass material, caustic light refraction, ice-like clarity, subsurface scattering, precious stone aesthetic, cinema4D render", neg: "opaque, clay, matte, 2D, flat, blurry" },
-            metal: { name: "Polished Metal", desc: "polished chrome metal material, mirror reflections, metallic sheen, brushed aluminum accents, industrial finish, KeyShot render", neg: "matte, clay, translucent, 2D, sketch, blurry" },
-            toy: { name: "Vinyl Toy", desc: "vinyl designer toy material, KAWS style collectible, Bearbrick inspired, urban toy aesthetic, matte vinyl finish, limited edition figure render", neg: "glossy excessive, 2D, flat, blurry, sketch" },
-            chibi: { name: "Soft Chibi", desc: "soft chibi 3D character, rounded soft body, plush-like texture, warm cozy lighting, Pixar-inspired render, adorable proportions, pastel tones", neg: "harsh, dark, 2D, flat, rough, realistic gore" },
-            voxel: { name: "Voxel 3D", desc: "voxel art 3D character, minecraft-inspired blocky style, pixel voxel aesthetic, colorful cubed forms, isometric-friendly design, MagicaVoxel render", neg: "smooth, organic curves, 2D flat, sketch, blurry" },
-            flocked: { name: "Flocked Matte", desc: "flocked velvet matte surface material, fuzzy textile texture, soft matte finish, tactile fabric-like render, museum figurine aesthetic", neg: "glossy, shiny, reflective, 2D, blurry, sketch" }
+            clay: { name: "Clay Render", desc: "premium smooth clay material render, ultra-fine matte clay texture, claymation aesthetic, perfectly soft rounded edges, hand-sculpted clay feel, Octane render, studio-grade quality", neg: "glossy, metallic, realistic skin, pixel art, 2D, sketch, platform, pedestal, ground plane, floor, base, stand" },
+            plastic: { name: "Glossy Plastic", desc: "luxury glossy plastic toy material, premium ABS plastic sheen, high-end collector toy aesthetic, rich vibrant saturated colors, flawless smooth surface reflections, Blender cycles render, museum-quality finish", neg: "matte, clay, rough texture, 2D, sketch, blurry, platform, pedestal, ground plane, floor, base, stand" },
+            crystal: { name: "Crystal Glass", desc: "exquisite translucent crystal glass material, elegant caustic light refraction, ice-like prismatic clarity, luminous subsurface scattering, precious gemstone aesthetic, cinema4D render, luxury art piece", neg: "opaque, clay, matte, 2D, flat, blurry, platform, pedestal, ground plane, floor, base, stand" },
+            metal: { name: "Polished Metal", desc: "premium polished chrome metal material, pristine mirror reflections, luxurious metallic sheen, precision brushed aluminum accents, high-end industrial finish, KeyShot render, gallery-quality", neg: "matte, clay, translucent, 2D, sketch, blurry, platform, pedestal, ground plane, floor, base, stand" },
+            toy: { name: "Vinyl Toy", desc: "premium vinyl designer toy material, KAWS style luxury collectible, Bearbrick inspired, high-end urban toy aesthetic, flawless matte vinyl finish, limited edition exclusive figure render", neg: "glossy excessive, 2D, flat, blurry, sketch, platform, pedestal, ground plane, floor, base, stand" },
+            chibi: { name: "Soft Chibi", desc: "premium soft chibi 3D character, perfectly rounded soft body, luxurious plush-like texture, warm cinematic cozy lighting, Pixar-quality render, adorable balanced proportions, rich pastel tones", neg: "harsh, dark, 2D, flat, rough, realistic gore, platform, pedestal, ground plane, floor, base, stand" },
+            voxel: { name: "Voxel 3D", desc: "premium voxel art 3D character, crisp blocky style, refined pixel voxel aesthetic, rich colorful cubed forms, isometric-friendly precision design, MagicaVoxel render, art gallery quality", neg: "smooth, organic curves, 2D flat, sketch, blurry, platform, pedestal, ground plane, floor, base, stand" },
+            flocked: { name: "Flocked Matte", desc: "luxury flocked velvet matte surface material, premium fuzzy textile texture, sophisticated soft matte finish, tactile high-end fabric-like render, exclusive museum figurine aesthetic", neg: "glossy, shiny, reflective, 2D, blurry, sketch, platform, pedestal, ground plane, floor, base, stand" }
         };
         const styleEmojis = { clay: "🟤", plastic: "🔵", crystal: "💎", metal: "⚙️", toy: "🧸", chibi: "🌿", voxel: "🟦", flocked: "🧶" };
-        const baseNeg = "2D, flat, cartoon, anime, sketch, watercolor, blurry, low quality, ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background";
+        const baseNeg = "2D, flat, cartoon, anime, sketch, watercolor, blurry, low quality, ugly, deformed, extra limbs, text, watermark, signature, busy background, cluttered, dark background, platform, pedestal, base, stand, ground plane, floor, surface, table, shelf, podium, stage, plinth";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
@@ -870,7 +871,7 @@
         function buildPrompt(r, st) {
             const hatPart = r.hat === 'none' ? 'no hat' : `wearing ${r.hat}`;
             const accPart = r.accessory === 'none' ? 'no accessories' : `with ${r.accessory}`;
-            return `A ${r.size_style} ${r.gender} ${r.species} character, ${r.skin_material}, wearing ${r.outfit_top} and ${r.outfit_bottom}, ${r.footwear}, ${hatPart}, ${accPart}, ${r.expression} facial expression, ${r.pose}, ${r.bg_color} minimal studio background, ${r.lighting}, ${st.desc}, full body 3D render, collectible NFT figurine, sharp focus, ultra detailed, 4K resolution, product photography style, centered composition, trending on OpenSea`;
+            return `Premium collectible 3D NFT character, full body floating in empty space with absolutely no platform no pedestal no ground no floor no base no stand no surface beneath the character, ${r.size_style} ${r.gender} ${r.species}, ${r.skin_material}, wearing ${r.outfit_top} and ${r.outfit_bottom}, ${r.footwear}, ${hatPart}, ${accPart}, ${r.expression} facial expression, ${r.pose}, clean ${r.bg_color} seamless backdrop with nothing beneath the character, ${r.lighting}, ${st.desc}, luxury NFT collection art piece, consistent unified art direction, cohesive collection style, ultra-sharp focus, hyper detailed, 8K resolution, centered symmetrical composition, character floating with no shadow on ground, masterpiece quality, ArtStation trending, premium digital collectible`;
         }
 
         function generatePrompt() {
