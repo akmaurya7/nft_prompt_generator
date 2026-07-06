@@ -588,7 +588,7 @@
     <div class="negative-section">
       <div class="neg-label">⛔ Negative Prompt</div>
       <div class="neg-text" id="neg-output">realistic photo, 3D render, blurry, low detail, sketch rough, low quality,
-        deformed, extra limbs, bad anatomy, duplicate, mutated</div>
+        deformed, extra limbs, bad anatomy, duplicate, mutated, busy background, complex background, detailed scenery, landscape, gradient mesh, noise, grain</div>
     </div>
     <div class="tag-row" id="tag-row"></div>
   </div>
@@ -599,33 +599,33 @@
     const TRAITS = {
       gender: {
         label: '⚧ Gender',
-        opts: ['female', 'male', 'androgynous', 'non-binary', 'femboy', 'tomboy']
+        opts: ['female', 'male', 'androgynous']
       },
       age_look: {
         label: '🎂 Age Appearance',
-        opts: ['teen girl', 'young woman', 'young man', 'adult woman', 'adult man', 'mysterious ageless', 'childlike innocent', 'mature elegant']
+        opts: ['young woman', 'young man', 'adult woman', 'adult man', 'mature elegant']
       },
       archetype: {
         label: '⚔️ Character Archetype',
         opts: [
-          'cyber hacker', 'arcade gamer girl', 'hooded assassin', 'dark oracle', 'skeleton punk',
-          'wind warrior', 'neon fairy', 'glitch artist', 'gothic lolita', 'samurai spirit',
-          'ice queen', 'demon hunter', 'angel fallen', 'void mage', 'street fighter',
-          'idol singer', 'kunoichi ninja', 'fox shrine maiden', 'cosmic witch', 'rebel punk',
-          'phantom thief', 'dragon slayer', 'shadow dancer', 'star guardian', 'blood mage',
-          'cyber geisha', 'desert wanderer', 'crystal seer', 'plague doctor', 'thunder god',
-          'dream weaver', 'time traveler', 'moon priestess', 'flame empress', 'storm caller',
-          'ghost bride', 'bounty hunter', 'cursed prince', 'divine archer', 'rogue alchemist'
+          'cyber hacker', 'hooded assassin', 'wind warrior', 'neon fairy',
+          'samurai spirit', 'ice queen', 'demon hunter', 'fallen angel',
+          'street fighter', 'idol singer', 'kunoichi ninja', 'shrine maiden',
+          'cosmic witch', 'phantom thief', 'dragon slayer', 'star guardian',
+          'desert wanderer', 'crystal seer', 'thunder god', 'dream weaver',
+          'moon priestess', 'flame empress', 'storm caller', 'bounty hunter',
+          'divine archer', 'rogue alchemist', 'shadow dancer', 'sky knight',
+          'spirit healer', 'blade master'
         ]
       },
       hair_style: {
         label: '💇 Hair Style',
         opts: [
-          'long flowing straight', 'short choppy', 'twin buns', 'high ponytail', 'messy bedhead',
-          'braided crown', 'side swept bangs', 'undercut fade', 'wild spiky', 'wavy cascading',
-          'bob cut', 'half up half down', 'long braided pigtails', 'shaved side', 'voluminous curly',
-          'sleek pulled back', 'mohawk', 'wolf cut layered', 'ahoge cowlick', 'pixie cut',
-          'double buns with tendrils', 'asymmetric', 'long with front bangs', 'fluffy layered'
+          'long flowing straight', 'short choppy', 'twin buns', 'high ponytail',
+          'braided crown', 'side swept bangs', 'wild spiky', 'wavy cascading',
+          'bob cut', 'half up half down', 'long braided pigtails', 'voluminous curly',
+          'sleek pulled back', 'wolf cut layered', 'pixie cut',
+          'double buns with tendrils', 'long with front bangs', 'fluffy layered'
         ]
       },
       hair_color: {
@@ -633,132 +633,124 @@
         opts: [
           'electric blue', 'neon pink', 'silver white', 'jet black', 'platinum blonde',
           'rose gold', 'deep purple', 'mint green', 'fiery red-orange', 'ocean teal',
-          'lavender', 'golden blonde', 'dark chocolate brown', 'ice white', 'rainbow gradient',
+          'lavender', 'golden blonde', 'dark chocolate brown', 'ice white',
           'magenta pink', 'emerald green', 'indigo blue', 'warm copper', 'ashy grey',
-          'crimson red', 'midnight black with blue sheen', 'pastel lilac', 'coral orange',
-          'two-tone black and white', 'streaked with neon', 'holographic iridescent'
+          'crimson red', 'pastel lilac', 'coral orange'
         ]
       },
       eye_style: {
         label: '👁 Eyes',
         opts: [
           'large sparkly anime eyes', 'glowing neon blue eyes', 'heterochromia two colors',
-          'cat slit pupils', 'empty white glowing eyes', 'star-shaped pupils', 'half-lidded sultry',
-          'wide innocent doe eyes', 'sharp fierce eyes', 'teary glistening eyes',
-          'glowing red demon eyes', 'blind clouded eyes', 'mechanical cyber eye',
-          'golden iris flower pattern', 'fractal galaxy eyes', 'dark hollow eyes',
-          'sharp turquoise eyes', 'soft purple eyes', 'blazing orange eyes', 'icy silver eyes'
+          'cat slit pupils', 'star-shaped pupils', 'half-lidded confident',
+          'wide innocent doe eyes', 'sharp fierce eyes',
+          'golden iris eyes', 'galaxy shimmer eyes',
+          'sharp turquoise eyes', 'soft purple eyes', 'blazing orange eyes', 'icy silver eyes',
+          'emerald green eyes', 'deep amber eyes', 'vivid crimson eyes'
         ]
       },
       skin_tone: {
         label: '🎨 Skin Tone',
         opts: [
           'pale porcelain', 'warm golden tan', 'deep chocolate brown', 'cool olive',
-          'ethereal blue-tinted', 'ghostly white', 'warm honey', 'dark espresso',
-          'rosy fair', 'sun-kissed bronze', 'lavender tinted', 'translucent pale'
+          'warm honey', 'dark espresso',
+          'rosy fair', 'sun-kissed bronze'
         ]
       },
       outfit_top: {
         label: '👕 Top / Outfit',
         opts: [
-          'cropped arcade graphic tee', 'ripped fishnet top', 'oversized hoodie', 'cyber armor breastplate',
-          'school uniform blazer', 'strapless tube top', 'kimono with modern twist', 'tactical vest',
-          'maid dress bodice', 'ballgown corset', 'leather biker jacket', 'ethereal flowy robes',
-          'crop top with chains', 'military coat', 'cape with shoulder armor', 'sheer fairy wings top',
-          'skeleton print hoodie', 'trench coat', 'strapped harness bodysuit', 'shrine maiden haori',
-          'cyber bodysuit', 'band tee knotted', 'lace gothic blouse', 'fur-trimmed coat',
-          'combat jacket with patches', 'spacesuit top', 'off-shoulder wrap', 'floral yukata'
+          'oversized hoodie', 'cyber armor breastplate',
+          'school uniform blazer', 'kimono with modern twist', 'tactical vest',
+          'ballgown corset', 'leather biker jacket', 'elegant flowy robes',
+          'military coat', 'cape with shoulder armor',
+          'trench coat', 'shrine maiden haori',
+          'cyber bodysuit', 'lace elegant blouse', 'fur-trimmed coat',
+          'combat jacket', 'off-shoulder wrap', 'floral yukata',
+          'royal knight armor', 'sleek fitted blazer', 'embroidered silk robe',
+          'high-collar cloak', 'tailored vest with tie'
         ]
       },
       outfit_bottom: {
         label: '👖 Bottom',
         opts: [
-          'micro shorts with thigh highs', 'pleated plaid skirt', 'wide cargo pants', 'torn jeans',
-          'layered tutu skirt', 'hakama pants', 'bodysuit full', 'long slit skirt',
-          'short ruffled skirt', 'armored leg guards', 'jean shorts', 'flowing maxi skirt',
-          'leggings with knee pads', 'lace-trimmed skirt', 'combat pants', 'wrap skirt'
+          'pleated plaid skirt', 'wide cargo pants', 'fitted jeans',
+          'hakama pants', 'full-length bodysuit', 'long slit skirt',
+          'armored leg guards', 'flowing maxi skirt',
+          'tailored trousers', 'combat pants', 'wrap skirt',
+          'high-waisted shorts', 'layered asymmetric skirt'
         ]
       },
       accessories: {
         label: '💎 Accessories',
         opts: [
-          'none', 'chunky headphones', 'cat ear accessories', 'oversized round glasses',
-          'holographic visor', 'spiked collar', 'chain necklace layered', 'crescent moon hairpin',
-          'LED earrings', 'flower kanzashi pin', 'gas mask pulled down', 'crown of thorns',
-          'ribbon bow tie', 'butterfly clips', 'star-shaped sunglasses', 'mechanical arm',
-          'floating magic orbs', 'witch hat', 'angel halo', 'devil horns', 'fishnet gloves',
-          'armband tattoos', 'wrist communicator', 'crystal staff', 'samurai sword on back',
-          'rose bouquet', 'scroll', 'music player', 'pixel game controller', 'magic book'
+          'none', 'chunky headphones', 'cat ear accessories', 'stylish round glasses',
+          'holographic visor', 'chain necklace layered', 'crescent moon hairpin',
+          'LED earrings', 'flower kanzashi pin',
+          'ribbon bow', 'butterfly clips', 'star-shaped sunglasses',
+          'floating magic orbs', 'witch hat', 'angel halo',
+          'crystal staff', 'katana on back',
+          'elegant pocket watch', 'magic book', 'feather earring',
+          'circlet tiara', 'silk scarf', 'pendant necklace'
         ]
       },
       background: {
         label: '🌆 Background',
         opts: [
-          'neon-lit cyberpunk city alley at night', 'glowing arcade game room', 'dark city rooftop with neon signs', 'holographic circuit board pattern', 'blue neon hexagon grid', 'raining neon city nightscape', 'glowing server room', 'underground rave with lasers',
-          'cherry blossom garden at twilight', 'misty mountain shrine', 'enchanted glowing forest', 'moonlit lake reflection', 'field of luminous flowers', 'ancient temple ruins overgrown', 'starry night sky open field', 'autumn leaves golden light',
-          'swirling galaxy nebula portal', 'cosmic stardust void', 'shattered mirror fragments floating', 'watercolor ink splash abstract', 'geometric crystalline structure', 'golden sacred geometry', 'rainbow prism light beams', 'pastel cloud dreamscape',
-          'crumbling gothic cathedral interior', 'blood moon dark sky', 'black rose garden', 'haunted mansion ballroom', 'dark forest with will-o-wisps', 'underwater abyss glowing', 'volcanic lava field', 'graveyard at midnight',
-          'flat pastel pink solid', 'flat hot magenta solid', 'flat cyan blue solid', 'flat soft purple solid', 'white minimal studio', 'gradient purple to pink', 'gradient teal to black', 'halftone dot pattern'
-        ]
-      },
-      bg_effect: {
-        label: '✨ BG Special Effect',
-        opts: [
-          'none', 'floating sakura petals', 'neon particle rain', 'glowing rune symbols', 'lens flare streaks',
-          'bokeh light circles', 'rising embers', 'sparkle constellation', 'digital glitch lines',
-          'rising bubbles', 'floating feathers', 'shattered glass shards', 'smoke wisps',
-          'aurora borealis', 'electric lightning arcs', 'falling rose petals', 'pixel confetti'
+          'solid pastel pink', 'solid soft lavender', 'solid mint green',
+          'solid sky blue', 'solid warm peach', 'solid light coral',
+          'solid pale yellow', 'solid soft cyan', 'solid ivory white',
+          'solid deep navy', 'solid charcoal grey', 'solid midnight black',
+          'solid hot magenta', 'solid rich crimson', 'solid royal purple',
+          'solid teal', 'solid burnt orange', 'solid forest green',
+          'gradient pink to lavender', 'gradient sky blue to white',
+          'gradient purple to deep blue', 'gradient peach to coral',
+          'gradient teal to mint', 'gradient sunset orange to pink',
+          'gradient indigo to violet', 'gradient golden to amber'
         ]
       },
       mood_lighting: {
         label: '💡 Mood & Lighting',
         opts: [
-          'dramatic rim lighting', 'soft rose golden glow', 'harsh neon glow from below', 'moonlight blue cool tones',
-          'warm sunset amber', 'cold clinical white light', 'eerie green bioluminescence', 'cinematic chiaroscuro',
-          'flat bright pop art lighting', 'volumetric god rays', 'neon sign color cast', 'dark vignette edges',
-          'soft diffused pastel light', 'electric purple backlit', 'firelight warm flicker', 'dawn pink light'
-        ]
-      },
-      art_finish: {
-        label: '🖌 Art Finish',
-        opts: [
-          'detailed anime illustration', 'semi-realistic anime', 'painterly brushstroke', 'cel-shaded clean lines',
-          'pixel art 16-bit', 'thick outline sticker art', 'watercolor soft edges', 'ink wash manga style',
-          'glossy digital painting', 'rough sketch aesthetic', 'flat vector bold', 'neon poster print',
-          'oil painting texture', 'chalk pastel finish', 'lineless soft shading', 'grunge ink splatter'
+          'dramatic rim lighting', 'soft golden glow', 'moonlight blue cool tones',
+          'warm sunset amber', 'flat bright even lighting',
+          'soft diffused pastel light', 'electric purple backlit', 'dawn pink light',
+          'cinematic spotlight', 'gentle front lighting', 'warm studio lighting',
+          'cool white balanced light', 'vivid neon accent lighting'
         ]
       },
       expression: {
         label: '😶 Expression',
         opts: [
-          'confident smirk', 'mysterious blank stare', 'fierce battle glare', 'shy blushing downward look',
-          'joyful bright smile', 'sad teary eyes', 'cold emotionless', 'playful wink',
-          'surprised wide eyes', 'determined jaw set', 'seductive half-lidded', 'innocent curious',
-          'laughing joyful', 'melancholic distant', 'angry fierce', 'gentle serene smile'
+          'confident smirk', 'mysterious gaze', 'fierce battle glare', 'shy blushing look',
+          'joyful bright smile', 'cold emotionless', 'playful wink',
+          'determined focused', 'innocent curious',
+          'gentle serene smile', 'stoic calm', 'proud composed'
         ]
       },
       special_power: {
         label: '⚡ Power / Aura',
         opts: [
-          'none', 'glowing energy aura', 'floating magic circles', 'electricity arcing', 'dark shadow tendrils',
+          'none', 'glowing energy aura', 'floating magic circles', 'electricity arcing',
           'wind swirling around', 'ice frost forming', 'fire flames wisping', 'water flow ribbons',
-          'digital glitch distortion', 'holographic projections', 'cherry blossom vortex',
-          'cosmic star particles', 'blood magic dripping', 'lightning wings manifesting', 'void dark matter'
+          'holographic projections', 'cherry blossom vortex',
+          'cosmic star particles', 'lightning wings manifesting',
+          'radiant light burst', 'crystal shards orbiting', 'ethereal spirit flame'
         ]
       }
     };
     const STYLES = {
-      cyber: { name: "Cyber Neon", desc: "cyberpunk anime art style, neon glow, digital aesthetic, Makoto Shinkai inspired, ultra detailed linework, vibrant neon palette", neg: "realistic photo, 3D render, blurry, muted colors, low detail, sketch rough" },
-      kawaii: { name: "Kawaii Pop", desc: "kawaii anime pop art style, bright pastel colors, cute big eyes, glossy clean shading, chibi-influenced proportions, Sugar Bunnies aesthetic", neg: "dark, gore, realistic, blurry, ugly, deformed, 3D render" },
-      dark: { name: "Dark Anime", desc: "dark anime illustration, moody atmospheric art, Yoshitaka Amano influenced, dramatic shadows, deep color palette, mature detailed style", neg: "cute kawaii, bright pastel, blurry, low quality, 3D render, realistic photo" },
-      pixel: { name: "Pixel Art", desc: "pixel art anime character, 32-bit retro game sprite style, clean pixel edges, limited color palette, NES/SNES era aesthetic, detailed pixel shading", neg: "smooth, anti-aliased, realistic, blurry, 3D render, watercolor" },
-      magical: { name: "Magical Girl", desc: "magical girl anime style, Sailor Moon inspired, sparkly magical effects, pastel rainbow colors, elaborate costume detail, shojo manga aesthetic", neg: "dark, gritty, realistic, blurry, 3D render, ugly, poorly drawn" },
-      gothic: { name: "Gothic Lolita", desc: "gothic lolita anime art, dark elegant aesthetic, Junji Ito meets CLAMP style, lace and ribbon detail, dramatic dark palette, high fashion illustration", neg: "cute pastel, realistic photo, 3D render, blurry, low quality, nsfw" },
-      mecha: { name: "Mecha Armor", desc: "mecha anime art style, Gundam inspired armor design, hard-surface illustration, dynamic metallic shading, Mamoru Nagano influence, ultra-detailed mechanical", neg: "organic soft, realistic photo, blurry, low quality, 3D render, sketch" },
-      spirit: { name: "Spirit Nature", desc: "spirit and nature anime style, Hayao Miyazaki Studio Ghibli inspired, ethereal watercolor atmosphere, flowing organic forms, magical realism illustration", neg: "cyberpunk, neon, dark gritty, realistic photo, 3D render, blurry, ugly" }
+      celshaded: { name: "Cel-Shaded Vivid", desc: "cel-shaded anime illustration, bold flat color fills, clean sharp outlines, vivid saturated colors, premium anime art, crisp linework, vibrant cel shading", neg: "realistic photo, 3D render, blurry, muted colors, low detail, sketch rough, busy background, complex background, scenery" },
+      celsoft: { name: "Cel-Shaded Soft", desc: "cel-shaded anime art, soft pastel color palette, clean smooth linework, gentle flat shading, elegant anime illustration, refined cel shading", neg: "realistic photo, 3D render, blurry, dark, gritty, complex background, scenery, noisy" },
+      celneon: { name: "Cel-Shaded Neon", desc: "cel-shaded anime art style, neon vivid color palette, bold outlines, electric vibrant shading, sharp clean lines, high contrast cel shading, glowing color accents", neg: "realistic photo, 3D render, blurry, muted, dull, complex background, scenery, watercolor" },
+      celelegant: { name: "Cel-Shaded Elegant", desc: "cel-shaded anime illustration, sophisticated color palette, refined clean outlines, premium elegant shading, fashion illustration quality, polished cel shading", neg: "realistic photo, 3D render, blurry, childish, rough, complex background, scenery, sketch" },
+      celdark: { name: "Cel-Shaded Dark", desc: "cel-shaded dark anime illustration, deep rich color palette, bold dramatic outlines, moody cel shading, clean sharp linework, high contrast dark tones", neg: "cute kawaii, bright pastel, blurry, realistic photo, complex background, scenery, 3D render" },
+      celretro: { name: "Cel-Shaded Retro", desc: "cel-shaded retro anime style, 90s anime color palette, bold clean outlines, nostalgic flat shading, classic anime aesthetic, sharp vivid cel shading", neg: "realistic photo, 3D render, blurry, modern CG, complex background, scenery, watercolor" },
+      celfantasy: { name: "Cel-Shaded Fantasy", desc: "cel-shaded fantasy anime illustration, magical vivid color palette, ornate clean outlines, luminous flat shading, enchanting cel shading, premium detail", neg: "realistic photo, 3D render, blurry, modern, gritty, complex background, scenery, sketch" },
+      celminimal: { name: "Cel-Shaded Minimal", desc: "cel-shaded minimalist anime art, limited refined color palette, ultra clean outlines, simple elegant shading, modern anime aesthetic, pristine cel shading", neg: "realistic photo, 3D render, blurry, cluttered, busy, complex background, scenery, noisy" }
     };
-    const styleEmojis = { cyber: "⚡", kawaii: "🍬", dark: "🖤", pixel: "🕹", magical: "✨", gothic: "🩸", mecha: "🤖", spirit: "🌿" };
-    const baseNeg = "low quality, blurry, ugly, deformed, extra limbs, bad anatomy, watermark, signature, text, multiple characters, duplicate, mutated";
+    const styleEmojis = { celshaded: "🎨", celsoft: "🌸", celneon: "⚡", celelegant: "✨", celdark: "🖤", celretro: "📺", celfantasy: "🔮", celminimal: "◻️" };
+    const baseNeg = "low quality, blurry, ugly, deformed, extra limbs, bad anatomy, watermark, signature, text, multiple characters, duplicate, mutated, busy background, complex background, detailed scenery, landscape, realistic photo, 3D render, gradient mesh, noise, grain";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCKbyCQNoWJ3fNDru7-6DP2MG9CxM3HKvQ",
@@ -878,10 +870,9 @@
     }
 
     function buildPrompt(r, st) {
-      const accPart = r.accessories === 'none' ? '' : `, ${r.accessories}`;
-      const fxPart = r.special_power === 'none' ? '' : `, ${r.special_power}`;
-      const bgFx = r.bg_effect === 'none' ? '' : `, ${r.bg_effect}`;
-      return `A ${r.age_look} ${r.archetype} anime character, ${r.gender}, ${r.skin_tone} skin, ${r.hair_color} ${r.hair_style} hair, ${r.eye_style}, ${r.expression} expression, wearing ${r.outfit_top} and ${r.outfit_bottom}${accPart}${fxPart}, ${r.background} background${bgFx}, ${r.mood_lighting}, ${r.art_finish}, ${st.desc}, PFP NFT portrait composition, centered framing, ultra detailed, sharp focus, masterpiece quality, trending on OpenSea, 4K`;
+      const accPart = r.accessories === 'none' ? '' : `, wearing ${r.accessories}`;
+      const fxPart = r.special_power === 'none' ? '' : `, with ${r.special_power} effect`;
+      return `Cel-shaded anime character portrait, ${r.age_look} ${r.archetype}, ${r.gender}, ${r.skin_tone} skin, ${r.hair_color} ${r.hair_style} hair, ${r.eye_style}, ${r.expression} expression, wearing ${r.outfit_top} and ${r.outfit_bottom}${accPart}${fxPart}, clean ${r.background} plain background, ${r.mood_lighting}, ${st.desc}, single character centered composition, upper body portrait, clean plain solid color background only, no scenery, no environment, sharp clean lines, bold outlines, vibrant flat colors, premium NFT collectible art, ultra detailed, sharp focus, masterpiece quality, 4K resolution`;
     }
 
     function generatePrompt() {
@@ -932,8 +923,8 @@
     }
 
     function calcRarity(r) {
-      const legendary = ['heterochromia', 'void mage', 'blood mage', 'divine archer', 'cosmic witch', 'fallen angel', 'star guardian', 'holographic iridescent', 'fractal galaxy eyes', 'void dark matter', 'mechanical cyber eye'];
-      const epic = ['demon hunter', 'phantom thief', 'cursed prince', 'time traveler', 'cyber geisha', 'ghost bride', 'frost forming', 'lightning wings', 'cosmic star particles'];
+      const legendary = ['heterochromia', 'divine archer', 'cosmic witch', 'fallen angel', 'star guardian', 'galaxy shimmer eyes', 'lightning wings manifesting', 'thunder god', 'moon priestess'];
+      const epic = ['demon hunter', 'phantom thief', 'dragon slayer', 'flame empress', 'storm caller', 'ice frost forming', 'cosmic star particles', 'crystal seer', 'blade master'];
       const s = Object.values(r).join(' ').toLowerCase();
       if (legendary.some(w => s.includes(w))) return 'legendary';
       if (epic.some(w => s.includes(w))) return 'epic';
